@@ -1,6 +1,8 @@
 .DS_Store
 *.sw[mnop]
 
+dist/
+
 # Logs
 logs
 *.log
