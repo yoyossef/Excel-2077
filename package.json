@@ -28,7 +28,6 @@
     "vr"
   ],
   "dependencies": {
-    "aframe": "^1.0.4",
     "aframe-event-set-component": "^5.0.0"
   }
 }
