@@ -9,24 +9,42 @@
   </head>
   <body>
     <a-scene>
-        <a-entity camera look-controls>
-          <a-entity cursor="fuse: true; fuseTimeout: 500"
-                    position="0 0 -1"
-                    geometry="primitive: sphere; radius: 0.005"
-                    material="color: #00FF00; shader: flat; opacity: 0.7">
-          </a-entity>
+
+      <a-entity camera look-controls wasd-controls position="0 1.6 0">
+        <a-entity cursor="fuse: true; fuseTimeout: 500"
+                  position="0 0 -1"
+                  geometry="primitive: sphere; radius: 0.005"
+                  material="color: #00FF00; shader: flat; opacity: 0.7">
         </a-entity>
-        <!-- <a-entity tracked-controls="controller: 0; idPrefix: OpenVR">
-        </a-entity>
-        <a-entity tracked-controls="controller: 1; idPrefix: OpenVR">
-        </a-entity> -->
+      </a-entity>
+      
+      <!--
+
+        /!\ A ACTIVER POUR LES CONTROLLERS VR /!\
+
         <a-entity id="leftHand" laser-controls="hand: left" line="color: blue; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
-        <a-entity id="rightHand" laser-controls="hand: right" line="color: orange; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow class="links"
-               event-set__enter="_event: mouseenter; color: #026fc9"
-               event-set__leave="_event: mouseleave; color: #4CC3D9">
-        </a-box>
-        <a-sky color="#000000"></a-sky>
+        <a-entity id="rightHand" laser-controls="hand: right" line="color: orange; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity> 
+      -->
+
+      <a-entity position="0 1.6 -3" scale="1 1 1" class="links"
+                text="value: Hello , message de test \n un retour ligne;
+                      color: #FFFFFF;
+                      align: center;
+                      wrapCount: 20;
+                      width: 1;"
+                geometry="primitive: plane; width: auto; height: auto;"
+                material="color: #FF0000; shader: flat; visible: true;"
+                event-set__enter="_event: mouseenter; text.color: #000000; material.color: #FF5100;"
+                event-set__leave="_event: mouseleave; text.color: #FFFFFF; material.color: #FF0000;">
+      </a-entity>
+    
+      <a-box position="0 0 -3" rotation="0 0 0" color="#3C33FF" shadow class="links"
+            event-set__enter="_event: mouseenter; color: #FF7433"
+            event-set__leave="_event: mouseleave; color: #3C33FF">
+      </a-box>
+
+      <a-sky color="#000000"></a-sky>
+
     </a-scene>
   </body>
 </html>
