@@ -18,20 +18,20 @@
         </a-entity>
       </a-entity>
 
-      <!--
 
-        /!\ A ACTIVER POUR LES CONTROLLERS VR /!\
+
+        <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
 
         <a-entity id="leftHand" laser-controls="hand: left" line="color: blue; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
         <a-entity id="rightHand" laser-controls="hand: right" line="color: orange; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
-      -->
+
 
       <a-entity position="0 1.6 -3" scale="1 1 1" class="links"
-                text="value: 'Hello , message de test \n un retour ligne';
+                text='value: Hello , message de test \n un retour ligne;
                       color: #FFFFFF;
                       align: center;
                       wrapCount: 20;
-                      width: 1;"
+                      width: 1;'
                 geometry="primitive: plane; width: auto; height: auto;"
                 material="color: #FF0000; shader: flat; visible: true;"
                 event-set__enter="_event: mouseenter; text.color: #000000; material.color: #FF5100;"
