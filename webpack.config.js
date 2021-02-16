@@ -15,6 +15,10 @@ module.exports = {
 					from: 'src/index.html',
 					to: 'index.html'
 				},
+				{
+					from: 'lib/aframe.min.js',
+					to: 'aframe.min.js'
+				}
 			]
 		})
 	],
@@ -27,7 +31,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.m?js$/,
-				exclude: /node_modules/,
+				exclude: [/node_modules/, /lib/],
 				use: {
 					loader: "babel-loader",
 					options: {
