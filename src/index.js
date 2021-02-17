@@ -3,3 +3,4 @@
 */
 
 import 'aframe-event-set-component';
+require('./components/cell_component/cell-component.js');
