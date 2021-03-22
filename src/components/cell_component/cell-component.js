@@ -1,8 +1,9 @@
 AFRAME.registerComponent('cell', {
     schema: {
-        message:    {type: 'string', default: 'Message par defaut'},
+        message:    {type: 'string'},
         color:      {type: 'color', default: '#FFFFFF'},
-        bgColor:    {type: 'color', default: '#FF0000'}
+        bgColor:    {type: 'color', default: '#FF0000'},
+        cellH :     {type: 'number', default: 0.22}
     },
     init: function () {
         this.mesh = new THREE.Mesh();
@@ -15,7 +16,7 @@ AFRAME.registerComponent('cell', {
                                         wrapCount: 20,
                                         width: 1});
         this.el.setAttribute('geometry', {  primitive: 'plane',
-                                            height: 'auto',
+                                            height: this.data.cellH,
                                             width: 'auto'});
         this.el.setAttribute('material', {  color: this.data.bgColor,
                                             shader: 'flat',
