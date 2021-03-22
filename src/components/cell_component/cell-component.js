@@ -1,3 +1,5 @@
+import {ToolController} from '../../controllers/ToolController.js'
+
 AFRAME.registerComponent('cell', {
     schema: {
         message:    {type: 'string'},
@@ -28,6 +30,14 @@ AFRAME.registerComponent('cell', {
         },
         mouseleave: function (evt) {
             this.el.setAttribute('material',{color: this.data.bgColor});
+        },
+        click : function (evt) {
+            switch(ToolController.toolMode){
+                case 'select':
+                let selectTool = document.getElementById('selectTool').components["select-tool"];
+                selectTool.select(4);
+                break;
+            }
         }
     }
   });
