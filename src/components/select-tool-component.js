@@ -28,7 +28,7 @@ AFRAME.registerComponent('select-tool', {
         console.log(ToolController.toolMode);
     },
     enable: function (){
-        ToolController.disableOtherTools('select-toeol');
+        ToolController.disableOtherTools('select-tool');
         this.el.setAttribute('material','color', '#00FF00');
         this.isToggled=true;
         ToolController.toolMode='select';
