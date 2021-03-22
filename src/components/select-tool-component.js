@@ -1,3 +1,5 @@
+import {ToolController} from '../controllers/ToolController.js'
+
 AFRAME.registerComponent('select-tool', {
     schema: {
         color: {type:'color',default:'#FF0000'}
@@ -12,15 +14,28 @@ AFRAME.registerComponent('select-tool', {
     },
     events: {
         click: function (evt) {
-            if(!this.isSelected){
-                this.el.setAttribute('material','color', '#00FF00');
-                this.isSelected=true;
+            if(!this.isToggled){
+                this.enable();
             }
             else {
-                this.el.setAttribute('material','color','#FF0000');
-                this.isSelected=false;
+                this.disable();
             }
         }
     },
-    isSelected: false
+    isToggled: false,
+    select: function(elt){
+        console.log(elt);
+        console.log(ToolController.toolMode);
+    },
+    enable: function (){
+        ToolController.disableOtherTools('select-toeol');
+        this.el.setAttribute('material','color', '#00FF00');
+        this.isToggled=true;
+        ToolController.toolMode='select';
+    },
+    disable: function(){
+        this.el.setAttribute('material','color','#FF0000');
+        this.isToggled=false;
+        ToolController.toolMode ='none';
+    }
 });
