@@ -1,4 +1,5 @@
 import {ToolController} from '../../controllers/ToolController.js'
+import {ApiService} from '../../services/ApiService.js'
 
 AFRAME.registerComponent('cell', {
     schema: {
@@ -34,9 +35,12 @@ AFRAME.registerComponent('cell', {
         click : function (evt) {
             switch(ToolController.toolMode){
                 case 'select':
-                let selectTool = document.getElementById('selectTool').components["select-tool"];
-                selectTool.select(4);
-                break;
+                    let selectTool = document.getElementById('selectTool').components["select-tool"];
+                    selectTool.select(4);
+                    break;
+                case 'none':
+                    ApiService.rApiGET("x", "read_table", "D:\ClicDeclic\Documents\Cours\M2\rserver\custom_datast.csv ,header=T, spe=','");
+                    break;
             }
         }
     }
