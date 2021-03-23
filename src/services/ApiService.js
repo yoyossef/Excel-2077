@@ -1,13 +1,15 @@
-function rApiGET(var_name, command_name, command_param) {
+export class ApiService {
+
+  static rApiGET(var_name, command_name, command_param) {
     var full_command = var_name + " <- " + command_name + "(" + command_param + ")";
     
-    var url = "https://http://localhost:9000/command";
+    var url = "http://localhost:3000/command";
     var data = { "command": full_command };
 
-    getJSON(url, data, callback);
-}
+    this.getJSON(url, data, this.callBack);
+  }
 
-var getJSON = function(url, data, callback) {
+  static getJSON = function(url, data, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = 'json';
@@ -20,13 +22,15 @@ var getJSON = function(url, data, callback) {
       }
     };
     xhr.send(data);
-};
+  };
 
-var callBack = function(err, data) {
-    // data looking like -> { "result": "[{...},{...}]" }    
+  static callBack = function(err, data) {
+    // data looking like -> { "result": "[{...},{...}]" }     ???
     if (err !== null) {
-        alert('Something went wrong: ' + err);
+        console.log('Something went wrong: ' + err);
     } else {
-        alert('Your received: ' + data.result);
+        console.log('Your received: ' + data.status);
     }
+  };
+
 };
