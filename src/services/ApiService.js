@@ -12,6 +12,10 @@ export class ApiService {
   static getJSON = function(url, data, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
+    xhr.setRequestHeader('Content-type', 'json');
+    // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    // xhr.setRequestHeader('Access-Control-Allow-Methods', 'DELETE, POST, GET, OPTIONS');
+    // xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
     xhr.responseType = 'json';
     xhr.onload = function() {
       var status = xhr.status;
