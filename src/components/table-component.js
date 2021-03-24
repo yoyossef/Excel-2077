@@ -7,7 +7,9 @@ AFRAME.registerComponent('table', {
     multiple: true,
 
     init: function () {
-       /* this.data.dataMatrix = [
+
+       //pour les tests 
+       this.data.dataMatrix = [
             ["Chiffre", "Mots", "Prenom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom"],
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
@@ -39,7 +41,7 @@ AFRAME.registerComponent('table', {
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-        ];*/
+        ];
 
         this.display();
 
