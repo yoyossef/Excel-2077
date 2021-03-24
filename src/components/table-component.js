@@ -63,7 +63,8 @@ AFRAME.registerComponent('table', {
             var newCell = document.createElement("a-entity");
             newCell.setAttribute('cell', 'message: '+ message +'; color: #000000; bgColor: '+BgColor);
             newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
-            newCell.setAttribute('id', -1 +';'+ i-1);
+            message=i-1 
+            newCell.setAttribute('id', -1 +','+ message);
             this.el.appendChild(newCell);
         
             if (i==0){
@@ -92,7 +93,8 @@ AFRAME.registerComponent('table', {
                 var newCell = document.createElement("a-entity");
                 newCell.setAttribute('cell', 'message:'+ ligne[j] +'; color: #000000; bgColor: '+BgColor);
                 newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHauteur +' 0');
-                newCell.setAttribute('id', j-1 +';'+ i-1);
+                message = i-1;
+                newCell.setAttribute('id', j+','+message);
         
                 // ajoute le nouvel élément créé et son contenu dans le DOM
                 this.el.appendChild(newCell);
