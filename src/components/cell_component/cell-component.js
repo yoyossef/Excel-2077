@@ -7,9 +7,11 @@ AFRAME.registerComponent('cell', {
         bgColor:    {type: 'color', default: '#FF0000'},
         cellH :     {type: 'number', default: 0.22}
     },
+
+    multiple: true,
+    
     init: function () {
         this.mesh = new THREE.Mesh();
-
         this.el.setObject3D('mesh', this.mesh);
         this.el.setAttribute('class', 'links');
         this.el.setAttribute('text', {  value: this.data.message,

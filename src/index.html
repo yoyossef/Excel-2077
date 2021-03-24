@@ -18,8 +18,8 @@
         </a-entity>
       </a-entity>
 
-      <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
-      <!-- <a-entity id="leftHand" laser-controls="hand: left" line="color: blue; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
+      <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ 
+      <a-entity id="leftHand" laser-controls="hand: left" line="color: blue; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
       <a-entity id="rightHand" laser-controls="hand: right" line="color: orange; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity> -->
 
        <!--<a-entity select-tool position="1 1 -4" class="links"></a-entity>-->
@@ -28,46 +28,6 @@
 
       <a-sky color="#000000"></a-sky>
 
-      <script>
-       
-        var data = [
-            [1, 2, "bonjour"],
-            ["noob", 4,"aubergine"],
-            [5,'' ,"test d'une ligne plus grande pour voir"]
-          ];
-
-          var tableElement =  document.getElementById('table');
-          var tableAttribute = tableElement.getAttribute('table');
-          var BgColor;
-
-          console.log(tableAttribute);
-
-          for(var i = 0; i < data.length; i++) {
-              var ligne = data[i];
-              for(var j = 0; j < ligne.length; j++) {
-                if (i%2) {
-                  if (j%2)
-                    BgColor = '#DCDCDC';
-                  else
-                    BgColor = '#D3D3D3';
-                } else {
-                  if (j%2)
-                    BgColor = '#D3D3D3'; 
-                  else
-                    BgColor = '#DCDCDC';  
-                }
-      
-                // crée un nouvel élément div
-                var newCell = document.createElement("a-entity");
-                newCell.setAttribute('cell', 'message:'+ ligne[j] +'; color: #000000; bgColor: '+BgColor);
-                newCell.setAttribute('position', j +' '+ -i*0.22 +' 0');
-                newCell.setAttribute('id', j +';'+ i);
-
-                // ajoute le nouvel élément créé et son contenu dans le DOM
-                tableElement.appendChild(newCell);
-              }
-          } 
-      </script>
     </a-scene>
   </body>
 </html>
