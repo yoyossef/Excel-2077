@@ -22,10 +22,20 @@ AFRAME.registerComponent('select-tool', {
             }
         }
     },
+
+
     isToggled: false,
+    selectedItems: [],
     select: function(elt){
-        console.log(elt);
-        console.log(ToolController.toolMode);
+        let idx;
+        if((idx = this.selectedItems.findIndex(item => item == elt)) < 0){
+            this.selectedItems.push(elt);
+            return true;
+        }
+        else {
+            this.selectedItems.splice(idx,1);
+            return false;
+        }
     },
     enable: function (){
         ToolController.disableOtherTools('select-tool');
@@ -37,5 +47,9 @@ AFRAME.registerComponent('select-tool', {
         this.el.setAttribute('material','color','#FF0000');
         this.isToggled=false;
         ToolController.toolMode ='none';
+        for(let selectedId of this.selectedItems){
+            let cell = document.getElementById(selectedId);
+            console.log(cell);
+        }
     }
 });

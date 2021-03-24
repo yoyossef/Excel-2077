@@ -26,18 +26,31 @@ AFRAME.registerComponent('cell', {
     },
     events: {
         mouseenter: function (evt) {
-            this.el.setAttribute('material',{color: '#FF5100'});
+            if(!this.isSelected){
+                this.el.setAttribute('material',{color: '#FF5100'});
+            }
         },
         mouseleave: function (evt) {
-            this.el.setAttribute('material',{color: this.data.bgColor});
+            if(!this.isSelected){
+                this.el.setAttribute('material',{color: this.data.bgColor});
+            }
         },
         click : function (evt) {
             switch(ToolController.toolMode){
                 case 'select':
                 let selectTool = document.getElementById('selectTool').components["select-tool"];
-                selectTool.select(4);
+                let hasBeenSelected = selectTool.select(this.el.id);
+                if(hasBeenSelected){
+                    this.el.setAttribute('material',{color: '#00FF00'});
+                    this.isSelected = true;
+                }
+                else{
+                    this.el.setAttribute('material',{color: this.data.bgColor});
+                    this.isSelected=false;
+                }
                 break;
             }
         }
-    }
+    },
+    isSelected:false
   });
