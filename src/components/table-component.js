@@ -7,7 +7,9 @@ AFRAME.registerComponent('table', {
     multiple: true,
 
     init: function () {
-        this.data.dataMatrix = [
+
+       //pour les tests 
+       this.data.dataMatrix = [
             ["Chiffre", "Mots", "Prenom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom"],
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
@@ -40,6 +42,14 @@ AFRAME.registerComponent('table', {
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
             [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
         ];
+
+        this.display();
+
+    },
+
+    display:function (){
+
+        this.clear() // efface le contenu actuel
 
         var BgColor;
         var color1=""
@@ -100,7 +110,17 @@ AFRAME.registerComponent('table', {
                 this.el.appendChild(newCell);
             }
         }
-    
+
+    },
+
+    clear:function (){
+        while (this.el.firstChild) {
+            this.el.removeChild(this.el.lastChild);
+        }
+    },
+
+    loadData:function (newData){
+        this.data.dataMatrix=newData;
     }
 
 });

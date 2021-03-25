@@ -11,7 +11,7 @@ AFRAME.registerComponent('cell', {
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
         this.el.setAttribute('class', 'links');
-        
+
         this.el.setAttribute('text', {  value: this.data.message,
                                         color: this.data.color,
                                         align: 'center',
@@ -28,34 +28,30 @@ AFRAME.registerComponent('cell', {
 
         this.el.setAttribute('animation__mouseenter', { property: 'position',
                                             to: {x:this.el.object3D.position.x, y: this.el.object3D.position.y, z: 0.1},
-                                            dur: 250,
-                                            startEvents: 'mouseenter'}); 
+                                            dur: 150,
+                                            startEvents: 'mouseenter'});
 
         this.el.setAttribute('animation__mouseenter2', { property: 'scale',
                                             to: {x:1.1, y:1.1, z: 1},
-                                            dur: 250,
-                                            startEvents: 'mouseenter'});  
+                                            dur: 150,
+                                            startEvents: 'mouseenter'});
 
         this.el.setAttribute('animation__mouseleave', { property: 'position',
                                             to: {x:this.el.object3D.position.x, y: this.el.object3D.position.y, z: 0},
-                                            dur: 250,
-                                            startEvents: 'mouseleave'});  
+                                            dur: 150,
+                                            startEvents: 'mouseleave'});
 
         this.el.setAttribute('animation__mouseleave2', { property: 'scale',
                                             to: {x:1, y: 1, z: 1},
-                                            dur: 250,
-                                            startEvents: 'mouseleave'});                                      
+                                            dur: 150,
+                                            startEvents: 'mouseleave'});
     },
     events: {
         mouseenter: function (evt) {
-            if(!this.isSelected){
-                this.el.setAttribute('material',{color: '#FF5100'});
-            }
+            //this.el.setAttribute('material',{color: '#FF5100'});
         },
         mouseleave: function (evt) {
-            if(!this.isSelected){
-                this.el.setAttribute('material',{color: this.data.bgColor});
-            }
+            //this.el.setAttribute('material',{color: this.data.bgColor});
         },
         click : function (evt) {
             switch(ToolController.toolMode){
