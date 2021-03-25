@@ -54,54 +54,54 @@ AFRAME.registerComponent('table', {
         var BgColor;
         var color1=""
         var color2=""
-    
+        var type=""
+
         for(var i = 0; i < this.data.dataMatrix.length; i++) {
             var ligne = this.data.dataMatrix[i];
             var message = Math.abs(i) - 1;
         
             if (message=='-1')
-                message=' '
+                message=' ';
 
-            color1="#778899"
-            color2="#708090"
+            color1="#778899";
+            color2="#708090";
+            type = 'line';
         
             if (i%2)
                 BgColor = color1;
             else
                 BgColor = color2;
+
             // crée un nouvel élément a-entity 
             var newCell = document.createElement("a-entity");
-            newCell.setAttribute('cell', 'message: '+ message +'; color: #000000; bgColor: '+BgColor);
+            newCell.setAttribute('cell', 'message: '+ message +'; color: #000000; bgColor: '+BgColor+'; type:'+type);
             newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
-            message=i-1 
+            newCell.setAttribute('rotation', '0 0 0');
+            message=i-1;
             newCell.setAttribute('id', -1 +','+ message);
             this.el.appendChild(newCell);
         
             if (i==0){
-                color1="#778899"
-                color2="#708090"
+                color1="#778899";
+                color2="#708090";
+                type ='header';
             }else{
-                color1="#DCDCDC"
-                color2="#D3D3D3"
+                color1="#DCDCDC";
+                color2="#D3D3D3";
+                type='data';
             }
         
             for(var j = 0; j < ligne.length; j++) {
         
                 if (i%2) {
-                if (j%2)
-                    BgColor = color1;
-                else
+                    BgColor = color1;    
+                }else{
                     BgColor = color2;
-                } else {
-                if (j%2)
-                    BgColor = color2; 
-                else
-                    BgColor = color1;  
                 }
         
                 // crée un nouvel élément a-entity
                 var newCell = document.createElement("a-entity");
-                newCell.setAttribute('cell', 'message:'+ ligne[j] +'; color: #000000; bgColor: '+BgColor);
+                newCell.setAttribute('cell', 'message:'+ ligne[j] +'; color: #000000; bgColor: '+BgColor+'; type:'+type);
                 newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHauteur +' 0');
                 message = i-1;
                 newCell.setAttribute('id', j+','+message);

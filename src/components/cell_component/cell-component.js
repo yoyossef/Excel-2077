@@ -5,7 +5,9 @@ AFRAME.registerComponent('cell', {
         message:    {type: 'string'},
         color:      {type: 'color', default: '#FFFFFF'},
         bgColor:    {type: 'color', default: '#FF0000'},
-        cellH :     {type: 'number', default: 0.22}
+        cellH :     {type: 'number', default: 0.22},
+        type :      {type: 'string'},
+
     },
     init: function () {
         this.mesh = new THREE.Mesh();
@@ -57,18 +59,30 @@ AFRAME.registerComponent('cell', {
             switch(ToolController.toolMode){
                 case 'select':
                 let selectTool = document.getElementById('selectTool').components["select-tool"];
-                let hasBeenSelected = selectTool.select(this.el.id);
-                if(hasBeenSelected){
-                    this.el.setAttribute('material',{color: '#00FF00'});
-                    this.isSelected = true;
+                if(this.data.type == 'data'){
+                    let hasBeenSelected = selectTool.selectCell(this.el.id);
+                    if(hasBeenSelected){
+                        this.select();
+                    }
+                    else{
+                        this.unselect();
+                    }
                 }
-                else{
-                    this.el.setAttribute('material',{color: this.data.bgColor});
-                    this.isSelected=false;
+                else if(this.data.type == 'header'){
+                    let hasBeenSelected = selectTool.selectColumn(this.el.id.split(';')[1]);
                 }
+
                 break;
             }
         }
     },
-    isSelected:false
+    isSelected:false,
+    select: function(){
+        this.el.setAttribute('material',{color: '#00FF00'});
+        this.isSelected = true;
+    },
+    unselect : function(){
+        this.el.setAttribute('material',{color: this.data.bgColor});
+        this.isSelected=false;
+    }
   });
