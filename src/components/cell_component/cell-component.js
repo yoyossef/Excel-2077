@@ -5,7 +5,9 @@ AFRAME.registerComponent('cell', {
         message:    {type: 'string'},
         color:      {type: 'color', default: '#FFFFFF'},
         bgColor:    {type: 'color', default: '#FF0000'},
-        cellH :     {type: 'number', default: 0.22}
+        cellH :     {type: 'number', default: 0.22},
+        type :      {type: 'string'},
+
     },
     init: function () {
         this.mesh = new THREE.Mesh();
@@ -44,7 +46,8 @@ AFRAME.registerComponent('cell', {
         this.el.setAttribute('animation__mouseleave2', { property: 'scale',
                                             to: {x:1, y: 1, z: 1},
                                             dur: 150,
-                                            startEvents: 'mouseleave'});                                      
+                                            startEvents: 'mouseleave'});    
+        console.log(this.data.type);                                  
     },
     events: {
         mouseenter: function (evt) {
