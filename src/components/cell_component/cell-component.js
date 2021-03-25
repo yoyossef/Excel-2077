@@ -28,7 +28,7 @@ AFRAME.registerComponent('cell', {
                                             shader: 'flat',
                                             visible: true});
 
-        this.el.setAttribute('animation__mouseenter', { property: 'position',
+       /* this.el.setAttribute('animation__mouseenter', { property: 'position',
                                             to: {x:this.el.object3D.position.x, y: this.el.object3D.position.y, z: 0.1},
                                             dur: 150,
                                             startEvents: 'mouseenter'});
@@ -46,7 +46,7 @@ AFRAME.registerComponent('cell', {
         this.el.setAttribute('animation__mouseleave2', { property: 'scale',
                                             to: {x:1, y: 1, z: 1},
                                             dur: 150,
-                                            startEvents: 'mouseleave'});
+                                            startEvents: 'mouseleave'});      */
     },
     events: {
         mouseenter: function (evt) {
