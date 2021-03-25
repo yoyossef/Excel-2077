@@ -73,6 +73,7 @@ AFRAME.registerComponent('table', {
             var newCell = document.createElement("a-entity");
             newCell.setAttribute('cell', 'message: '+ message +'; color: #000000; bgColor: '+BgColor);
             newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
+            newCell.setAttribute('rotation', '0 25 0');
             message=i-1 
             newCell.setAttribute('id', -1 +','+ message);
             this.el.appendChild(newCell);
@@ -88,15 +89,9 @@ AFRAME.registerComponent('table', {
             for(var j = 0; j < ligne.length; j++) {
         
                 if (i%2) {
-                if (j%2)
-                    BgColor = color1;
-                else
+                    BgColor = color1;    
+                }else{
                     BgColor = color2;
-                } else {
-                if (j%2)
-                    BgColor = color2; 
-                else
-                    BgColor = color1;  
                 }
         
                 // crée un nouvel élément a-entity
