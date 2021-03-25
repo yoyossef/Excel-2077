@@ -10,37 +10,97 @@ AFRAME.registerComponent('table', {
 
        //pour les tests 
        this.data.dataMatrix = [
-            ["Chiffre", "Mots", "Prenom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom", "Prénom"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
-            [1, "Aubergine", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan", "Dylan"],
+            ["TitleCol1", "TitleCol2", "TitleCol3", "TitleCol4", "TitleCol4", "TitleCol5", "TitleCol6", "TitleCol7", "TitleCol8", "TitleCol9", "TitleCol10", "TitleCol11", "TitleCol12", "TitleCol13", "TitleCol14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
+            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
         ];
 
         this.display();
@@ -51,10 +111,13 @@ AFRAME.registerComponent('table', {
 
         this.clear() // efface le contenu actuel
 
+        var mode = 1 // BOUCHON !  A MIGRER DANS UNE FUTURE CLASSE GENERALE ( PREFERENCE UTILISATEUR )
+
         var BgColor;
-        var color1=""
-        var color2=""
-        var type=""
+        var color1="";
+        var color2="";
+        var type="";
+        var offset = 3;
 
         for(var i = 0; i < this.data.dataMatrix.length; i++) {
             var ligne = this.data.dataMatrix[i];
@@ -72,14 +135,27 @@ AFRAME.registerComponent('table', {
             else
                 BgColor = color2;
 
-            // crée un nouvel élément a-entity 
+            /*// crée un nouvel élément a-entity 
             var newCell = document.createElement("a-entity");
             newCell.setAttribute('cell', 'message: '+ message +'; color: #000000; bgColor: '+BgColor+'; type:'+type);
-            newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
-            newCell.setAttribute('rotation', '0 0 0');
+
+            switch (mode){
+                case 1: //wall 
+                    newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
+                    newCell.setAttribute('rotation', '0 0 0');
+
+                case 2: //half cylinder
+                    newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
+                    newCell.setAttribute('rotation', '0 0 0');
+
+                case 3: //full cylinder
+                    newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
+                    newCell.setAttribute('rotation', '0 0 0');
+            } 
+            
             message=i-1;
             newCell.setAttribute('id', -1 +','+ message);
-            this.el.appendChild(newCell);
+            this.el.appendChild(newCell);*/
         
             if (i==0){
                 color1="#778899";
@@ -102,10 +178,30 @@ AFRAME.registerComponent('table', {
                 // crée un nouvel élément a-entity
                 var newCell = document.createElement("a-entity");
                 newCell.setAttribute('cell', 'message:'+ ligne[j] +'; color: #000000; bgColor: '+BgColor+'; type:'+type);
-                newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHauteur +' 0');
+
+                switch (mode){
+                    case 1: //wall 
+                    newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHauteur +' 0');
+                        newCell.setAttribute('rotation', '0 0 0');
+                        newCell.setAttribute('rotation', '0 0 0');
+
+                    case 2: //half cylinder
+                        newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHauteur +' 0');
+                        newCell.setAttribute('rotation', '0 0 0');
+             
+                    case 3: //full cylinder
+                        var radius = 3;
+                        var angle  = (360/ligne.length)*j;
+                        var x = radius * Math.sin(Math.PI * 2 * angle / 360);
+                        var z = ( radius * Math.cos(Math.PI * 2 * angle / 360) ) * -1  ;
+                        z += offset;
+                        newCell.setAttribute('position', x +' '+ -(i-1)*this.data.cellHauteur +' '+z);
+                        newCell.setAttribute('rotation', '0 '+ -angle +' 0');
+                } 
+                
                 message = i-1;
                 newCell.setAttribute('id', j+','+message);
-        
+
                 // ajoute le nouvel élément créé et son contenu dans le DOM
                 this.el.appendChild(newCell);
             }
