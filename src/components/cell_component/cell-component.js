@@ -39,7 +39,7 @@ AFRAME.registerComponent('cell', {
                     selectTool.select(4);
                     break;
                 case 'none':
-                    ApiService.rApiGET("x", "read_table", "D:\ClicDeclic\Documents\Cours\M2\rserver\custom_datast.csv ,header=T, spe=','");
+                    ApiService.rCommandPOST("x", "read.table", "D:\ClicDeclic\Documents\Cours\M2\rserver\custom_datast_new.csv ,header=T, sep=\",\"");
                     break;
             }
         }
