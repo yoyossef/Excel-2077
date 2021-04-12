@@ -5,13 +5,11 @@ export class ApiService {
     let data = { "command": full_command };
 
     fetch('http://localhost:3000/command', {
-      method: "POST",
-      body: data,
+      method: 'POST',
+      body: JSON.stringify(data),
+      mode: 'cors',
       headers: {
         "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:9000"/*,
-        "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers"*/
       }
     })
     .then(json => console.log(json))
