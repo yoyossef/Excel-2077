@@ -69,7 +69,7 @@ AFRAME.registerComponent('cell', {
                     }
                 }
                 else if(this.data.type == 'header'){
-                    let hasBeenSelected = selectTool.selectColumn(this.el.id.split(';')[1]);
+                    let hasBeenSelected = selectTool.selectColumn(this.el.id.split(',')[0]);
                 }
 
                 break;
@@ -78,7 +78,12 @@ AFRAME.registerComponent('cell', {
     },
     isSelected:false,
     select: function(){
-        this.el.setAttribute('material',{color: '#00FF00'});
+        if(this.data.type == 'header'){
+            this.el.setAttribute('material',{color: '#009900'});
+        }
+        else {
+            this.el.setAttribute('material',{color: '#00FF00'});
+        }
         this.isSelected = true;
     },
     unselect : function(){

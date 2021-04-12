@@ -1,4 +1,5 @@
-import {ToolController} from '../controllers/ToolController.js'
+import {ToolController} from '../controllers/ToolController.js';
+import {TableController} from '../controllers/TableController.js';
 
 AFRAME.registerComponent('select-tool', {
     schema: {
@@ -26,6 +27,7 @@ AFRAME.registerComponent('select-tool', {
 
     isToggled: false,
     selectedItems: [],
+    selectedColumns: [],
     enable: function (){
         ToolController.disableOtherTools('select-tool');
         this.el.setAttribute('material','color', '#00FF00');
@@ -38,7 +40,6 @@ AFRAME.registerComponent('select-tool', {
         ToolController.toolMode ='none';
         for(let selectedId of this.selectedItems){
             let cell = document.getElementById(selectedId);
-            console.log(cell);
         }
     },
     selectCell: function(elt){
@@ -49,10 +50,36 @@ AFRAME.registerComponent('select-tool', {
         }
         else {
             this.selectedItems.splice(idx,1);
+            //if full column was selected, unselect column header
+            if((idx = this.selectedColumns.findIndex(item => item == (elt.slice(',')[0]))) >= 0){
+                document.getElementById(elt.slice(',')[0]+',-1').components["cell"].unselect();
+                this.selectedColumns.splice(idx,1);
+            }
             return false;
         }
     },
     selectColumn: function (elt){
-        console.log(elt);
+        let idx
+        let cells = TableController.getCellsByColumn(elt);
+        if((idx = this.selectedColumns.findIndex(item => item == elt)) < 0){
+            for(let cell of cells){
+                cell.select();
+                if(this.selectedItems.findIndex(item => item == elt) < 0){
+                    this.selectedItems.push(cell.el.id);
+                }
+            }
+            this.selectedColumns.push(elt);
+        }
+        else {
+            let cellIdx;
+            for(let cell of cells){
+                cell.unselect();
+                if(cellIdx = (this.selectedItems.findIndex(item => item == elt)) < 0){
+                    this.selectedItems.splice(cellIdx,1);
+                }
+            }
+            this.selectedColumns.splice(idx,1);
+        }
+
     }
 });
