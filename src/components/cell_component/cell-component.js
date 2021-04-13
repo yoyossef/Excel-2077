@@ -9,11 +9,10 @@ AFRAME.registerComponent('cell', {
         type :      {type: 'string'},
         position :  {type: 'array'},
         angle :     {type: 'number'}
-
     },
     init: function () {
-        var mode = 3;
-        this.data.position=[this.el.object3D.position.x,this.el.object3D.position.y,this.el.object3D.position.z]
+        var mode = this.el.parentNode.getAttribute('table').mode;
+        this.data.position=[this.el.object3D.position.x,this.el.object3D.position.y,this.el.object3D.position.z];
        
         var zoomedPos= new Array(3);
 
@@ -38,22 +37,14 @@ AFRAME.registerComponent('cell', {
         // Position animation
         switch (mode){
             case 1: //wall
-                zoomedPos = [this.data.position[0],this.data.position[1],this.data.position[2]+0.1]    
+                zoomedPos = [this.data.position[0],this.data.position[1],this.data.position[2]+0.1];    
                 break;
             case 2: //cylinder
             case 3: 
-                var offset;
-                var radius =  this.el.parentNode.getAttribute('table').radius-0.1;
-                if (mode == 2){
-                    offset = 0;
-                    radius *= 2
-                }else{
-                    offset = radius/2;
-                }   
+                var radius =  this.el.parentNode.getAttribute('table').radius-0.1; 
                 var x = radius * Math.sin(Math.PI * 2 * this.data.angle / 360);
-                var z = ( radius * Math.cos(Math.PI * 2 *  this.data.angle / 360) ) * -1  ;
-                z +=  offset;
-                zoomedPos = [parseFloat(x).toFixed(3),this.data.position[1],parseFloat(z).toFixed(3)]
+                var z = ( radius * Math.cos(Math.PI * 2 *  this.data.angle / 360) ) * -1;
+                zoomedPos = [parseFloat(x).toFixed(3),this.data.position[1],parseFloat(z).toFixed(3)];
                 break;      
         }   
 

@@ -3,7 +3,8 @@ AFRAME.registerComponent('table', {
         cellHauteur:    {type: 'number'},
         dataMatrix:     {type: 'array'},
         nbrCol:         {type: 'int'},
-        radius:         {type: 'number'}
+        radius:         {type: 'number'},
+        mode:           {type: 'int'} // 1 -> Wall  2 -> HalfCylinder  3 -> Cylinder 
     },
 
     multiple: true,
@@ -11,101 +12,10 @@ AFRAME.registerComponent('table', {
     init: function () {
 
        //pour les tests 
-      /* dataMatrix = [
-            ["TitleCol1", "TitleCol2", "TitleCol3", "TitleCol4", "TitleCol4", "TitleCol5", "TitleCol6", "TitleCol7", "TitleCol8", "TitleCol9", "TitleCol10", "TitleCol11", "TitleCol12", "TitleCol13", "TitleCol14"],
-            ["01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110"],
-            ["01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110"],
-            ["01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110"],
-            ["01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110"],
-            ["01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110"],
-            ["01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110", "01111111111111111110"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-            ["Col1", "Col2", "Col3", "Col4", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9", "Col10", "Col11", "Col12", "Col13", "Col14"],
-        ];*/
-
         dataMatrix = [  // BOUCHON !
+            ["colonne1", "Colonne2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
+            ["Adrien", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
+            ["Maria", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
@@ -119,11 +29,7 @@ AFRAME.registerComponent('table', {
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
-            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
-            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
-            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
-            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"]
-            
+            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"] 
         ];
 
         this.loadData(dataMatrix);
@@ -132,15 +38,12 @@ AFRAME.registerComponent('table', {
 
     display:function (){
 
-        this.clear() // efface le contenu actuel
-
-        var mode = 2; // BOUCHON !  A MIGRER DANS UNE FUTURE CLASSE GENERALE ( PREFERENCE UTILISATEUR )
+        this.clear(); // efface le contenu actuel
 
         var BgColor;
         var color1="";
         var color2="";
         var type="";
-        
 
         for(var i = 0; i < this.data.dataMatrix.length; i++) {
             var ligne = this.data.dataMatrix[i];
@@ -162,7 +65,7 @@ AFRAME.registerComponent('table', {
             var newCell = document.createElement("a-entity");
             newCell.setAttribute('cell', 'message: '+ message +'; color: #000000; bgColor: '+BgColor+'; type:'+type);
 
-            switch (mode){
+            switch (this.data.mode){
                 case 1: //wall 
                     newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
                     newCell.setAttribute('rotation', '0 0 0');
@@ -204,26 +107,22 @@ AFRAME.registerComponent('table', {
                 var radius ;
                 var offset ;
                 
-                switch (mode){
+                switch (this.data.mode){
                     case 1: //wall 
-                        newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHauteur +' 0');
+                        newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHauteur +' -3');
                         newCell.setAttribute('rotation', '0 0 0');
                         break;
 
                     case 2: //half cylinder
                     case 3: //full cylinder
-                        if (mode == 2){
-                            radius = this.data.radius * 2
+                        if (this.data.mode == 2){
                             angle  = ((360/ligne.length)*j)/2;
-                            offset = 0;
                         }else{
-                            radius = this.data.radius 
                             angle  = (360/ligne.length)*j;   
-                            offset = radius/2;
-                        }                
+                        }  
+                        radius = this.data.radius               
                         var x = radius * Math.sin(Math.PI * 2 * angle / 360);
-                        var z = ( radius * Math.cos(Math.PI * 2 * angle / 360) ) * -1  ;
-                        z += offset;
+                        var z = ( radius * Math.cos(Math.PI * 2 * angle / 360) ) * -1;
                         newCell.setAttribute('position', parseFloat(x).toFixed(3) +' '+ -(i-1)*this.data.cellHauteur +' '+parseFloat(z).toFixed(3));
                         newCell.setAttribute('rotation', '0 '+ -angle +' 0');
                         break;
@@ -237,7 +136,6 @@ AFRAME.registerComponent('table', {
                 this.el.appendChild(newCell);
             }
         }
-
     },
 
     clear:function (){
@@ -247,9 +145,14 @@ AFRAME.registerComponent('table', {
     },
 
     loadData:function (newData){
+        this.data.mode = 3;
         this.data.dataMatrix=newData;
         this.data.nbrCol = this.data.dataMatrix[0].length;
-        this.data.radius = (this.data.nbrCol * 2.5) / 15 ;
+        if (this.data.mode == 2){
+            this.data.radius = ((this.data.nbrCol * 2.5) / 15)*2;
+        }else{
+            this.data.radius = (this.data.nbrCol * 2.5) / 15;
+        }        
     }
 
 });
