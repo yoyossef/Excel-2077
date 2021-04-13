@@ -1,6 +1,6 @@
 export class ToolController {
 
-    toolMode = 'none';
+    static toolMode = 'none';
 
     static disableOtherTools (toolToKeep) {
         if(toolToKeep != 'select-tool'){
