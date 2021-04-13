@@ -10,13 +10,14 @@
   <body>
     <a-scene>
 
-      <a-entity camera look-controls wasd-controls position="0 0 0">
+      <a-entity id="camera" camera look-controls wasd-controls position="0 0 0">
         <a-entity cursor="fuse: false; fuseTimeout: 500"
                   position="0 0 -1"
                   geometry="primitive: sphere; radius: 0.005"
                   material="color: #00FF00; shader: flat; opacity: 0.7">
         </a-entity>
       </a-entity>
+      <a-entity id="belt" tools-belt></a-entity>
 
       <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
       <a-entity id="leftHand" laser-controls="hand: left" line="color: blue; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
