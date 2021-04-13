@@ -38,7 +38,6 @@ AFRAME.registerComponent('select-tool', {
         this.el.setAttribute('material','color','#FF0000');
         this.isToggled=false;
         ToolController.toolMode ='none';
-        console.log(this.selectedItems);
         for(let selectedId of this.selectedItems){
             let cell = document.getElementById(selectedId);
         }
@@ -52,16 +51,16 @@ AFRAME.registerComponent('select-tool', {
         else {
             this.selectedItems.splice(idx,1);
             //if full column was selected, unselect column header
-            if((idx = this.selectedColumns.findIndex(item => item == (elt.slice(',')[0]))) >= 0){
-                document.getElementById(elt.slice(',')[0]+',-1').components["cell"].unselect();
+            if((idx = this.selectedColumns.findIndex(item => item == (elt.split(',')[0]))) >= 0){
+                document.getElementById(elt.split(',')[0]+',-1').components["cell"].unselect();
                 this.selectedColumns.splice(idx,1);
-                console.log(elt);
-                if((idx = this.selectedItems.findIndex(item => item == elt.slice(',')[0]+',-1')) >= 0){
+                if((idx = this.selectedItems.findIndex(item => item == elt.split(',')[0]+',-1')) >= 0){
                     this.selectedItems.splice(idx,1);
                 }
             }
             return false;
         }
+
     },
     selectColumn: function (elt){
         let idx
@@ -85,6 +84,5 @@ AFRAME.registerComponent('select-tool', {
             }
             this.selectedColumns.splice(idx,1);
         }
-
     }
 });
