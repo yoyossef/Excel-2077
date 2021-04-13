@@ -19,7 +19,7 @@ AFRAME.registerComponent('cell', {
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
         this.el.setAttribute('class', 'links');
-        
+
         this.el.setAttribute('text', {  value: this.data.message,
                                         color: this.data.color,
                                         align: 'center',
@@ -51,12 +51,12 @@ AFRAME.registerComponent('cell', {
         this.el.setAttribute('animation__positionEnter', { property: 'position',
                                             to: {x: zoomedPos[0], y: zoomedPos[1], z: zoomedPos[2]},
                                             dur: 150,
-                                            startEvents: 'mouseenter'}); 
+                                            startEvents: 'mouseenter'});
 
         this.el.setAttribute('animation__positionLeave', { property: 'position',
                                             to: {x: this.data.position[0], y: this.data.position[1], z: this.data.position[2]},
                                             dur: 150,
-                                            startEvents: 'mouseleave'});  
+                                            startEvents: 'mouseleave'});
 
         // Scale animation
         this.el.setAttribute('animation__scaleEnter', { property: 'scale',
@@ -81,9 +81,35 @@ AFRAME.registerComponent('cell', {
             switch(ToolController.toolMode){
                 case 'select':
                 let selectTool = document.getElementById('selectTool').components["select-tool"];
-                selectTool.select(4);
+                if(this.data.type == 'data'){
+                    let hasBeenSelected = selectTool.selectCell(this.el.id);
+                    if(hasBeenSelected){
+                        this.select();
+                    }
+                    else{
+                        this.unselect();
+                    }
+                }
+                else if(this.data.type == 'header'){
+                    let hasBeenSelected = selectTool.selectColumn(this.el.id.split(',')[0]);
+                }
+
                 break;
             }
         }
+    },
+    isSelected:false,
+    select: function(){
+        if(this.data.type == 'header'){
+            this.el.setAttribute('material',{color: '#009900'});
+        }
+        else {
+            this.el.setAttribute('material',{color: '#00FF00'});
+        }
+        this.isSelected = true;
+    },
+    unselect : function(){
+        this.el.setAttribute('material',{color: this.data.bgColor});
+        this.isSelected=false;
     }
   });
