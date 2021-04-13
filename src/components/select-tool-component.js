@@ -38,6 +38,7 @@ AFRAME.registerComponent('select-tool', {
         this.el.setAttribute('material','color','#FF0000');
         this.isToggled=false;
         ToolController.toolMode ='none';
+        console.log(this.selectedItems);
         for(let selectedId of this.selectedItems){
             let cell = document.getElementById(selectedId);
         }
@@ -54,6 +55,10 @@ AFRAME.registerComponent('select-tool', {
             if((idx = this.selectedColumns.findIndex(item => item == (elt.slice(',')[0]))) >= 0){
                 document.getElementById(elt.slice(',')[0]+',-1').components["cell"].unselect();
                 this.selectedColumns.splice(idx,1);
+                console.log(elt);
+                if((idx = this.selectedItems.findIndex(item => item == elt.slice(',')[0]+',-1')) >= 0){
+                    this.selectedItems.splice(idx,1);
+                }
             }
             return false;
         }
@@ -74,7 +79,7 @@ AFRAME.registerComponent('select-tool', {
             let cellIdx;
             for(let cell of cells){
                 cell.unselect();
-                if(cellIdx = (this.selectedItems.findIndex(item => item == elt)) < 0){
+                if((cellIdx = this.selectedItems.findIndex(item => item == cell.el.id)) >= 0){
                     this.selectedItems.splice(cellIdx,1);
                 }
             }
