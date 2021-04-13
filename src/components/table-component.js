@@ -2,11 +2,10 @@ import {TableController} from '../controllers/TableController.js';
 
 AFRAME.registerComponent('table', {
     schema: {
-        cellHauteur:    {type: 'number'},
+        cellHeight:     {type: 'number'},
         dataMatrix:     {type: 'array'},
         nbrCol:         {type: 'int'},
         radius:         {type: 'number'}
-    //    mode:           {type: 'int'} // 1 -> Wall  2 -> HalfCylinder  3 -> Cylinder
     },
 
     multiple: true,
@@ -63,28 +62,6 @@ AFRAME.registerComponent('table', {
             else
                 BgColor = color2;
 
-            /*// crée un nouvel élément a-entity
-            var newCell = document.createElement("a-entity");
-            newCell.setAttribute('cell', 'message: '+ message +'; color: #000000; bgColor: '+BgColor+'; type:'+type);
-
-            switch (TableController.displayMode){
-                case 'Wall': //wall
-                    newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
-                    newCell.setAttribute('rotation', '0 0 0');
-
-                case 'HalfCylinder': //half cylinder
-                    newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
-                    newCell.setAttribute('rotation', '0 0 0');
-
-                case 'Cylinder': //full cylinder
-                    newCell.setAttribute('position', -1 +' '+ -(i-1)*this.data.cellHauteur +' 0');
-                    newCell.setAttribute('rotation', '0 0 0');
-            }
-
-            message=i-1;
-            newCell.setAttribute('id', -1 +','+ message);
-            this.el.appendChild(newCell);*/
-
             if (i==0){
                 color1="#778899";
                 color2="#708090";
@@ -110,7 +87,11 @@ AFRAME.registerComponent('table', {
                 var offset ;
                 switch (TableController.displayMode){
                     case 'Wall': //wall
-                        newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHauteur +' -3');
+                        if (type == 'header')
+                            newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +'  -2.99');
+                        else
+                            newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +' -3');
+                       
                         newCell.setAttribute('rotation', '0 0 0');
                         break;
 
@@ -121,10 +102,15 @@ AFRAME.registerComponent('table', {
                         }else{
                             angle  = (360/ligne.length)*j;
                         }
-                        radius = this.data.radius
+
+                        if (type == 'header')
+                            radius = this.data.radius-0.01;
+                        else
+                            radius = this.data.radius;
+      
                         var x = radius * Math.sin(Math.PI * 2 * angle / 360);
                         var z = ( radius * Math.cos(Math.PI * 2 * angle / 360) ) * -1;
-                        newCell.setAttribute('position', parseFloat(x).toFixed(3) +' '+ -(i-1)*this.data.cellHauteur +' '+parseFloat(z).toFixed(3));
+                        newCell.setAttribute('position', parseFloat(x).toFixed(3) +' '+ -(i-1)*this.data.cellHeight +' '+parseFloat(z).toFixed(3));
                         newCell.setAttribute('rotation', '0 '+ -angle +' 0');
                         break;
                 }
@@ -139,6 +125,12 @@ AFRAME.registerComponent('table', {
         }
     },
 
+    events: {
+        click: function (evt) {
+            TableController.moveHeaders('up');
+        }
+    },
+
     clear:function (){
         while (this.el.firstChild) {
             this.el.removeChild(this.el.lastChild);
@@ -146,7 +138,6 @@ AFRAME.registerComponent('table', {
     },
 
     loadData:function (newData){
-        //this.data.mode = 3;
         this.data.dataMatrix=newData;
         this.data.nbrCol = this.data.dataMatrix[0].length;
         if (TableController.displayMode == 'HalfCylinder'){
@@ -154,6 +145,5 @@ AFRAME.registerComponent('table', {
         }else{
             this.data.radius = (this.data.nbrCol * 2.5) / 15;
         }
-    }
-
+    },
 });
