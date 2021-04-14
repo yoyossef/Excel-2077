@@ -137,13 +137,72 @@ AFRAME.registerComponent('table', {
         }
     },
 
+    changeDisplayMode:function (){
+
+        this.setRadius();
+        
+        if (this.el.hasChildNodes()) {
+    
+            let numChild = 0 
+            var children = this.el.childNodes;
+
+            for(var i = 0; i < this.data.dataMatrix.length; i++) {
+
+                var ligne = this.data.dataMatrix[i];
+
+                for(var j = 0; j < ligne.length; j++,numChild++) {
+
+                    var angle  ;
+                    var radius ;
+
+                    switch (TableController.displayMode){
+
+                        case 'Wall': //wall
+                            if (children[numChild].components['cell'].data.type == 'header')
+                                children[numChild].components['cell'].move(j,-(i-1)*this.data.cellHeight,-2.99 );//('position', j +' '+ -(i-1)*this.data.cellHeight +'  -2.99');
+                            else
+                                children[numChild].components['cell'].move(j,-(i-1)*this.data.cellHeight,-3);//children[numChild].setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +' -3');
+
+                            children[numChild].setAttribute('rotation', '0 0 0');    
+                            break;
+
+                        case 'HalfCylinder': //half cylinder
+                        case 'Cylinder': //full cylinder
+                            if (TableController.displayMode == 'HalfCylinder'){
+                                angle  = ((360/ligne.length)*j)/2;
+                            }else{
+                                angle  = (360/ligne.length)*j;
+                            }
+                            
+                            if (children[numChild].components['cell'].data.type == 'header')
+                                radius = this.data.radius-0.01;
+                            else
+                                radius = this.data.radius;
+        
+                            var x = radius * Math.sin(Math.PI * 2 * angle / 360);
+                            var z = ( radius * Math.cos(Math.PI * 2 * angle / 360) ) * -1;
+                            children[numChild].components['cell'].data.angle = angle;
+                            children[numChild].components['cell'].move(parseFloat(x).toFixed(3),-(i-1)*this.data.cellHeight,parseFloat(z).toFixed(3));//children[numChild].setAttribute('position', parseFloat(x).toFixed(3) +' '+ -(i-1)*this.data.cellHeight +' '+parseFloat(z).toFixed(3));
+                            children[numChild].setAttribute('rotation', '0 '+ -angle +' 0');
+                            break;
+                    }
+                }
+            }
+        }
+  
+    },
+
     loadData:function (newData){
         this.data.dataMatrix=newData;
         this.data.nbrCol = this.data.dataMatrix[0].length;
+        this.setRadius();
+    },
+
+    setRadius: function (){
         if (TableController.displayMode == 'HalfCylinder'){
             this.data.radius = ((this.data.nbrCol * 2.5) / 15)*2;
         }else{
             this.data.radius = (this.data.nbrCol * 2.5) / 15;
         }
-    },
+    }
 });

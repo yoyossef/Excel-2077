@@ -46,4 +46,9 @@ export class TableController {
         }
     }
 
+    static changeDisplayMode(mode) {
+        this.displayMode = mode;
+        document.getElementById('table').components["table"].changeDisplayMode();
+    }
+
 };

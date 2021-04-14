@@ -11,3 +11,5 @@ require('./components/cell-component.js');
 require('./components/select-tool-component.js');
 require('./components/table-component.js');
 require('./components/toolsBelt_component/toolsBelt-component.js');
+require('./components/displayManager-component.js');
+require('./components/displayBtn-component.js');
