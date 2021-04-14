@@ -127,7 +127,7 @@ AFRAME.registerComponent('table', {
 
     events: {
         click: function (evt) {
-            TableController.moveHeaders('up');
+            TableController.moveHeaders('down');
         }
     },
 

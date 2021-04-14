@@ -1,6 +1,6 @@
 export class TableController {
 
-    static displayMode = 'Wall'; //Wall HalfCylinder Cylinder
+    static displayMode = 'Cylinder'; //Wall HalfCylinder Cylinder
 
     static getCellsByColumn (colIndex) {
         let res = [];
@@ -39,10 +39,10 @@ export class TableController {
         var el = document.querySelector('#table');
         let cellHeight = el.getAttribute('table').cellHeight;
         for(let i = 0; i< headers.length;i++){
-            if (direction =='haut')
-                headers[i].move(headers[i].el.object3D.position.x,headers[i].el.object3D.position.y+cellHeight,headers[i].el.object3D.position.z);            
+            if (direction =='up')
+                headers[i].move(headers[i].data.position[0],headers[i].data.position[1]+cellHeight,headers[i].data.position[2]);            
             else
-                headers[i].move(headers[i].el.object3D.position.x,headers[i].el.object3D.position.y-cellHeight,headers[i].el.object3D.position.z);      
+                headers[i].move(headers[i].data.position[0],headers[i].data.position[1]-cellHeight,headers[i].data.position[2]);         
         }
     }
 
