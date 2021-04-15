@@ -19,24 +19,20 @@ AFRAME.registerComponent('moving-tool-down', {
             color: '#FFFFFF',
             align: 'center',
             wrapCount: 15,
-            width: 0.40
+            width: 0.2
         });
 
         this.el.setAttribute('geometry', {
             primitive: 'plane',
-            height: 0.08,
-            width: 0.09
+            height: 0.04,
+            width: 0.045
         });
 
         this.el.setAttribute('material', {
-            color: '#111111',
+            color: '#222222',
             shader: 'flat',
             visible: true
         });
-
-        this.el.setAttribute('material', {  color: '#111111',
-                                            shader: 'flat',
-                                            visible: true});
 
     },
     events: {

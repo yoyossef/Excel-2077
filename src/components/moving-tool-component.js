@@ -7,15 +7,17 @@ AFRAME.registerComponent('moving-tool', {
     init: function () {
 
         let moveBtn = document.createElement("a-entity");
-        moveBtn.setAttribute('position', '0 0.08 0');
+        moveBtn.setAttribute('position', '0 0.04 0');
         moveBtn.setAttribute('moving-tool-up',true);
         moveBtn.setAttribute('id', 'movingToolUp');
+        this.el.setAttribute('class', 'links');
         this.el.appendChild(moveBtn);
 
         moveBtn = document.createElement("a-entity");
         moveBtn.setAttribute('position', '0 0 0');
         moveBtn.setAttribute('moving-tool-down',true);
         moveBtn.setAttribute('id', 'movingToolDown');
+        this.el.setAttribute('class', 'links');
         this.el.appendChild(moveBtn);
 
     }

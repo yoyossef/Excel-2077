@@ -19,28 +19,23 @@ AFRAME.registerComponent('displaybtn', {
 
         this.el.setAttribute('text', {
             value: this.data.message,
-            color: this.data.color,
+            color: '#FFFFFF',
             align: 'center',
             wrapCount: 15,
-            width: 0.40
+            width: 0.20
         });
 
         this.el.setAttribute('geometry', {
             primitive: 'plane',
-            height: 0.15,
+            height: 0.075,
             width: 'auto'
         });
 
         this.el.setAttribute('material', {
-            color: this.data.bgColor,
+            color: '#222222',
             shader: 'flat',
             visible: true
         });
-
-        this.el.setAttribute('material', {  color: this.data.bgColor,
-                                            shader: 'flat',
-                                            visible: true});
-                               
     },
 
     events: {
@@ -51,7 +46,7 @@ AFRAME.registerComponent('displaybtn', {
                 for (var i = 0; i < childrens.length; i++) {
                     childrens[i].components["displaybtn"].data.enable = true;
                     childrens[i].setAttribute('material', {
-                        color: childrens[i].components["displaybtn"].data.bgColor,
+                        color: '#222222',
                         shader: 'flat',
                         visible: true
                     });
@@ -62,7 +57,7 @@ AFRAME.registerComponent('displaybtn', {
                     shader: 'flat',
                     visible: true
                 });
-                
+
                 TableController.changeDisplayMode(this.data.type);
             }
         }

@@ -5,12 +5,12 @@ AFRAME.registerComponent('displaymanager', {
     },
 
     init: function () {
-        
+
         this.el.setAttribute('rotation', '45 0 0');
 
         // crée un nouvel élément a-entity
         var newDisplayBtn = document.createElement("a-entity");
-        newDisplayBtn.setAttribute('position', '-0.5 0 0');
+        newDisplayBtn.setAttribute('position', '0 0.15 0');
         newDisplayBtn.setAttribute('rotation', '0 0 0');
         newDisplayBtn.setAttribute('displaybtn', 'message: Wall; color: #000000; bgColor: #87CEFA; type: Wall;');
         newDisplayBtn.setAttribute('id', 'wallBtn');
@@ -18,7 +18,7 @@ AFRAME.registerComponent('displaymanager', {
         this.el.appendChild(newDisplayBtn);
 
         newDisplayBtn = document.createElement("a-entity");
-        newDisplayBtn.setAttribute('position', '0 0 0');
+        newDisplayBtn.setAttribute('position', '0 0.075 0');
         newDisplayBtn.setAttribute('rotation', '0 0 0');
         newDisplayBtn.setAttribute('displaybtn', 'message: Half cylinder; color: #000000; bgColor: #9ACD32; type: HalfCylinder;');
         newDisplayBtn.setAttribute('id', 'halfCylinderBtn');
@@ -26,7 +26,7 @@ AFRAME.registerComponent('displaymanager', {
         this.el.appendChild(newDisplayBtn);
 
         newDisplayBtn = document.createElement("a-entity");
-        newDisplayBtn.setAttribute('position', '0.5 0 0');
+        newDisplayBtn.setAttribute('position', '0 0 0');
         newDisplayBtn.setAttribute('rotation', '0 0 0');
         newDisplayBtn.setAttribute('displaybtn', 'message: Cylinder; color: #000000; bgColor: #F08080; type: Cylinder;');
         newDisplayBtn.setAttribute('id', 'cylinderBtn');
