@@ -106,21 +106,23 @@ AFRAME.registerComponent('cell', {
     },
 
     setZoom : function() {
-        var zoomedPos= new Array(3);
+        
+        let zoomedPos = new Array(3); 
+
         // Position animation
         switch (TableController.displayMode){
-            case 1: //wall
-                zoomedPos = [this.data.position[0],this.data.position[1],this.data.position[2]-0.1];    
+            case "Wall": 
+                zoomedPos = [this.data.position[0],this.data.position[1],this.data.position[2]+0.05]; 
                 break;
-            case 2: //cylinder
-            case 3: 
-                var radius =  this.el.parentNode.getAttribute('table').radius-0.1; 
+            case "HalfCylinder": 
+            case "Cylinder": 
+                var radius =  this.el.parentNode.getAttribute('table').radius-0.05; 
                 var x = radius * Math.sin(Math.PI * 2 * this.data.angle / 360);
                 var z = ( radius * Math.cos(Math.PI * 2 *  this.data.angle / 360) ) * -1;
                 zoomedPos = [parseFloat(x).toFixed(3),this.data.position[1],parseFloat(z).toFixed(3)];
                 break;      
         }   
-
+        
         this.el.setAttribute('animation__positionEnter', { property: 'position',
                                             to: {x: zoomedPos[0], y: zoomedPos[1], z: zoomedPos[2]},
                                             dur: 150,
@@ -136,7 +138,7 @@ AFRAME.registerComponent('cell', {
         this.el.object3D.position.x = x ;
         this.el.object3D.position.y = y ;
         this.el.object3D.position.z = z ;
-        this.data.position=[this.el.object3D.position.x,this.el.object3D.position.y,this.el.object3D.position.z];
+        this.data.position=[x,y,z];
         this.setZoom();
     }
 });

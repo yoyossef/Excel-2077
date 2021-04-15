@@ -17,14 +17,17 @@
                   material="color: #00FF00; shader: flat; opacity: 0.7">
         </a-entity>
       </a-entity>
-      <a-entity id="belt" tools-belt></a-entity>
+
+      <a-entity id="selectTool" select-tool position="1 1 -4" class="links"></a-entity>
       <a-entity id="movingTool" moving-tool position="1 1 1" class="links"></a-entity>
+
+      <a-entity id="belt" tools-belt>
+        <a-entity displaymanager id='displaymanager' position=" 0 1 0.5"></a-entity>
+      </a-entity>
 
       <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
       <a-entity id="leftHand" laser-controls="hand: left" line="color: blue; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
       <a-entity id="rightHand" laser-controls="hand: right" line="color: orange; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity>
-
-      <a-entity id="selectTool" select-tool position="1 1 -4" class="links"></a-entity>
 
       <a-entity table='cellHeight: 0.22;' id='table' position=" 0 1.6 0"></a-entity>
 
