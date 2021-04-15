@@ -5,19 +5,18 @@ AFRAME.registerComponent('moving-tool', {
         color: {type:'color',default:'#0000FF'}
     },
     init: function () {
-        //Setting 3D model
-        this.geometry = new THREE.BoxBufferGeometry(0.2,0.2, 0);
-        this.material = new THREE.MeshStandardMaterial({color: this.data.color});
-        this.mesh = new THREE.Mesh(this.geometry, this.material);
-        this.el.setObject3D('mesh', this.mesh);
 
-    },
-    events: {
-        click: function (evt) {
-                CameraController.move('down');
-        }
-    },
+        let moveBtn = document.createElement("a-entity");
+        moveBtn.setAttribute('position', '0 0.08 0');
+        moveBtn.setAttribute('moving-tool-up',true);
+        moveBtn.setAttribute('id', 'movingToolUp');
+        this.el.appendChild(moveBtn);
 
+        moveBtn = document.createElement("a-entity");
+        moveBtn.setAttribute('position', '0 0 0');
+        moveBtn.setAttribute('moving-tool-down',true);
+        moveBtn.setAttribute('id', 'movingToolDown');
+        this.el.appendChild(moveBtn);
 
-    isToggled: false
+    }
 });
