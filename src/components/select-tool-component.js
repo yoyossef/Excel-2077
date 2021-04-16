@@ -7,10 +7,29 @@ AFRAME.registerComponent('select-tool', {
     },
     init: function () {
         //Setting 3D model
-        this.geometry = new THREE.BoxBufferGeometry(1,1, 0);
-        this.material = new THREE.MeshStandardMaterial({color: this.data.color});
-        this.mesh = new THREE.Mesh(this.geometry, this.material);
+        this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
+        this.el.setAttribute('class', 'links');
+
+        this.el.setAttribute('text', {
+            value: 'Select',
+            color: '#FFFFFF',
+            align: 'center',
+            wrapCount: 15,
+            width: 0.20
+        });
+
+        this.el.setAttribute('geometry', {
+            primitive: 'plane',
+            height: 0.075,
+            width: 'auto'
+        });
+
+        this.el.setAttribute('material', {
+            color: '#222222',
+            shader: 'flat',
+            visible: true
+        });
 
     },
     events: {
@@ -30,12 +49,12 @@ AFRAME.registerComponent('select-tool', {
     selectedColumns: [],
     enable: function (){
         ToolController.disableOtherTools('select-tool');
-        this.el.setAttribute('material','color', '#00FF00');
+        this.el.setAttribute('material','color', '#A9A9A9');
         this.isToggled=true;
         ToolController.toolMode='select';
     },
     disable: function(){
-        this.el.setAttribute('material','color','#FF0000');
+        this.el.setAttribute('material','color','#222222');
         this.isToggled=false;
         ToolController.toolMode ='none';
         for(let selectedId of this.selectedItems){

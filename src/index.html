@@ -11,7 +11,7 @@
   <body>
     <a-scene>
       <a-entity id="rig" position="0 0 0">
-        <a-entity id="camera" camera look-controls wasd-controls position="0 0 0">
+        <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0">
           <a-entity cursor="fuse: false; fuseTimeout: 500"
                     position="0 0 -1"
                     geometry="primitive: sphere; radius: 0.005"
@@ -25,12 +25,13 @@
           <a-entity id="belt" tools-belt>
             <a-entity displaymanager id='displaymanager' position=" -0.25 0.5 0.5"></a-entity>
             <a-entity id="movingTool" moving-tool position="0.25 0.5 0.5" rotation="45 0 0" class="links"></a-entity>
+            <a-entity id="selectTool" select-tool position="0 0.5 0.5" rotation="45 0 0" class="links"></a-entity>
           </a-entity>
         </a-entity>
       </a-entity>
 
 
-      <a-entity id="selectTool" select-tool position="1 1 -4" class="links"></a-entity>
+
 
       <a-entity table='cellHeight: 0.22;' id='table' position=" 0 1.6 0"></a-entity>
 
