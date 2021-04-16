@@ -49,6 +49,12 @@ export class TableController {
     static changeDisplayMode(mode) {
         this.displayMode = mode;
         document.getElementById('table').components["table"].changeDisplayMode();
+        //Test ajout de données
+        /*let dataMatrix = [  // BOUCHON !
+            ["NewData1Col1", "NewData1Col2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
+            ["NewData2Col1", "NewData2Col2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
+        ];
+        document.getElementById('table').components["table"].addData(dataMatrix);*/
     }
 
 };
