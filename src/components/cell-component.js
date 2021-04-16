@@ -1,5 +1,5 @@
-import {ToolController} from '../controllers/ToolController.js';
-import {TableController} from '../controllers/TableController.js';
+import { ToolController } from '../controllers/ToolController.js';
+import { TableController } from '../controllers/TableController.js';
 
 AFRAME.registerComponent('cell', {
     schema: {
@@ -12,8 +12,8 @@ AFRAME.registerComponent('cell', {
         angle: { type: 'number' }
     },
 
-    init: function () {
-        this.data.position=[this.el.object3D.position.x,this.el.object3D.position.y,this.el.object3D.position.z];
+    init: function() {
+        this.data.position = [this.el.object3D.position.x, this.el.object3D.position.y, this.el.object3D.position.z];
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
         this.el.setAttribute('class', 'links');
@@ -38,9 +38,11 @@ AFRAME.registerComponent('cell', {
             visible: true
         });
 
-        this.el.setAttribute('material', {  color: this.data.bgColor,
-                                            shader: 'flat',
-                                            visible: true});
+        this.el.setAttribute('material', {
+            color: this.data.bgColor,
+            shader: 'flat',
+            visible: true
+        });
 
         // Scale animation
         this.el.setAttribute('animation__scaleEnter', {
@@ -56,14 +58,14 @@ AFRAME.registerComponent('cell', {
             dur: 150,
             startEvents: 'mouseleave'
         });
-        
+
         this.setZoom();
-                               
+
     },
 
     events: {
-        click : function (evt) {
-            switch(ToolController.toolMode){
+        click: function(evt) {
+            switch (ToolController.toolMode) {
                 case 'select':
                     let selectTool = document.getElementById('selectTool').components["select-tool"];
                     if (this.data.type == 'data') {
@@ -78,67 +80,64 @@ AFRAME.registerComponent('cell', {
                     }
 
                     break;
-
-                    /*
-                    case 'none':
-                        ApiService.rCommandPOST("x", "read.table", "\"D:/ClicDeclic/Documents/Cours/M2/rservercustom_datast_new.csv\" ,header=T, sep=\",\"");
-                        break;
-                    */
             }
         }
     },
 
-    isSelected:false,
+    isSelected: false,
 
-    select: function(){
-        if(this.data.type == 'header'){
-            this.el.setAttribute('material',{color: '#009900'});
-        }
-        else {
-            this.el.setAttribute('material',{color: '#00FF00'});
+    select: function() {
+        if (this.data.type == 'header') {
+            this.el.setAttribute('material', { color: '#009900' });
+        } else {
+            this.el.setAttribute('material', { color: '#00FF00' });
         }
         this.isSelected = true;
     },
 
-    unselect : function(){
-        this.el.setAttribute('material',{color: this.data.bgColor});
-        this.isSelected=false;
+    unselect: function() {
+        this.el.setAttribute('material', { color: this.data.bgColor });
+        this.isSelected = false;
     },
 
-    setZoom : function() {
-        
-        let zoomedPos = new Array(3); 
+    setZoom: function() {
+
+        let zoomedPos = new Array(3);
 
         // Position animation
-        switch (TableController.displayMode){
-            case "Wall": 
-                zoomedPos = [this.data.position[0],this.data.position[1],this.data.position[2]+0.05]; 
+        switch (TableController.displayMode) {
+            case "Wall":
+                zoomedPos = [this.data.position[0], this.data.position[1], this.data.position[2] + 0.05];
                 break;
-            case "HalfCylinder": 
-            case "Cylinder": 
-                var radius =  this.el.parentNode.getAttribute('table').radius-0.05; 
+            case "HalfCylinder":
+            case "Cylinder":
+                var radius = this.el.parentNode.getAttribute('table').radius - 0.05;
                 var x = radius * Math.sin(Math.PI * 2 * this.data.angle / 360);
-                var z = ( radius * Math.cos(Math.PI * 2 *  this.data.angle / 360) ) * -1;
-                zoomedPos = [parseFloat(x).toFixed(3),this.data.position[1],parseFloat(z).toFixed(3)];
-                break;      
-        }   
-        
-        this.el.setAttribute('animation__positionEnter', { property: 'position',
-                                            to: {x: zoomedPos[0], y: zoomedPos[1], z: zoomedPos[2]},
-                                            dur: 150,
-                                            startEvents: 'mouseenter'});
+                var z = (radius * Math.cos(Math.PI * 2 * this.data.angle / 360)) * -1;
+                zoomedPos = [parseFloat(x).toFixed(3), this.data.position[1], parseFloat(z).toFixed(3)];
+                break;
+        }
 
-        this.el.setAttribute('animation__positionLeave', { property: 'position',
-                                            to: {x: this.data.position[0], y: this.data.position[1], z: this.data.position[2]},
-                                            dur: 150,
-                                            startEvents: 'mouseleave'});
+        this.el.setAttribute('animation__positionEnter', {
+            property: 'position',
+            to: { x: zoomedPos[0], y: zoomedPos[1], z: zoomedPos[2] },
+            dur: 150,
+            startEvents: 'mouseenter'
+        });
+
+        this.el.setAttribute('animation__positionLeave', {
+            property: 'position',
+            to: { x: this.data.position[0], y: this.data.position[1], z: this.data.position[2] },
+            dur: 150,
+            startEvents: 'mouseleave'
+        });
     },
 
-    move : function(x,y,z){
-        this.el.object3D.position.x = x ;
-        this.el.object3D.position.y = y ;
-        this.el.object3D.position.z = z ;
-        this.data.position=[x,y,z];
+    move: function(x, y, z) {
+        this.el.object3D.position.x = x;
+        this.el.object3D.position.y = y;
+        this.el.object3D.position.z = z;
+        this.data.position = [x, y, z];
         this.setZoom();
     }
 });
