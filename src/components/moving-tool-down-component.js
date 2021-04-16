@@ -1,4 +1,5 @@
 import {CameraController} from '../controllers/CameraController.js';
+import {TableController} from '../controllers/TableController.js';
 
 AFRAME.registerComponent('moving-tool-down', {
     schema: {
@@ -38,6 +39,7 @@ AFRAME.registerComponent('moving-tool-down', {
     events: {
         click: function (evt) {
                 CameraController.move('down');
+                TableController.moveHeaders('down');
         }
     }
 });

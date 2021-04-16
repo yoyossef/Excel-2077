@@ -1,3 +1,4 @@
+import {CameraController} from './CameraController.js';
 export class TableController {
 
     static displayMode = 'Cylinder'; //Wall HalfCylinder Cylinder
@@ -34,15 +35,20 @@ export class TableController {
         return res;
     }
 
-    static moveHeaders (direction){
+    static async moveHeaders (direction){
         let headers = this.getHeaders();
-        var el = document.querySelector('#table');
-        let cellHeight = el.getAttribute('table').cellHeight;
-        for(let i = 0; i< headers.length;i++){
-            if (direction =='up')
-                headers[i].move(headers[i].data.position[0],headers[i].data.position[1]+cellHeight,headers[i].data.position[2]);
-            else
-                headers[i].move(headers[i].data.position[0],headers[i].data.position[1]-cellHeight,headers[i].data.position[2]);
+        let directionAffect = 0;
+        if(direction == 'up'){
+            directionAffect = 1;
+        }
+        else if (direction == 'down'){
+            directionAffect = -1;
+        }
+        for(let i = 0; i<CameraController.moveDistance;i+=CameraController.step){
+            for(let j = 0; j< headers.length;j++){
+                    headers[j].move(headers[j].data.position[0],headers[j].data.position[1]+(CameraController.step * directionAffect),headers[j].data.position[2]);
+            }
+            await new Promise(done => setTimeout(() => done(), 5));
         }
     }
 

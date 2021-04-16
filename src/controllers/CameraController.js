@@ -1,6 +1,6 @@
 export class CameraController {
 
-    static moveDistance = 0.22 *5;
+    static moveDistance = 0.22 *20;
     static step = 0.1;
 
     static getCamera(){
