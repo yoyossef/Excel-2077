@@ -18,6 +18,10 @@ module.exports = {
 				{
 					from: 'lib/aframe.min.js',
 					to: 'aframe.min.js'
+				},
+				{
+					from: 'lib/aframe-teleport-controls.min.js',
+					to: 'aframe-teleport-controls.min.js'
 				}
 			]
 		})

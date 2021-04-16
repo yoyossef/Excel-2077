@@ -3,7 +3,7 @@ import { TableController } from '../controllers/TableController.js';
 
 AFRAME.registerComponent('cell', {
     schema: {
-        message: { type: 'string' },
+        fulldata: { type: 'string' },
         color: { type: 'color', default: '#FFFFFF' },
         bgColor: { type: 'color', default: '#FF0000' },
         cellH: { type: 'number', default: 0.22 },
@@ -19,7 +19,7 @@ AFRAME.registerComponent('cell', {
         this.el.setAttribute('class', 'links');
 
         this.el.setAttribute('text', {
-            value: this.data.message,
+            value: this.data.fulldata.substring(0,20),
             color: this.data.color,
             align: 'center',
             wrapCount: 20,
