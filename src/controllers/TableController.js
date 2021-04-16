@@ -40,9 +40,9 @@ export class TableController {
         let cellHeight = el.getAttribute('table').cellHeight;
         for(let i = 0; i< headers.length;i++){
             if (direction =='up')
-                headers[i].move(headers[i].data.position[0],headers[i].data.position[1]+cellHeight,headers[i].data.position[2]);            
+                headers[i].move(headers[i].data.position[0],headers[i].data.position[1]+cellHeight,headers[i].data.position[2]);
             else
-                headers[i].move(headers[i].data.position[0],headers[i].data.position[1]-cellHeight,headers[i].data.position[2]);         
+                headers[i].move(headers[i].data.position[0],headers[i].data.position[1]-cellHeight,headers[i].data.position[2]);
         }
     }
 

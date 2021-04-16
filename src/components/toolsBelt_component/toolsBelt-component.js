@@ -1,35 +1,28 @@
+import {CameraController} from '../../controllers/CameraController.js';
+
 AFRAME.registerComponent('tools-belt', {
 	schema: {},
 	init: function () {
-		this.el.setAttribute('geometry', {
-			primitive: 'torus',
-			radius: 1,
-			radiusTubular: 0.1,
-			arc: '360'
-		});
+		// this.el.setAttribute('geometry', {
+		// 	primitive: 'torus',
+		// 	radius: 1,
+		// 	radiusTubular: 0.1,
+		// 	arc: '360'
+		// });
 		this.el.setAttribute('rotation', "-90 0 0");
-		this.el.setAttribute('position', "0 -1 0");
 	},
-	update: function () { },
 	tick: function () {
-		let positionX = document.getElementById("camera").components["camera"].el.object3D.position.x;
-		let positionY = document.getElementById("camera").components["camera"].el.object3D.position.y;
-		let positionZ = document.getElementById("camera").components["camera"].el.object3D.position.z;
-		let rotationX = document.getElementById("camera").components["camera"].el.object3D.rotation.x;
-		// let rotationY = document.getElementById("camera").components["camera"].el.object3D.rotation.y;
-		// let rotationZ = document.getElementById("camera").components["camera"].el.object3D.rotation.z;
+		let camera = CameraController.getCamera();
+		let position = Object.assign({},camera.el.getAttribute('position')); //cloning camera position
+	    let rotation = camera.el.getAttribute('rotation');//cloning camera rotation
 
-		if (rotationX >= 0)
+		if (rotation.x >= -40)
 			this.el.setAttribute("visible", false);
 		else
 			this.el.setAttribute("visible", true);
-		
-		positionY -= 1;
-		// rotationX -= 90;
-		this.el.setAttribute('position', positionX + " " + positionY + " " + positionZ);
-		// this.el.setAttribute('rotation', rotationX + " " + rotationY + " " + rotationZ);
-	},
-	remove: function () { },
-	pause: function () { },
-	play: function () { }
+
+		position.y -= 1.4;
+		this.el.setAttribute('position', position);
+		this.el.setAttribute('rotation',{y:rotation.y},true); //Comment this line if you want to use the belt with the mouse
+	}
 });
