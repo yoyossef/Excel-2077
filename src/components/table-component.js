@@ -218,7 +218,7 @@ AFRAME.registerComponent('table', {
 
                         case 'Wall': //wall
                             if (children[numChild].components['cell'].data.type == 'header')
-                                children[numChild].components['cell'].move(j,-(i-1)*this.data.cellHeight,-2.99 );
+                                children[numChild].components['cell'].move(j,children[numChild].components['cell'].el.object3D.position.y,-2.99 );
                             else
                                 children[numChild].components['cell'].move(j,-(i-1)*this.data.cellHeight,-3);
 
@@ -241,7 +241,12 @@ AFRAME.registerComponent('table', {
                             var x = radius * Math.sin(Math.PI * 2 * angle / 360);
                             var z = ( radius * Math.cos(Math.PI * 2 * angle / 360) ) * -1;
                             children[numChild].components['cell'].data.angle = angle;
-                            children[numChild].components['cell'].move(parseFloat(x).toFixed(3),-(i-1)*this.data.cellHeight,parseFloat(z).toFixed(3));
+                            if(children[numChild].components['cell'].data.type == 'header'){
+                                children[numChild].components['cell'].move(parseFloat(x).toFixed(3),children[numChild].components['cell'].el.object3D.position.y,parseFloat(z).toFixed(3));
+                            }
+                            else {
+                                children[numChild].components['cell'].move(parseFloat(x).toFixed(3),-(i-1)*this.data.cellHeight,parseFloat(z).toFixed(3));
+                            }
                             children[numChild].setAttribute('rotation', '0 '+ -angle +' 0');
                             break;
                     }
