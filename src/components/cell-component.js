@@ -1,5 +1,6 @@
 import { ToolController } from '../controllers/ToolController.js';
 import { TableController } from '../controllers/TableController.js';
+import { CameraController } from '../controllers/CameraController.js';
 
 AFRAME.registerComponent('cell', {
     schema: {
@@ -38,12 +39,6 @@ AFRAME.registerComponent('cell', {
             visible: true
         });
 
-        this.el.setAttribute('material', {
-            color: this.data.bgColor,
-            shader: 'flat',
-            visible: true
-        });
-
         // Scale animation
         this.el.setAttribute('animation__scaleEnter', {
             property: 'scale',
@@ -60,7 +55,20 @@ AFRAME.registerComponent('cell', {
         });
 
         this.setZoom();
+        this.tick = AFRAME.utils.throttleTick(this.tick, 50, this); //to only tick every 50ms (20 instead of 90 times per seconds)
 
+    },
+
+    tick : function(){
+        let camera = CameraController.getRig();
+        let position = camera.getAttribute('position');
+        if(this.el.object3D.position.y > position.y + CameraController.verticalViewDistance
+          || this.el.object3D.position.y < position.y - CameraController.verticalViewDistance){
+            this.el.setAttribute('visible',false);
+        }
+        else {
+            this.el.setAttribute('visible',true);
+        }
     },
 
     events: {

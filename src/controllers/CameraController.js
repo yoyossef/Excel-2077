@@ -2,6 +2,7 @@ export class CameraController {
 
     static moveDistance = 0.22 *20;
     static step = 0.1;
+    static verticalViewDistance = 2;
 
     static getCamera(){
         return document.getElementById('camera').components["camera"];
