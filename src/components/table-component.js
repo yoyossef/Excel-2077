@@ -147,7 +147,7 @@ AFRAME.registerComponent('table', {
                 switch (TableController.displayMode){
                     case 'Wall': //wall
                         if (type == 'header')
-                            newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +'  -2.99');
+                            newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +'  -2.8');
                         else
                             newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +' -3');
 
@@ -163,7 +163,7 @@ AFRAME.registerComponent('table', {
                         }
 
                         if (type == 'header')
-                            radius = this.data.radius-0.01;
+                            radius = this.data.radius-0.2;
                         else
                             radius = this.data.radius;
 
@@ -218,7 +218,7 @@ AFRAME.registerComponent('table', {
 
                         case 'Wall': //wall
                             if (children[numChild].components['cell'].data.type == 'header')
-                                children[numChild].components['cell'].move(j,children[numChild].components['cell'].el.object3D.position.y,-2.99 );
+                                children[numChild].components['cell'].move(j,children[numChild].components['cell'].el.object3D.position.y,-2.8 );
                             else
                                 children[numChild].components['cell'].move(j,-(i-1)*this.data.cellHeight,-3);
 
@@ -234,7 +234,7 @@ AFRAME.registerComponent('table', {
                             }
 
                             if (children[numChild].components['cell'].data.type == 'header')
-                                radius = this.data.radius-0.01;
+                                radius = this.data.radius-0.2;
                             else
                                 radius = this.data.radius;
 
@@ -301,7 +301,7 @@ AFRAME.registerComponent('table', {
                     switch (TableController.displayMode){
                         case 'Wall': //wall
                             if (type == 'header')
-                                newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +'  -2.99');
+                                newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +'  -2.8');
                             else
                                 newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +' -3');
 
@@ -317,7 +317,7 @@ AFRAME.registerComponent('table', {
                             }
 
                             if (type == 'header')
-                                radius = this.data.radius-0.01;
+                                radius = this.data.radius-0.2;
                             else
                                 radius = this.data.radius;
 
