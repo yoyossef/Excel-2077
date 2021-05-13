@@ -1,11 +1,10 @@
 import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
 
-AFRAME.registerComponent('displaybtn', {
+AFRAME.registerComponent('display-button', {
     schema: {
         message: { type: 'string' },
-        color: { type: 'color', default: '#FFFFFF' },
-        bgColor: { type: 'color', default: '#FF0000' },
+        color: { type: 'color', default: '#222222' },
         type: { type: 'string' },
         position: { type: 'array' },
         enable : {type: 'boolean', default: true}
@@ -32,7 +31,7 @@ AFRAME.registerComponent('displaybtn', {
         });
 
         this.el.setAttribute('material', {
-            color: '#222222',
+            color: this.data.color,
             shader: 'flat',
             visible: true
         });
@@ -41,10 +40,10 @@ AFRAME.registerComponent('displaybtn', {
     events: {
         click : function (evt) {
             if (this.data.enable){
-                var el =document.getElementById('displaymanager');
+                var el =document.getElementById('display-manager');
                 let childrens = el.childNodes;
                 for (var i = 0; i < childrens.length; i++) {
-                    childrens[i].components["displaybtn"].data.enable = true;
+                    childrens[i].components["display-button"].data.enable = true;
                     childrens[i].setAttribute('material', {
                         color: '#222222',
                         shader: 'flat',

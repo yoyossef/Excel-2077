@@ -1,14 +1,8 @@
-import {CameraController} from '../../controllers/CameraController.js';
+import {CameraController} from '../controllers/CameraController.js';
 
 AFRAME.registerComponent('tools-belt', {
 	schema: {},
 	init: function () {
-		// this.el.setAttribute('geometry', {
-		// 	primitive: 'torus',
-		// 	radius: 1,
-		// 	radiusTubular: 0.1,
-		// 	arc: '360'
-		// });
 		this.el.setAttribute('rotation', "-90 0 0");
 		this.tick = AFRAME.utils.throttleTick(this.tick, 50, this); //to only tick every 50ms (20 instead of 90 times per seconds)
 	},
@@ -24,6 +18,6 @@ AFRAME.registerComponent('tools-belt', {
 
 		position.y -= 1.4;
 		this.el.setAttribute('position', position);
-		this.el.setAttribute('rotation',{y:rotation.y},true); //Comment this line if you want to use the belt with the mouse
+		//this.el.setAttribute('rotation',{y:rotation.y},true); //Comment this line if you want to use the belt with the mouse
 	}
 });

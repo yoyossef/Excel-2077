@@ -1,6 +1,6 @@
 import {TableController} from '../controllers/TableController.js';
 
-AFRAME.registerComponent('displaymanager', {
+AFRAME.registerComponent('display-manager', {
     schema: {
     },
 
@@ -12,7 +12,7 @@ AFRAME.registerComponent('displaymanager', {
         var newDisplayBtn = document.createElement("a-entity");
         newDisplayBtn.setAttribute('position', '0 0.15 0');
         newDisplayBtn.setAttribute('rotation', '0 0 0');
-        newDisplayBtn.setAttribute('displaybtn', 'message: Wall; color: #000000; bgColor: #87CEFA; type: Wall;');
+        newDisplayBtn.setAttribute('display-button', 'message: Wall; color: #222222; type: Wall;');
         newDisplayBtn.setAttribute('id', 'wallBtn');
         // ajoute le nouvel élément créé et son contenu dans le DOM
         this.el.appendChild(newDisplayBtn);
@@ -20,7 +20,7 @@ AFRAME.registerComponent('displaymanager', {
         newDisplayBtn = document.createElement("a-entity");
         newDisplayBtn.setAttribute('position', '0 0.075 0');
         newDisplayBtn.setAttribute('rotation', '0 0 0');
-        newDisplayBtn.setAttribute('displaybtn', 'message: Half cylinder; color: #000000; bgColor: #9ACD32; type: HalfCylinder;');
+        newDisplayBtn.setAttribute('display-button', 'message: Half cylinder; color: #222222; type: HalfCylinder;');
         newDisplayBtn.setAttribute('id', 'halfCylinderBtn');
         // ajoute le nouvel élément créé et son contenu dans le DOM
         this.el.appendChild(newDisplayBtn);
@@ -28,7 +28,7 @@ AFRAME.registerComponent('displaymanager', {
         newDisplayBtn = document.createElement("a-entity");
         newDisplayBtn.setAttribute('position', '0 0 0');
         newDisplayBtn.setAttribute('rotation', '0 0 0');
-        newDisplayBtn.setAttribute('displaybtn', 'message: Cylinder; color: #000000; bgColor: #F08080; type: Cylinder;');
+        newDisplayBtn.setAttribute('display-button', 'message: Cylinder; color: #A9A9A9; type: Cylinder; enable: false;');
         newDisplayBtn.setAttribute('id', 'cylinderBtn');
         // ajoute le nouvel élément créé et son contenu dans le DOM
         this.el.appendChild(newDisplayBtn);
