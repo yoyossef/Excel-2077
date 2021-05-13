@@ -20,5 +20,19 @@ AFRAME.registerComponent('moving-tool', {
         this.el.setAttribute('class', 'links');
         this.el.appendChild(moveBtn);
 
+        moveBtn = document.createElement("a-entity");
+        moveBtn.setAttribute('position', '0.04 0.04 0');
+        moveBtn.setAttribute('moving-tool-vreset',true);
+        moveBtn.setAttribute('id', 'movingToolVreset');
+        this.el.setAttribute('class', 'links');
+        this.el.appendChild(moveBtn);
+
+        moveBtn = document.createElement("a-entity");
+        moveBtn.setAttribute('position', '0.04 0 0');
+        moveBtn.setAttribute('moving-tool-hreset',true);
+        moveBtn.setAttribute('id', 'movingToolHreset');
+        this.el.setAttribute('class', 'links');
+        this.el.appendChild(moveBtn);
+
     }
 });

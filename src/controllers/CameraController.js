@@ -27,4 +27,16 @@ export class CameraController {
         }
     }
 
+    static reset (axe) {
+        let rig = this.getRig();
+        let camera = this.getCamera();
+
+        if(axe == 'vertical'){
+            rig.setAttribute('position',{y:0},true);
+        }
+        else if (axe == 'horizontal'){
+            rig.setAttribute('position',{x:0,z:0},true);
+        }
+    }
+
 };

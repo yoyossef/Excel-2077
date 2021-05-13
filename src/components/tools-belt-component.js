@@ -18,6 +18,6 @@ AFRAME.registerComponent('tools-belt', {
 
 		position.y -= 1.4;
 		this.el.setAttribute('position', position);
-		//this.el.setAttribute('rotation',{y:rotation.y},true); //Comment this line if you want to use the belt with the mouse
+		this.el.setAttribute('rotation',{y:rotation.y},true); //Comment this line if you want to use the belt with the mouse
 	}
 });

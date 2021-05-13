@@ -63,4 +63,13 @@ export class TableController {
         document.getElementById('table').components["table"].addData(dataMatrix);*/
     }
 
+    static resetHeaders (){
+        let headers = this.getHeaders();
+        for(let i = 0; i< headers.length;i++){
+                headers[i].move(headers[i].data.position[0],0.22,headers[i].data.position[2])
+        }
+    }
+
+
+
 };

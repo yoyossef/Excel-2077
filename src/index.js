@@ -15,5 +15,7 @@ require('./components/tools-belt-component.js');
 require('./components/moving-tool-component.js');
 require('./components/moving-tool-up-component.js');
 require('./components/moving-tool-down-component.js');
+require('./components/moving-tool-vreset-component.js');
+require('./components/moving-tool-hreset-component.js');
 require('./components/display-manager-component.js');
 require('./components/display-button-component.js');
