@@ -2,8 +2,9 @@ import {TableController} from '../controllers/TableController.js';
 
 AFRAME.registerComponent('table', {
     schema: {
-        cellHeight:     {type: 'number'},
-        dataMatrix:     {type: 'array'},
+        cellHeight:     {type: 'number', default: TableController.cellHeight},
+        cellWidth:      {type: 'number', default: TableController.cellWidth},
+        dataMatrix:     {type: 'array', default: []},
         nbrCol:         {type: 'int'},
         radius:         {type: 'number'}
     },
@@ -147,9 +148,9 @@ AFRAME.registerComponent('table', {
                 switch (TableController.displayMode){
                     case 'Wall': //wall
                         if (type == 'header')
-                            newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +'  -2.8');
+                            newCell.setAttribute('position', j*this.data.cellWidth +' '+ -(i-1)*this.data.cellHeight +'  -2.8');
                         else
-                            newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +' -3');
+                            newCell.setAttribute('position', j*this.data.cellWidth +' '+ -(i-1)*this.data.cellHeight +' -3');
 
                         newCell.setAttribute('rotation', '0 0 0');
                         break;
@@ -218,9 +219,9 @@ AFRAME.registerComponent('table', {
 
                         case 'Wall': //wall
                             if (children[numChild].components['cell'].data.type == 'header')
-                                children[numChild].components['cell'].move(j,children[numChild].components['cell'].el.object3D.position.y,-2.8 );
+                                children[numChild].components['cell'].move(j*this.data.cellWidth,children[numChild].components['cell'].el.object3D.position.y,-2.8 );
                             else
-                                children[numChild].components['cell'].move(j,-(i-1)*this.data.cellHeight,-3);
+                                children[numChild].components['cell'].move(j*this.data.cellWidth,-(i-1)*this.data.cellHeight,-3);
 
                             children[numChild].setAttribute('rotation', '0 0 0');
                             break;
@@ -301,9 +302,9 @@ AFRAME.registerComponent('table', {
                     switch (TableController.displayMode){
                         case 'Wall': //wall
                             if (type == 'header')
-                                newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +'  -2.8');
+                                newCell.setAttribute('position', j*this.data.cellWidth +' '+ -(i-1)*this.data.cellHeight +'  -2.8');
                             else
-                                newCell.setAttribute('position', j +' '+ -(i-1)*this.data.cellHeight +' -3');
+                                newCell.setAttribute('position', j*this.data.cellWidth +' '+ -(i-1)*this.data.cellHeight +' -3');
 
                             newCell.setAttribute('rotation', '0 0 0');
                             break;
@@ -346,5 +347,6 @@ AFRAME.registerComponent('table', {
         }else{
             this.data.radius = (this.data.nbrCol * 2.5) / 15;
         }
+        this.data.radius *= this.data.cellWidth;
     }
 });

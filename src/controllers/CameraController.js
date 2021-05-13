@@ -1,7 +1,9 @@
+import { TableController } from './TableController.js';
+
 export class CameraController {
 
-    static moveDistance = 0.22 *20;
-    static step = 0.1;
+    static moveDistance = TableController.cellHeight *20;
+    static moveStep = 0.1;
     static verticalViewDistance = 2;
 
     static getCamera(){
@@ -21,8 +23,8 @@ export class CameraController {
         else if (direction == 'down'){
             directionAffect = -1;
         }
-        for(let i = 0; i<this.moveDistance;i+=this.step){
-            rig.setAttribute('position',{x:rig.getAttribute('position').x ,y:rig.getAttribute('position').y +  (this.step * directionAffect), z:rig.getAttribute('position').z});
+        for(let i = 0; i<this.moveDistance;i+=this.moveStep){
+            rig.setAttribute('position',{x:rig.getAttribute('position').x ,y:rig.getAttribute('position').y +  (this.moveStep * directionAffect), z:rig.getAttribute('position').z});
             await new Promise(done => setTimeout(() => done(), 5));
         }
     }

@@ -7,7 +7,8 @@ AFRAME.registerComponent('cell', {
         fulldata: { type: 'string' },
         color: { type: 'color', default: '#FFFFFF' },
         bgColor: { type: 'color', default: '#FF0000' },
-        cellH: { type: 'number', default: 0.22 },
+        cellH: { type: 'number', default: TableController.cellHeight },
+        cellW: { type: 'number', default: TableController.cellWidth},
         type: { type: 'string' },
         position: { type: 'array' },
         angle: { type: 'number' }
@@ -24,7 +25,7 @@ AFRAME.registerComponent('cell', {
             color: this.data.color,
             align: 'center',
             wrapCount: 20,
-            width: 1
+            width: this.data.cellW
         });
 
         this.el.setAttribute('geometry', {
