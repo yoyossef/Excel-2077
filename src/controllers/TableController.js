@@ -110,6 +110,12 @@ export class TableController {
         return res;
     }
 
+    static loadDataInTable(dataMatrix){
+        let table = document.getElementById('table').components["table"];
+        table.loadData(dataMatrix);
+        table.display();
+    }
+
 
 
 };
