@@ -155,6 +155,9 @@ AFRAME.registerComponent('table', {
             this.data.radius = (this.data.nbrCol * 2.5) / 15;
         }
         this.data.radius *= this.data.cellWidth;
+        if(this.data.radius < 1){
+            this.data.radius = 1;
+        }
     },
 
     displayCell: function(line,col,content,bgColor,header = false){
