@@ -14,6 +14,25 @@ AFRAME.registerComponent('more', {
         }
         this.resetPosition();
         this.defineShape();
+        this.tick = AFRAME.utils.throttleTick(this.tick, 50, this); //to only tick every 50ms (20 instead of 90 times per seconds)
+    },
+    tick: function(){
+            if(this.data.direction == 'up'){
+                if(TableController.isFirstCellVisible()){
+                    this.el.setAttribute('visible',false);
+                }
+                else{
+                    this.el.setAttribute('visible',true);
+                }
+            }
+            else{
+                if(TableController.isLastCellVisible()){
+                    this.el.setAttribute('visible',false);
+                }
+                else{
+                    this.el.setAttribute('visible',true);
+                }
+            }
     },
     resetPosition : function(){
         if(this.data.direction == 'up'){

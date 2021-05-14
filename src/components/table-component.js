@@ -17,7 +17,7 @@ AFRAME.registerComponent('table', {
        //pour les tests
         let dataMatrix = [];
 
-        let nbCol = 11;
+        let nbCol = 20;
         let nbLines = 100;
 
         dataMatrix.push([]);

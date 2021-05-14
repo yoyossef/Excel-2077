@@ -91,6 +91,25 @@ export class TableController {
         }
     }
 
+    static isFirstCellVisible(){
+        let res = false;
+        let cell = this.getCell(0,0);
+        if(cell && cell.el.getAttribute('visible')){
+            res = true;
+        }
+        return res;
+    }
+
+    static isLastCellVisible(){
+        let res = false;
+        let table = document.getElementById('table').components["table"];
+        let cell = this.getCell(0,table.data.dataMatrix.length-2); //last is length-2 because headers are idx '-1'
+        if(cell && cell.el.getAttribute('visible')){
+            res = true;
+        }
+        return res;
+    }
+
 
 
 };
