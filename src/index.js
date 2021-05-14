@@ -19,3 +19,4 @@ require('./components/moving-tool-vreset-component.js');
 require('./components/moving-tool-hreset-component.js');
 require('./components/display-manager-component.js');
 require('./components/display-button-component.js');
+require('./components/more-component.js');

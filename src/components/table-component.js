@@ -1,4 +1,5 @@
 import {TableController} from '../controllers/TableController.js';
+import {CameraController} from '../controllers/CameraController.js';
 
 AFRAME.registerComponent('table', {
     schema: {
@@ -16,7 +17,7 @@ AFRAME.registerComponent('table', {
        //pour les tests
         let dataMatrix = [];
 
-        let nbCol = 20;
+        let nbCol = 11;
         let nbLines = 100;
 
         dataMatrix.push([]);
@@ -38,6 +39,17 @@ AFRAME.registerComponent('table', {
 
     display:function (){
         this.clear(); // clearing current content
+
+        //Adding "more" rings indicators (up and down)
+        let moreRings = document.createElement('a-entity');
+        moreRings.setAttribute('more',"direction: up;");
+        moreRings.setAttribute('id','moreUp');
+        this.el.appendChild(moreRings);
+        moreRings = document.createElement('a-entity');
+        moreRings.setAttribute('more',"direction: down;");
+        moreRings.setAttribute('id','moreDown');
+        this.el.appendChild(moreRings);
+
         let color;
         for(var i = 0; i < this.data.dataMatrix.length; i++) {
             for(var j = 0; j < this.data.dataMatrix[i].length; j++) {
@@ -71,7 +83,7 @@ AFRAME.registerComponent('table', {
     changeDisplayMode:function (){
         this.setRadius();
         if (this.el.hasChildNodes()) {
-            let numChild = 0;
+            let numChild = 2; //2 Because firsts two children are "more" rings
             let children = this.el.childNodes;
             for(let i = 0; i < this.data.dataMatrix.length; i++) {
                 for(let j = 0; j < this.data.dataMatrix[i].length; j++,numChild++) {
@@ -80,7 +92,7 @@ AFRAME.registerComponent('table', {
                     switch (TableController.displayMode){
                         case 'Wall': //wall
                             if (children[numChild].components['cell'].data.type == 'header'){
-                                children[numChild].components['cell'].move(j*this.data.cellWidth,children[numChild].components['cell'].el.object3D.position.y,-2.8 );
+                                children[numChild].components['cell'].move(j*this.data.cellWidth,children[numChild].components['cell'].el.object3D.position.y,-2.9 );
                             }
                             else{
                                 children[numChild].components['cell'].move(j*this.data.cellWidth,-(i-1)*this.data.cellHeight,-3);
@@ -98,7 +110,7 @@ AFRAME.registerComponent('table', {
                             }
 
                             if (children[numChild].components['cell'].data.type == 'header'){
-                                radius = this.data.radius-0.2;
+                                radius = this.data.radius-0.1;
                             }
                             else{
                                 radius = this.data.radius;
@@ -108,10 +120,10 @@ AFRAME.registerComponent('table', {
                             let z = ( radius * Math.cos(Math.PI * 2 * angle / 360) ) * -1;
                             children[numChild].components['cell'].data.angle = angle;
                             if(children[numChild].components['cell'].data.type == 'header'){
-                                children[numChild].components['cell'].move(parseFloat(x).toFixed(3),children[numChild].components['cell'].el.object3D.position.y,parseFloat(z).toFixed(3));
+                                children[numChild].components['cell'].move(parseFloat(x).toFixed(5),children[numChild].components['cell'].el.object3D.position.y,parseFloat(z).toFixed(5));
                             }
                             else {
-                                children[numChild].components['cell'].move(parseFloat(x).toFixed(3),-(i-1)*this.data.cellHeight,parseFloat(z).toFixed(3));
+                                children[numChild].components['cell'].move(parseFloat(x).toFixed(5),-(i-1)*this.data.cellHeight,parseFloat(z).toFixed(5));
                             }
                             children[numChild].setAttribute('rotation', '0 '+ -angle +' 0');
                             break;
@@ -158,6 +170,8 @@ AFRAME.registerComponent('table', {
         if(this.data.radius < 1){
             this.data.radius = 1;
         }
+        TableController.tableRadius = this.data.radius;
+        TableController.nbrCol = this.data.nbrCol;
     },
 
     displayCell: function(line,col,content,bgColor,header = false){
@@ -167,7 +181,7 @@ AFRAME.registerComponent('table', {
         switch (TableController.displayMode){
             case 'Wall': //wall
                 if (header)
-                    newCell.setAttribute('position', col*this.data.cellWidth +' '+ -(line-1)*this.data.cellHeight +'  -2.8');
+                    newCell.setAttribute('position', col*this.data.cellWidth +' '+ -(line-1)*this.data.cellHeight +'  -2.9');
                 else
                     newCell.setAttribute('position', col*this.data.cellWidth +' '+ -(line-1)*this.data.cellHeight +' -3');
 
@@ -183,13 +197,13 @@ AFRAME.registerComponent('table', {
                 }
 
                 if (header)
-                    radius = this.data.radius-0.2;
+                    radius = this.data.radius-0.1;
                 else
                     radius = this.data.radius;
 
                 let x = radius * Math.sin(Math.PI * 2 * angle / 360);
                 let z = ( radius * Math.cos(Math.PI * 2 * angle / 360) ) * -1;
-                newCell.setAttribute('position', parseFloat(x).toFixed(3) +' '+ -(line-1)*this.data.cellHeight +' '+parseFloat(z).toFixed(3));
+                newCell.setAttribute('position', parseFloat(x).toFixed(5) +' '+ -(line-1)*this.data.cellHeight +' '+parseFloat(z).toFixed(5));
                 newCell.setAttribute('rotation', '0 '+ -angle +' 0');
                 break;
         }

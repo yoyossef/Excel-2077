@@ -5,6 +5,8 @@ export class TableController {
     static cellWidth = 0.4;
     static moveDistance = this.cellHeight *20;
     static moveStep = 0.1;
+    static tableRadius = 1;
+    static nbrCol = 0;
 
     static getCellsByColumn (colIndex) {
         let res = [];
@@ -38,8 +40,13 @@ export class TableController {
         return res;
     }
 
+    static getMoreRings() {
+        return [document.getElementById("moreUp").components["more"],document.getElementById("moreDown").components["more"]];
+    }
+
     static async moveHeaders (direction){
         let headers = this.getHeaders();
+        let rings = this.getMoreRings();
         let directionAffect = 0;
         if(direction == 'up'){
             directionAffect = 1;
@@ -51,6 +58,9 @@ export class TableController {
             for(let j = 0; j< headers.length;j++){
                     headers[j].move(headers[j].data.position[0],headers[j].data.position[1]+(this.moveStep * directionAffect),headers[j].data.position[2]);
             }
+            for(let j = 0; j<rings.length;j++){
+                rings[j].el.setAttribute('position',{y:rings[j].el.getAttribute('position').y+(this.moveStep * directionAffect)},true);
+            }
             await new Promise(done => setTimeout(() => done(), 5));
         }
     }
@@ -58,6 +68,10 @@ export class TableController {
     static changeDisplayMode(mode) {
         this.displayMode = mode;
         document.getElementById('table').components["table"].changeDisplayMode();
+        let rings = this.getMoreRings();
+        for(let i = 0; i<rings.length;i++){
+            rings[i].defineShape();
+        }
         //Test ajout de données
         /*let dataMatrix = [  // BOUCHON !
             ["NewData1Col1", "NewData1Col2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
@@ -68,8 +82,12 @@ export class TableController {
 
     static resetHeaders (){
         let headers = this.getHeaders();
+        let rings = this.getMoreRings();
         for(let i = 0; i< headers.length;i++){
                 headers[i].move(headers[i].data.position[0],this.cellHeight,headers[i].data.position[2])
+        }
+        for(let i = 0; i<rings.length;i++){
+            rings[i].resetPosition();
         }
     }
 
