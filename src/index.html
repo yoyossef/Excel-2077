@@ -10,6 +10,13 @@
     </head>
     <body>
         <a-scene background="color : #000000" light="defaultLightsEnabled: false">
+
+            <a-entity table id='table' position=" 0 1.6 0">
+                <a-entity more-down></a-entity>
+            </a-entity>
+
+            <a-entity cell-details id='cell-details' position="0 1.7 -0.3" rotation="0 0 0"></a-entity>
+
             <a-entity id="rig" position="0 0 0">
                 <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0">
                     <a-entity cursor="fuse: false; fuseTimeout: 500"
@@ -20,7 +27,9 @@
                 </a-entity>
                 <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
                 <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .links; far: 10" teleport-controls="cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
-                <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0" teleport-controls="cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
+                <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0" teleport-controls="cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0">
+                    <a-entity cell-details id='cell-details' position="0 0.1 -0.13" rotation="-45 0 0"></a-entity>
+                </a-entity>
 
                 <a-entity id="belt" tools-belt>
                     <a-text value="Display" position="-0.333 0.715 0.686" rotation="45 0 0" width="1"></a-text>
@@ -29,14 +38,10 @@
                     <a-entity id="movingTool" moving-tool position="0.25 0.5 0.5" rotation="45 0 0" class="links"></a-entity>
                     <a-text value="Tools" position="-0.05 0.715 0.686" rotation="45 0 0" width="1"></a-text>
                     <a-entity id="selectTool" select-tool position="0 0.5 0.5" rotation="45 0 0" class="links"></a-entity>
-                    <a-entity cell-details id='cell-details' position=" 0 0.5 0.5" rotation="45 0 0"></a-entity>
+                    
                 </a-entity>
 
             </a-entity>
-
-        <a-entity table id='table' position=" 0 1.6 0">
-            <a-entity more-down></a-entity>
-        </a-entity>
 
         </a-scene>
     </body>

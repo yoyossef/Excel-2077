@@ -1,6 +1,3 @@
-import {CameraController} from '../controllers/CameraController.js';
-import {TableController} from '../controllers/TableController.js';
-
 AFRAME.registerComponent('cell-details', {
     schema: {
         color:  {type:'color',default:'#0000FF'},
@@ -17,14 +14,15 @@ AFRAME.registerComponent('cell-details', {
         // this.el.setObject3D('mesh', this.mesh);
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
-        this.el.setAttribute('class', 'links');
+
+        this.el.setAttribute('scale', '0.3 0.3 1');
         
         this.el.setAttribute('text', {
             value: "Line : " + this.data.line +"\nColumn : "+ this.data.col +"\nValue : "+ this.data.value+"\nAverage : "+this.data.avg ,
             color: '#000000',
             align: 'left',
             wrapCount: 30,
-            width: 1
+            width: 0.90
         });
 
         this.el.setAttribute('geometry', {
@@ -34,12 +32,14 @@ AFRAME.registerComponent('cell-details', {
         });
 
         this.el.setAttribute('material', {
-            color: '#DDDDDD',
-            shader: 'flat',
+            color: '#2c9b3c',
+            emissive:'#2c9b3c',
+            opacity: 0.7,
+            tranparent: true,
             visible: true
         });
 
-        this.refresh('1','2','value','10');
+        this.refresh('1','2','test beaucoup','10');
 
     },
 

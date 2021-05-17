@@ -8,4 +8,8 @@ export class ToolController {
         }
     }
 
+    static refreshDetail(line,col,value,avg){
+        document.getElementById('cell-details').components['cell-details'].refresh(line,col,value,avg);    
+    }
+
 };

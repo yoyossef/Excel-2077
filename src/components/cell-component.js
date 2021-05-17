@@ -90,6 +90,12 @@ AFRAME.registerComponent('cell', {
 
                     break;
             }
+            
+            let str = this.el.id;
+            let char = str.split(',');
+            let line = Number(char[1])+1;
+            let col =  Number(char[0])+1;
+            ToolController.refreshDetail(line,col,this.data.fulldata,'');
         }
     },
 
