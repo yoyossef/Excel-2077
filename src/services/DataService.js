@@ -35,6 +35,24 @@ export class DataService {
         });
     }
 
+    static loadPage(varName, page) {
+        let tmpData = [];
+        DataService.nbCommandExecuted++;
+        ApiService.rReadTableGET(varName, page).then((response) => {
+            response.json().then((body) => {
+                for (let i = 0; i < body.results.length; i++) {
+                    tmpData.push(Object.values(body.results[i]));
+                }
+                DataService.data['c' + DataService.nbCommandExecuted] = {
+                    command: "loadPage(" + varName + ", " + page + ")",
+                    table: tmpData
+                };
+                TableController.loadDataInTable(DataService.data['c' + DataService.nbCommandExecuted].table);
+                DataService.displayedData = 'c' + DataService.nbCommandExecuted;
+            });
+        });
+    }
+
     static executeCommand(commandName, params) {
         let tmpData = [];
         DataService.nbCommandExecuted++;
