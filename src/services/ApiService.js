@@ -3,17 +3,17 @@ import { config } from '../.env.js';
 export class ApiService {
 
     /**
-     * Call the RserverAPI to read a new file full of data and return it's headers with infos about their types
-     * usage: ApiService.rCommandPOST("x", "read.table", "\"custom_dataset.csv\" ,header=T, sep=\",\"");
+     * Call the RserverAPI to read a new dataset (from a file) and return it's headers with infos about their types
+     * Usages: ApiService.rCommandPOST("x", "read.table", "\"custom_dataset.csv\" ,header=T, sep=\",\"");
      * 
-     * @param {*} var_name 
-     * @param {*} command_name 
-     * @param {*} command_params
-     * 
+     * @param {string} varName name of the new variable
+     * @param {string} commandName R command to be executed
+     * @param {string} commandParams R command's parameters
+     * @returns fetch's promise
      */
-    static rCommandPOST(var_name, command_name, command_params) {
-        let full_command = var_name + " <- " + command_name + "(" + command_params + ")";
-        let data = { "command": full_command };
+    static rCommandPOST(varName, commandName, commandParams) {
+        let fullCommand = varName + " <- " + commandName + "(" + commandParams + ")";
+        let data = { "command": fullCommand };
 
         return fetch(config.RSERVER_URL + 'command', {
             method: 'POST',
@@ -28,17 +28,18 @@ export class ApiService {
 
     /**
      * Call the RserverAPI to get 50 more lines of data for a particular variable
-     * usage: ApiService.rReadTableGET("x", 2, 1);
+     * Usages: ApiService.rReadTableGET("x", 2, 20);
+     *         ApiService.rReadTableGET("y", 4);
      * 
-     * @param {*} var_name 
-     * @param {*} page 
-     * @param {*} step 
-     * 
+     * @param {string} varName variable we want to load data from
+     * @param {number} page 
+     * @param {number} step represent how many lines we want to load per pages
+     * @returns fetch's promise
      */
-    static rReadTableGET(var_name, page, step = 50) {
-        let full_url = config.RSERVER_URL + 'read/table?name=' + var_name + "&page=" + page + "&number=" + step;
+    static rReadTableGET(varName, page, step = 50) {
+        let fullURL = config.RSERVER_URL + 'read/table?name=' + varName + "&page=" + page + "&number=" + step;
 
-        return fetch(full_url, {
+        return fetch(fullURL, {
             method: 'GET',
             mode: 'cors',
             headers: {
