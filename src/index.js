@@ -34,3 +34,4 @@ require('./components/cell-details-component.js');
 require('./components/details-button-component.js');
 require('./components/confirmation-tool-component.js');
 require('./components/group_by-tool-component.js');
+require('./components/filter-tool-component.js');
