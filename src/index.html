@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Hello, World! - A-Frame</title>
-    <meta name="description" content="Hello, World! - A-Frame">
-    <script src="aframe.min.js"></script>
-    <script src="main.js"></script>
-    <script src="aframe-teleport-controls.min.js"></script>
+<meta charset="utf-8">
+<title>Hello, World! - A-Frame</title>
+<meta name="description" content="Hello, World! - A-Frame">
+<script src="aframe.min.js"></script>
+<script src="main.js"></script>
+<script src="aframe-teleport-controls.min.js"></script>
 </head>
 
 <body>
@@ -22,20 +20,24 @@
                 </a-entity>
             </a-entity>
             <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
-            <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .links; far: 10" teleport-controls="cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
-            <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0" teleport-controls="cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0">
+            <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .links; far: 10" teleport-controls="button: grip; cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
+            <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0" teleport-controls="button: grip; cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0">
                 <a-entity cell-details id='cell-details' position="0 0.1 -0.13" rotation="-45 0 0"></a-entity>
             </a-entity>
+
+            <a-entity id="keyboard" super-keyboard="hand: #leftHand; imagePath:./img/" position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
 
             <a-entity id="belt" tools-belt>
                 <a-text value="Display" position="-0.324 0.73 0.5" width="1"></a-text>
                 <a-entity display-manager id='display-manager' position=" -0.25 0.5 0.5"></a-entity>
 
+                <a-entity confirmation-tool="type: cancel;" position="-0.06 0.8 0.5"></a-entity>
+                <a-entity confirmation-tool="type: confirm;" position="0.04 0.8 0.5"></a-entity>
+
                 <a-text value="Tools" position="-0.07 0.73 0.5" width="1"></a-text>
                 <a-entity id="selectTool" select-tool position="-0.01 0.5 0.5" class="links"></a-entity>
-                <a-entity confirmation-tool="type: cancel;" position="-0.06 0.65 0.5"></a-entity>
-                <a-entity confirmation-tool="type: confirm;" position="0.04 0.65 0.5"></a-entity>
                 <a-entity id="groupByTool" group_by-tool position="-0.01 0.575 0.5" class="links"></a-entity>
+                <a-entity id="filterTool" filter-tool position="-0.01 0.65 0.5" class="links"></a-entity>
 
                 <a-text value="Move" position="0.170 0.577 0.5" width="1"></a-text>
                 <a-entity id="movingTool" moving-tool position="0.202 0.482 0.5" class="links"></a-entity>
