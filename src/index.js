@@ -3,6 +3,7 @@
 */
 
 import 'aframe-event-set-component';
+import 'aframe-super-keyboard';
 
 //Config
 require('./.env.js');

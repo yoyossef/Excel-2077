@@ -34,6 +34,7 @@
     "vr"
   ],
   "dependencies": {
-    "aframe-event-set-component": "^5.0.0"
+    "aframe-event-set-component": "^5.0.0",
+    "aframe-super-keyboard": "^2.1.0"
   }
 }

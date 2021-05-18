@@ -17,17 +17,19 @@
 
             <a-entity id="rig" position="0 0 0">
                 <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0">
-                    <!-- <a-entity cursor="fuse: false; fuseTimeout: 500"
+                    <a-entity cursor="fuse: false; fuseTimeout: 500"
                               position="0 0 -0.1"
                               geometry="primitive: sphere; radius: 0.0005"
                               material="color: #00FF00; shader: flat; opacity: 0.7">
-                    </a-entity>-->
+                    </a-entity>
                 </a-entity>
                 <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
                 <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .links; far: 10" teleport-controls="button: grip; cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
                 <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0" teleport-controls="button: grip; cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0">
                     <a-entity cell-details id='cell-details' position="0 0.1 -0.13" rotation="-45 0 0"></a-entity>
                 </a-entity>
+
+                <a-entity id="keyboard" super-keyboard="hand: #leftHand; imagePath:../../dist/" position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
 
                 <a-entity id="belt" tools-belt>
                     <a-text value="Display" position="-0.324 0.73 0.5"  width="1" ></a-text>
