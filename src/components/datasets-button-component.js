@@ -1,17 +1,16 @@
 import {ToolController} from '../controllers/ToolController.js';
 
-AFRAME.registerComponent('details-button', {
+AFRAME.registerComponent('datasets-button', {
     schema: {
-        enable : {type: 'boolean', default: false}
     },
-
+    isToggled: false,
     init: function () {
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
         this.el.setAttribute('class', 'links');
 
         this.el.setAttribute('text', {
-            value: 'Cell details',
+            value: 'Datasets list',
             color: '#FFFFFF',
             align: 'center',
             wrapCount: 15,
@@ -34,17 +33,22 @@ AFRAME.registerComponent('details-button', {
     events: {
         click : function (evt) {
             let c;
-            this.data.enable = ! this.data.enable;
-            if (this.data.enable)
-                c = '#2c9b3c'
-            else
-                c = '#222222'
+            this.isToggled = !this.isToggled;
+            let datasetsList = document.getElementById('datasetsList').components['datasets-list'];
+            if (this.isToggled){
+                c = '#2c9b3c';
+                datasetsList.show();
+            }
+            else{
+                c = '#222222';
+                datasetsList.hide();
+            }
 
             this.el.setAttribute('material', {
                 color: c,
             });
 
-            ToolController.turnOnOffDetails();
+
 
         }
     },
