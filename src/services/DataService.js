@@ -81,4 +81,13 @@ export class DataService {
         }
         DataService.executeCommand('select', params);
     }
+
+    static group_by(colIndex, add = false){
+        let params = DataService.displayedData; //First param of group_by, the table name
+        params += "," + DataService.data[DataService.displayedData].table[0][colIndex];//get column name
+        if(add){
+            params+=", add = TRUE";
+        }
+        DataService.executeCommand('group_by',params);
+    }
 };
