@@ -11,13 +11,14 @@ AFRAME.registerComponent('tools-belt', {
 		let position = Object.assign({},camera.el.getAttribute('position')); //cloning camera position
 		let rotation = camera.el.getAttribute('rotation');//cloning camera rotation
 
-		if (rotation.x >= -40)
+		if (rotation.x >= -40){
 			this.el.setAttribute("visible", false);
-		else
+			this.el.setAttribute('rotation',{y:rotation.y},true); //Comment this line if you want to use the belt with the mouse
+		}else{
 			this.el.setAttribute("visible", true);
-
+		}
+		
 		position.y -= 1.4;
-		this.el.setAttribute('position', position);
-		this.el.setAttribute('rotation',{y:rotation.y},true); //Comment this line if you want to use the belt with the mouse
+		this.el.setAttribute('position', position);		
 	}
 });

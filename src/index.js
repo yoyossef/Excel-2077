@@ -3,6 +3,7 @@
 */
 
 import 'aframe-event-set-component';
+import 'aframe-super-keyboard';
 
 //Config
 require('./.env.js');
@@ -36,3 +37,4 @@ require('./components/group_by-tool-component.js');
 require('./components/dataset-details-component.js');
 require('./components/datasets-list-component.js');
 require('./components/datasets-button-component.js');
+require('./components/filter-tool-component.js');
