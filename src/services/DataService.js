@@ -22,9 +22,11 @@ export class DataService {
                 setTimeout(function() { //Wait 500ms because R seems to crash if read is too quick
                     ApiService.rReadTableGET(varName, 1).then((response) => {
                         response.json().then((body) => {
+                            //get response data into tmpData
                             for (let i = 0; i < body.results.length; i++) {
                                 tmpData.push(Object.values(body.results[i]));
                             }
+                            //update DataService.data
                             DataService.data[varName] = {
                                 command: "read.table(" + config.DATASET + ", header=T, sep=',')",
                                 table: tmpData,
@@ -32,6 +34,7 @@ export class DataService {
                                 totalResults: body.totalResults,
                                 totalPages: body.totalPages
                             };
+                            //display DataService.data
                             TableController.loadDataInTable(DataService.data[varName].table);
                             DataService.displayedData = varName;
                         });
@@ -50,11 +53,14 @@ export class DataService {
         let tmpData = [];
         ApiService.rReadTableGET(varName, newPage).then((response) => {
             response.json().then((body) => {
+                //get response data into tmpData
                 for (let i = 0; i < body.results.length; i++) {
                     tmpData.push(Object.values(body.results[i]));
                 }
+                //update DataService.data
                 DataService.data[varName].page = newPage;
                 TableController.addData(tmpData);
+                //display DataService.data
                 TableController.loadDataInTable(DataService.data[varName].table);
                 DataService.displayedData = varName;
             });
@@ -69,22 +75,28 @@ export class DataService {
      * @param {string} params R command's parameters
      */
     static executeCommand(commandName, params) {
-        let tmpData = [];
         DataService.nbCommandExecuted++;
-        ApiService.rCommandPOST('c' + DataService.nbCommandExecuted, commandName, params).then((response) => {
+        let varName = 'c' + DataService.nbCommandExecuted;
+        let tmpData = [];
+        ApiService.rCommandPOST(varName, commandName, params).then((response) => {
             response.json().then((body) => {
-                tmpData.push(Object.keys(body.results[0])); //headers
+                //headers
+                tmpData.push(Object.keys(body.results[0]));
+                //get response data into tmpData
                 for (let i = 0; i < body.results.length; i++) {
                     tmpData.push(Object.values(body.results[i]));
                 }
-                DataService.data['c' + DataService.nbCommandExecuted] = {
+                //update DataService.data
+                DataService.data[varName] = {
                     command: commandName + "(" + params + ")",
                     table: tmpData,
+                    page: 1,
                     totalResults: body.totalResults,
                     totalPages: body.totalPages
                 };
-                TableController.loadDataInTable(DataService.data['c' + DataService.nbCommandExecuted].table);
-                DataService.displayedData = 'c' + DataService.nbCommandExecuted;
+                //display DataService.data
+                TableController.loadDataInTable(DataService.data[varName].table);
+                DataService.displayedData = varName;
             });
         });
     }
