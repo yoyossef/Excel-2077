@@ -1,5 +1,6 @@
 import { ApiService } from './ApiService.js';
 import { TableController } from '../controllers/TableController.js';
+import { CameraController } from '../controllers/CameraController.js';
 import { config } from '../.env.js';
 
 export class DataService {
@@ -48,7 +49,7 @@ export class DataService {
      * Load the next page of data for he current variable then sends it to TableController to display it
      */
     static loadNextPage() {
-        let varName = 'c' + DataService.nbCommandExecuted;
+        let varName = DataService.displayedData;
         let newPage = DataService.data[varName].page + 1;
         if (newPage <= DataService.data[varName].totalPages) {
             let tmpData = [];
@@ -62,7 +63,6 @@ export class DataService {
                     DataService.data[varName].page = newPage;
                     TableController.addDataInTable(tmpData);
                     //display DataService.data
-                    DataService.displayedData = varName;
                 });
             });
         }
@@ -98,6 +98,7 @@ export class DataService {
                 //display DataService.data
                 TableController.loadDataInTable(DataService.data[varName].table);
                 DataService.displayedData = varName;
+                CameraController.reset('vertical'); //Reset vertical position of camera
             });
         });
     }
