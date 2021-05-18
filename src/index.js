@@ -30,3 +30,4 @@ require('./components/display-manager-component.js');
 require('./components/display-button-component.js');
 require('./components/more-component.js');
 require('./components/confirmation-tool-component.js');
+require('./components/group_by-tool-component.js');
