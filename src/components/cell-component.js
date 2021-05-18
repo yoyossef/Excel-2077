@@ -77,19 +77,16 @@ AFRAME.registerComponent('cell', {
             switch (ToolController.toolMode) {
                 case 'select':
                     let selectTool = document.getElementById('selectTool').components["select-tool"];
-                    // if (this.data.type == 'data') {
-                    //     let hasBeenSelected = selectTool.selectCell(this.el.id);
-                    //     if (hasBeenSelected) {
-                    //         this.select();
-                    //     } else {
-                    //         this.unselect();
-                    //     }
-                    // } else
                     if (this.data.type == 'header') {
                         let hasBeenSelected = selectTool.selectColumn(this.el.id.split(',')[0]);
                     }
-
-                    break;
+                break;
+                case 'group_by':
+                    let groupByTool = document.getElementById('groupByTool').components["group_by-tool"];
+                    if (this.data.type == 'header') {
+                        let hasBeenSelected = groupByTool.selectColumn(this.el.id.split(',')[0]);
+                    }
+                break;
             }
         }
     },
