@@ -22,12 +22,12 @@
                     </a-entity>
                 </a-entity>
                 <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
-                <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .links; far: 10" teleport-controls="button: grip;cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
-                <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0" teleport-controls="button: grip;cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0">
+                <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .nope; far:0"  teleport-controls="button: trigger;cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
+                <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0"  position="0 100 0">
                     <a-entity cell-details id='cell-details' position="0 0.1 -0.13" rotation="-45 0 0"></a-entity>
                 </a-entity>
 
-                <a-entity id="keyboard" super-keyboard="hand: #leftHand; imagePath:./img/" position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
+                <a-entity id="keyboard" super-keyboard="hand: #rightHand; imagePath:./img/" position="0 1.076 -0.5" rotation="-30 0 0"></a-entity>
 
                 <a-entity id="datasetsList" datasets-list position="0 1.8 0"></a-entity>
 
