@@ -12,20 +12,14 @@ AFRAME.registerComponent('datasets-list', {
     },
     show : function(){
         let newDatasetDetails;
-        let nb = 0;
         let dataSets = Object.keys(DataService.data);
-        for(let dataSet of dataSets){
+        for(let i = dataSets.length-1; i>-1; i--){
             newDatasetDetails = document.createElement("a-entity");
-            newDatasetDetails.setAttribute('dataset-details', 'name:'+dataSet+'; command: '+DataService.data[dataSet].command+';');
-            newDatasetDetails.setAttribute('position',{y:-0.09*nb,z:-0.7},true);
-            if(dataSet == DataService.displayedData){
-                console.log("oui");
-            }
+            newDatasetDetails.setAttribute('dataset-details', 'name:'+dataSets[i]+'; command: '+DataService.data[dataSets[i]].command+'; isCurrentlyDisplayed: '+(dataSets[i] == DataService.displayedData));
+            newDatasetDetails.setAttribute('position',{y:-0.09*(dataSets.length-1-i),z:-0.7},true);
+            newDatasetDetails.setAttribute('class', 'links');
+
             this.el.appendChild(newDatasetDetails);
-            nb++;
-            if(nb>3){
-                break;
-            }
         }
         let camera = CameraController.getCamera();
 		let position = Object.assign({},camera.el.getAttribute('position')); //cloning camera position

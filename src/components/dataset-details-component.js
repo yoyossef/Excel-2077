@@ -1,7 +1,10 @@
+import {DataService} from '../services/DataService.js';
+
 AFRAME.registerComponent('dataset-details', {
     schema: {
         name : {type:'string', default:''},
-        command: {type:'string',default:''}
+        command: {type:'string',default:''},
+        isCurrentlyDisplayed: {type:'boolean',default:false}
     },
     multiple: true,
     init: function () {
@@ -9,6 +12,14 @@ AFRAME.registerComponent('dataset-details', {
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
         this.el.setAttribute('visible',this.data.enable);
+
+        let color;
+        if(this.data.isCurrentlyDisplayed){
+            color = "#004400";
+        }
+        else {
+            color = "#222222";
+        }
 
         this.el.setAttribute('text', {
             value: this.data.name+ " : " + this.data.command,
@@ -25,9 +36,32 @@ AFRAME.registerComponent('dataset-details', {
         });
 
         this.el.setAttribute('material', {
-            color: '#222222',
+            color: color,
+            shader: 'flat',
             opacity: 0.7,
             transparent: true,
         });
-    }
+
+        let position = Object.assign({},this.el.getAttribute('position'));
+
+        this.el.setAttribute('animation__positionEnter', {
+            property: 'position',
+            to: {x:position.x,y:position.y,z:-0.6},
+            dur: 150,
+            startEvents: 'mouseenter'
+        });
+
+        this.el.setAttribute('animation__positionLeave', {
+            property: 'position',
+            to: {x:position.x,y:position.y,z:-0.7},
+            dur: 150,
+            startEvents: 'mouseleave'
+        });
+    },
+    events: {
+        click : function (evt) {
+            this.el.setAttribute('material',{color:'#00FF00'});
+            DataService.switchToData(this.data.name);
+        }
+    },
 });

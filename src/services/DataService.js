@@ -19,28 +19,28 @@ export class DataService {
         let tmpData = [];
         ApiService.rCommandPOST(varName, 'read.table', "'" + config.DATASET + "', header=T, sep=','").then((response) => {
             response.json().then((body) => {
-                tmpData.push(body.columnsName); //headers
-                setTimeout(function() { //Wait 500ms because R seems to crash if read is too quick
-                    ApiService.rReadTableGET(varName, 1).then((response) => {
-                        response.json().then((body) => {
-                            //get response data into tmpData
-                            for (let i = 0; i < body.results.length; i++) {
-                                tmpData.push(Object.values(body.results[i]));
-                            }
-                            //update DataService.data
-                            DataService.data[varName] = {
-                                command: "read.table(" + config.DATASET + ", header=T, sep=',')",
-                                table: tmpData,
-                                page: 1,
-                                totalResults: body.totalResults,
-                                totalPages: body.totalPages
-                            };
-                            //display DataService.data
-                            TableController.loadDataInTable(DataService.data[varName].table);
-                            DataService.displayedData = varName;
-                        });
+                let colInfo = body.columnsName;
+                ApiService.rReadTableGET(varName, 1).then((response) => {
+                    response.json().then((body) => {
+                        //get response data into tmpData
+                        tmpData.push(Object.keys(body.results[0]));//Headers
+                        for (let i = 0; i < body.results.length; i++) {
+                            tmpData.push(Object.values(body.results[i]));
+                        }
+                        //update DataService.data
+                        DataService.data[varName] = {
+                            command: "read.table(" + config.DATASET + ", header=T, sep=',')",
+                            table: tmpData,
+                            page: 1,
+                            totalResults: body.totalResults,
+                            totalPages: body.totalPages,
+                            colInfo: colInfo
+                        };
+                        //display DataService.data
+                        TableController.loadDataInTable(DataService.data[varName].table);
+                        DataService.displayedData = varName;
                     });
-                }, 500);
+                });
             });
         });
     }
@@ -131,5 +131,13 @@ export class DataService {
             params += ", add = TRUE";
         }
         DataService.executeCommand('group_by', params);
+    }
+
+    static switchToData(dataName){
+        if(dataName != null && dataName != DataService.displayedData && DataService.data[dataName]){
+            TableController.loadDataInTable(DataService.data[dataName].table);
+            DataService.displayedData = dataName;
+        }
+        document.getElementById('datasetsList').components['datasets-list'].hide();
     }
 };
