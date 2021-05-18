@@ -13,25 +13,27 @@ export class DataService {
      * then sends the table to TableController to display it
      */
     static loadDataset() {
-        let tmpData = [];
         DataService.nbCommandExecuted++;
-        ApiService.rCommandPOST('c' + DataService.nbCommandExecuted, 'read.table', "'" + config.DATASET + "', header=T, sep=','").then((response) => {
+        let varName = 'c' + DataService.nbCommandExecuted;
+        let tmpData = [];
+        ApiService.rCommandPOST(varName, 'read.table', "'" + config.DATASET + "', header=T, sep=','").then((response) => {
             response.json().then((body) => {
                 tmpData.push(body.columnsName); //headers
                 setTimeout(function() { //Wait 500ms because R seems to crash if read is too quick
-                    ApiService.rReadTableGET('c' + DataService.nbCommandExecuted, 1).then((response) => {
+                    ApiService.rReadTableGET(varName, 1).then((response) => {
                         response.json().then((body) => {
                             for (let i = 0; i < body.results.length; i++) {
                                 tmpData.push(Object.values(body.results[i]));
                             }
-                            DataService.data['c' + DataService.nbCommandExecuted] = {
+                            DataService.data[varName] = {
                                 command: "read.table(" + config.DATASET + ", header=T, sep=',')",
                                 table: tmpData,
+                                page: 1,
                                 totalResults: body.totalResults,
                                 totalPages: body.totalPages
                             };
-                            TableController.loadDataInTable(DataService.data['c' + DataService.nbCommandExecuted].table);
-                            DataService.displayedData = 'c' + DataService.nbCommandExecuted;
+                            TableController.loadDataInTable(DataService.data[varName].table);
+                            DataService.displayedData = varName;
                         });
                     });
                 }, 500);
@@ -39,20 +41,22 @@ export class DataService {
         });
     }
 
-    static loadPage(varName, page) {
+    /**
+     * Load the next page of data for he current variable then sends it to TableController to display it
+     */
+    static loadPage() {
+        let varName = 'c' + DataService.nbCommandExecuted;
+        let newPage = DataService.data[varName].page + 1;
         let tmpData = [];
-        DataService.nbCommandExecuted++;
-        ApiService.rReadTableGET(varName, page).then((response) => {
+        ApiService.rReadTableGET(varName, newPage).then((response) => {
             response.json().then((body) => {
                 for (let i = 0; i < body.results.length; i++) {
                     tmpData.push(Object.values(body.results[i]));
                 }
-                DataService.data['c' + DataService.nbCommandExecuted] = {
-                    command: "loadPage(" + varName + ", " + page + ")",
-                    table: tmpData
-                };
-                TableController.loadDataInTable(DataService.data['c' + DataService.nbCommandExecuted].table);
-                DataService.displayedData = 'c' + DataService.nbCommandExecuted;
+                DataService.data[varName].page = newPage;
+                TableController.addData(tmpData);
+                TableController.loadDataInTable(DataService.data[varName].table);
+                DataService.displayedData = varName;
             });
         });
     }
@@ -106,12 +110,12 @@ export class DataService {
      * @param {Array<int>} colIndex the index of the column to use group_by on
      * @param {boolean} add if true, combines group_by with the previous one (default false)
      */
-    static group_by(colIndex, add = false){
+    static group_by(colIndex, add = false) {
         let params = DataService.displayedData; //First param of group_by, the table name
-        params += "," + DataService.data[DataService.displayedData].table[0][colIndex];//get column name
-        if(add){
-            params+=", add = TRUE";
+        params += "," + DataService.data[DataService.displayedData].table[0][colIndex]; //get column name
+        if (add) {
+            params += ", add = TRUE";
         }
-        DataService.executeCommand('group_by',params);
+        DataService.executeCommand('group_by', params);
     }
 };
