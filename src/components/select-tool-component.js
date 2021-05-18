@@ -58,7 +58,20 @@ AFRAME.registerComponent('select-tool', {
         this.el.setAttribute('material','color','#222222');
         this.isToggled=false;
         ToolController.toolMode ='none';
-        DataService.select(this.selectedColumns);
+        this.cancel();
+    },
+    confirm : function(){
+        if(this.selectedColumns.length){
+            DataService.select(this.selectedColumns);
+            this.selectedItems = [];
+            this.selectedColumns = [];
+            this.disable();
+        }
+    },
+    cancel : function(){
+        while(this.selectedColumns.length){//Clearing columns selection
+            this.selectColumn(this.selectedColumns[0]);
+        }
     },
     selectCell: function(elt){
         let idx;
