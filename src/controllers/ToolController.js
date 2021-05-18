@@ -8,4 +8,14 @@ export class ToolController {
         }
     }
 
+    static getActiveTool(){
+        let res =null;
+        switch(ToolController.toolMode){
+            case 'select':
+                res = document.getElementById('selectTool').components['select-tool'];
+            break;
+        }
+        return res;
+    }
+
 };
