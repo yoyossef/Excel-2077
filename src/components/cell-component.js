@@ -87,6 +87,12 @@ AFRAME.registerComponent('cell', {
                         let hasBeenSelected = groupByTool.selectColumn(this.el.id.split(',')[0]);
                     }
                 break;
+                case 'filter':
+                    let filterTool = document.getElementById('filterTool').components["filter-tool"];
+                    if (this.data.type == 'header') {
+                        let hasBeenSelected = filterTool.selectColumn(this.el.id.split(',')[0]);
+                    }
+                break;
             }
             
             let str = this.el.id;

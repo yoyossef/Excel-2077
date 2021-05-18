@@ -45,13 +45,13 @@ AFRAME.registerComponent('filter-tool', {
     },
 
     isToggled: false,
-    selectedColumn: null,
-
+    selectedItems: [],
+    selectedColumns: [],
     enable: function (){
-        ToolController.disableOtherTools('group_by-tool');
+        ToolController.disableOtherTools('filter-tool');
         this.el.setAttribute('material','color', '#A9A9A9');
         this.isToggled=true;
-        ToolController.toolMode='group_by';
+        ToolController.toolMode='filter';
     },
     disable: function(){
         this.el.setAttribute('material','color','#222222');
@@ -60,37 +60,41 @@ AFRAME.registerComponent('filter-tool', {
         this.cancel();
     },
     confirm : function(){
-        if(this.selectedColumn != null){
-            DataService.group_by(this.selectedColumn);
-            this.selectedColumns = null;
+        if(this.selectedColumns.length){
+            DataService.select(this.selectedColumns);
+            this.selectedItems = [];
+            this.selectedColumns = [];
             this.disable();
         }
     },
     cancel : function(){
-        if(this.selectedColumn != null){//Clearing columns selection
-            this.selectColumn(this.selectedColumn);
+        while(this.selectedColumns.length){//Clearing columns selection
+            this.selectColumn(this.selectedColumns[0]);
         }
     },
+
     selectColumn: function (elt){
         let idx
         let cells = TableController.getCellsByColumn(elt);
-        if (elt != this.selectedColumn){ //Select the column
-            if(this.selectedColumn != null){ //If another column is selected, unselect it
-                let oldCells = TableController.getCellsByColumn(this.selectedColumn);
-                for(let cell of oldCells){
-                    cell.unselect();
-                }
-            }
+        
+        if((idx = this.selectedColumns.findIndex(item => item == elt)) < 0){
             for(let cell of cells){
                 cell.select();
+                if(this.selectedItems.findIndex(item => item == elt) < 0){
+                    this.selectedItems.push(cell.el.id);
+                }
             }
-            this.selectedColumn= elt;
+            this.selectedColumns.push(elt);
         }
-        else { //Unselect the column
+        else {
+            let cellIdx;
             for(let cell of cells){
                 cell.unselect();
+                if((cellIdx = this.selectedItems.findIndex(item => item == cell.el.id)) >= 0){
+                    this.selectedItems.splice(cellIdx,1);
+                }
             }
-            this.selectedColumn = null;
+            this.selectedColumns.splice(idx,1);
         }
-    } 
+    }
 });

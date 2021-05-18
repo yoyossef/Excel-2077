@@ -9,6 +9,9 @@ export class ToolController {
         if(toolToKeep != 'group_by-tool'){
             document.getElementById('groupByTool').components['group_by-tool'].disable();
         }
+        if(toolToKeep != 'filter-tool'){
+            document.getElementById('filterTool').components['filter-tool'].disable();
+        }
     }
 
     static getActiveTool(){
@@ -19,6 +22,9 @@ export class ToolController {
             break;
             case 'group_by':
                 res = document.getElementById('groupByTool').components['group_by-tool'];
+            break;
+            case 'filter':
+                res = document.getElementById('filterTool').components['filter-tool'];
             break;
         }
         return res;
