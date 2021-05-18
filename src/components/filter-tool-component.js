@@ -74,26 +74,14 @@ AFRAME.registerComponent('filter-tool', {
     },
 
     selectColumn: function (elt){
-        let idx
-        let cells = TableController.getCellsByColumn(elt);
-        
+        let idx;
+        let header = TableController.getHeader(elt);
         if((idx = this.selectedColumns.findIndex(item => item == elt)) < 0){
-            for(let cell of cells){
-                cell.select();
-                if(this.selectedItems.findIndex(item => item == elt) < 0){
-                    this.selectedItems.push(cell.el.id);
-                }
-            }
+            header.select();
             this.selectedColumns.push(elt);
         }
         else {
-            let cellIdx;
-            for(let cell of cells){
-                cell.unselect();
-                if((cellIdx = this.selectedItems.findIndex(item => item == cell.el.id)) >= 0){
-                    this.selectedItems.splice(cellIdx,1);
-                }
-            }
+            header.unselect();
             this.selectedColumns.splice(idx,1);
         }
     }

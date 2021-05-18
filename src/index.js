@@ -35,3 +35,5 @@ require('./components/details-button-component.js');
 require('./components/confirmation-tool-component.js');
 require('./components/group_by-tool-component.js');
 require('./components/filter-tool-component.js');
+require('./components/filters-manager-component.js');
+require('./components/filter-function-button-component.js');

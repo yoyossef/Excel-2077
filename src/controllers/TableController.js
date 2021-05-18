@@ -34,6 +34,10 @@ export class TableController {
         return res;
     }
 
+    static getHeader (colIndex) {
+        return this.getCell(colIndex,-1);
+    }
+
     static getHeaders () {
         let res = [];
         res = this.getCellsByRow('-1');
