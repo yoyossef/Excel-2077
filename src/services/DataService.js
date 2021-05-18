@@ -103,7 +103,7 @@ export class DataService {
      * Executes a group_by command on the currently displayed dataset by calling
      * DataService.executeCommand('group_by',params);
      *
-     * @param {Array<int>} colIndex the index of the column to use group_by on
+     * @param {int} colIndex the index of the column to use group_by on
      * @param {boolean} add if true, combines group_by with the previous one (default false)
      */
     static group_by(colIndex, add = false){
