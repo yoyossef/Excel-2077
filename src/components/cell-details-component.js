@@ -4,7 +4,8 @@ AFRAME.registerComponent('cell-details', {
         line:   {type:'string'},
         col:    {type:'string'},
         value:  {type:'string'},
-        avg:    {type:'number'},
+        avg:    {type:'string'},
+        enable: {type:'boolean',default: false}
     },
     init: function () {
         //Setting 3D model
@@ -16,13 +17,15 @@ AFRAME.registerComponent('cell-details', {
         this.el.setObject3D('mesh', this.mesh);
 
         this.el.setAttribute('scale', '0.3 0.3 1');
+
+        this.el.setAttribute('visible',this.data.enable);
         
         this.el.setAttribute('text', {
             value: "Line : " + this.data.line +"\nColumn : "+ this.data.col +"\nValue : "+ this.data.value+"\nAverage : "+this.data.avg ,
             color: '#000000',
             align: 'left',
             wrapCount: 30,
-            width: 0.90
+            width: 0.90,
         });
 
         this.el.setAttribute('geometry', {
@@ -35,19 +38,20 @@ AFRAME.registerComponent('cell-details', {
             color: '#2c9b3c',
             emissive:'#2c9b3c',
             opacity: 0.7,
-            tranparent: true,
-            visible: true
+            transparent: true,
         });
 
-        this.refresh('1','2','test beaucoup','10');
+        this.turnOnOff();
 
     },
 
     refresh: function(line,col,value,avg){
+
         this.data.line =line;
         this.data.col =col;
         this.data.value =value;
         this.data.avg =avg;
+
         let txt ="Line : " + this.data.line +"\nColumn : "+ this.data.col +"\nValue : "+ this.data.value;
         if (avg != '')
             txt += "\nAverage : "+this.data.avg;    
@@ -57,8 +61,8 @@ AFRAME.registerComponent('cell-details', {
         });
     },
 
-    events: {
-        click: function (evt) {
-        }
+    turnOnOff: function(){
+        this.data.enable = !this.data.enable; 
+        this.el.setAttribute('visible',this.data.enable);
     }
 });
