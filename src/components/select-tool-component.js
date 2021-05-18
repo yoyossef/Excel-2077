@@ -1,5 +1,6 @@
 import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
+import {DataService} from '../services/DataService.js';
 
 AFRAME.registerComponent('select-tool', {
     schema: {
@@ -57,8 +58,19 @@ AFRAME.registerComponent('select-tool', {
         this.el.setAttribute('material','color','#222222');
         this.isToggled=false;
         ToolController.toolMode ='none';
-        for(let selectedId of this.selectedItems){
-            let cell = document.getElementById(selectedId);
+        this.cancel();
+    },
+    confirm : function(){
+        if(this.selectedColumns.length){
+            DataService.select(this.selectedColumns);
+            this.selectedItems = [];
+            this.selectedColumns = [];
+            this.disable();
+        }
+    },
+    cancel : function(){
+        while(this.selectedColumns.length){//Clearing columns selection
+            this.selectColumn(this.selectedColumns[0]);
         }
     },
     selectCell: function(elt){
