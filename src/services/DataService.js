@@ -47,24 +47,25 @@ export class DataService {
     /**
      * Load the next page of data for he current variable then sends it to TableController to display it
      */
-    static loadPage() {
+    static loadNextPage() {
         let varName = 'c' + DataService.nbCommandExecuted;
         let newPage = DataService.data[varName].page + 1;
-        let tmpData = [];
-        ApiService.rReadTableGET(varName, newPage).then((response) => {
-            response.json().then((body) => {
-                //get response data into tmpData
-                for (let i = 0; i < body.results.length; i++) {
-                    tmpData.push(Object.values(body.results[i]));
-                }
-                //update DataService.data
-                DataService.data[varName].page = newPage;
-                TableController.addData(tmpData);
-                //display DataService.data
-                TableController.loadDataInTable(DataService.data[varName].table);
-                DataService.displayedData = varName;
+        if (newPage <= DataService.data[varName].totalPages) {
+            let tmpData = [];
+            ApiService.rReadTableGET(varName, newPage).then((response) => {
+                response.json().then((body) => {
+                    //get response data into tmpData
+                    for (let i = 0; i < body.results.length; i++) {
+                        tmpData.push(Object.values(body.results[i]));
+                    }
+                    //update DataService.data
+                    DataService.data[varName].page = newPage;
+                    TableController.addDataInTable(tmpData);
+                    //display DataService.data
+                    DataService.displayedData = varName;
+                });
             });
-        });
+        }
     }
 
     /**
