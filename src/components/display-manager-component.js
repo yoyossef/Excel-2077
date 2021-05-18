@@ -5,9 +5,6 @@ AFRAME.registerComponent('display-manager', {
     },
 
     init: function () {
-
-        this.el.setAttribute('rotation', '45 0 0');
-
         // crée un nouvel élément a-entity
         var newDisplayBtn = document.createElement("a-entity");
         newDisplayBtn.setAttribute('position', '0 0.15 0');

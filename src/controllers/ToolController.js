@@ -12,4 +12,8 @@ export class ToolController {
         document.getElementById('cell-details').components['cell-details'].refresh(line,col,value,avg);    
     }
 
+    static turnOnOffDetails(){
+        document.getElementById('cell-details').components['cell-details'].turnOnOff();    
+    }
+
 };

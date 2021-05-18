@@ -30,4 +30,5 @@ require('./components/display-manager-component.js');
 require('./components/display-button-component.js');
 require('./components/more-component.js');
 require('./components/cell-details-component.js');
+require('./components/details-button-component.js');
 

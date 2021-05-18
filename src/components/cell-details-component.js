@@ -41,8 +41,6 @@ AFRAME.registerComponent('cell-details', {
             transparent: true,
         });
 
-        this.turnOnOff();
-
     },
 
     refresh: function(line,col,value,avg){

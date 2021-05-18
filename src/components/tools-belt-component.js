@@ -3,7 +3,7 @@ import {CameraController} from '../controllers/CameraController.js';
 AFRAME.registerComponent('tools-belt', {
 	schema: {},
 	init: function () {
-		this.el.setAttribute('rotation', "-90 0 0");
+		this.el.setAttribute('rotation', "-65 0 0");
 		this.tick = AFRAME.utils.throttleTick(this.tick, 25, this); //to only tick every 25ms (40 instead of 90 times per seconds)
 	},
 	tick: function () {
