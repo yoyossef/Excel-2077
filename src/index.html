@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Hello, World! - A-Frame</title>
-        <meta name="description" content="Hello, World! - A-Frame">
+        <title>Excel 2077</title>
+        <meta name="description" content="Excel 2077">
         <script src="aframe.min.js"></script>
         <script src="main.js"></script>
         <script src="aframe-teleport-controls.min.js"></script>
@@ -19,16 +19,16 @@
                               position="0 0 -0.1"
                               geometry="primitive: sphere; radius: 0.0005"
                               material="color: #00FF00; shader: flat; opacity: 0.7">
-                    </a-entity>  
+                    </a-entity>
                 </a-entity>
                 <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
                 <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .nope; far:0"  teleport-controls="button: trigger;cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
-                <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0"  position="0 100 0">
+                <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0">
                     <a-entity cell-details id='cell-details' position="0 0.1 -0.13" rotation="-45 0 0"></a-entity>
                 </a-entity>
 
-                <a-entity filters-manager id='filters-manager' visible='false' position=" 0 30 -0.6" ></a-entity> 
-                
+                <a-entity filters-manager id='filters-manager' visible='false' position=" 0 30 -0.6" ></a-entity>
+
                 <a-entity id="datasetsList" datasets-list position="0 1.8 0"></a-entity>
                 <a-entity id="summariseOperationsList" summarise-operations-list position="0 1.8 0"></a-entity>
 
