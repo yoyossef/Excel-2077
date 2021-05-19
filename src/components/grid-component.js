@@ -1,8 +1,7 @@
 AFRAME.registerComponent('grid-component', {
 	schema: {
-        width: {type: 'number', default: 1},
-        height: {type: 'number', default: 1},
-        color: {type: 'color', default: '#2c2f33'}
+        width: { type: 'number', default: 10 },
+        height: { type: 'number', default: 10 },
     },
 	init: function () {
         const data = this.data;
