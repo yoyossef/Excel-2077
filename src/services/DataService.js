@@ -146,16 +146,16 @@ export class DataService {
         for (var i = 0; i < tripletList.length; i++) {
             if (tripletParams != '')
             tripletParams += ' &'
-            tripletParams += " " + tripletList[i].col + " " + tripletList[i].op 
+            tripletParams += " " + tripletList[i].col + " " + tripletList[i].op
             if (isNaN(tripletList[i].arg))
-                tripletParams += " '" + tripletList[i].arg + "' " ; 
+                tripletParams += " '" + tripletList[i].arg + "' " ;
             else
-                tripletParams += " " + tripletList[i].arg ; 
+                tripletParams += " " + tripletList[i].arg ;
         }
         params += tripletParams;
         DataService.executeCommand('filter', params);
-     }    
-     
+     }
+
      /**
      * Executes a summarise command on the currently displayed dataset by calling
      * DataService.executeCommand('summarise',params);
@@ -176,6 +176,10 @@ export class DataService {
         DataService.executeCommand('summarise', params);
     }
 
+    /**
+     * Loads the given dataset in the table to display it
+     * @param {string} dataName the name of the data to load
+     */
     static switchToData(dataName){
         if(dataName != null && dataName != DataService.displayedData && DataService.data[dataName]){
             TableController.loadDataInTable(DataService.data[dataName].table);
@@ -184,6 +188,11 @@ export class DataService {
         document.getElementById('datasetsList').components['datasets-list'].hide();
     }
 
+    /**
+     * Gets the column name with the given index (for the displayed table)
+     * @param {int} colIndex the index of the column to get the name of
+     * @return {string} the column name (or '' if index is invalid)
+     */
     static getColumnName(colIndex){
         if(colIndex> -1 && colIndex < DataService.data[DataService.displayedData].table[0].length){
             return DataService.data[DataService.displayedData].table[0][colIndex];
