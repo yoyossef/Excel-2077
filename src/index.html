@@ -26,11 +26,12 @@
                     
                 </a-entity>
                 <!--/!\ A ACTIVER POUR LES CONTROLLERS VR /!\ -->
-                <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .nope; far:0"  teleport-controls="button: trigger;cameraRig: #rig; teleportOrigin: #camera;" position="0 100 0"></a-entity>
+                <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .nope; far:0"  teleport-controls="button: trigger;cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #ground" position="0 100 0"></a-entity>
                 <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .links; far: 10" position="0 100 0"  position="0 100 0">
                     <a-entity cell-details id='cell-details' position="0 0.1 -0.13" rotation="-45 0 0"></a-entity>
                 </a-entity>
 
+                <a-entity class="ground" id="ground" grid="width: 100; height:100;"></a-entity>
                 <a-entity id="datasetsList" datasets-list position="0 1.8 0"></a-entity>
 
                 <a-entity id="belt" tools-belt>
