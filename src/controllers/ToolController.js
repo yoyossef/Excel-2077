@@ -12,6 +12,9 @@ export class ToolController {
         if(toolToKeep != 'filter-tool'){
             document.getElementById('filterTool').components['filter-tool'].disable();
         }
+        if(toolToKeep != 'summarise-tool'){
+            document.getElementById('summariseTool').components['summarise-tool'].disable();
+        }
     }
 
     static getActiveTool(){
@@ -26,16 +29,38 @@ export class ToolController {
             case 'filter':
                 res = document.getElementById('filterTool').components['filter-tool'];
             break;
+            case 'summarise':
+                res = document.getElementById('summariseTool').components['summarise-tool'];
+            break;
         }
         return res;
     }
 
     static refreshDetail(line,col,value,avg){
-        document.getElementById('cell-details').components['cell-details'].refresh(line,col,value,avg);    
+        document.getElementById('cell-details').components['cell-details'].refresh(line,col,value,avg);
     }
 
     static turnOnOffDetails(){
-        document.getElementById('cell-details').components['cell-details'].turnOnOff();    
+        document.getElementById('cell-details').components['cell-details'].turnOnOff();
+    }
+
+    static validateOperation(operationName, columnName = ''){
+        let operationComponent = document.getElementById(operationName).components['summarise-operation'];
+        if(operationComponent){
+            operationComponent.validate(columnName);
+        }
+    }
+
+    static showOperationsList(){
+        document.getElementById('summariseOperationsList').components['summarise-operations-list'].show();
+    }
+
+    static hideOperationsList(){
+        document.getElementById('summariseOperationsList').components['summarise-operations-list'].hide();
+    }
+
+    static refreshOperationsList(){
+        document.getElementById('summariseOperationsList').components['summarise-operations-list'].refresh();
     }
 
 };

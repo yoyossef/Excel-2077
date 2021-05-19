@@ -30,6 +30,7 @@
                 <a-entity filters-manager id='filters-manager' visible='false' position=" 0 30 -0.6" ></a-entity> 
                 
                 <a-entity id="datasetsList" datasets-list position="0 1.8 0"></a-entity>
+                <a-entity id="summariseOperationsList" summarise-operations-list position="0 1.8 0"></a-entity>
 
                 <a-entity id="belt" tools-belt>
                     <a-text value="Display" position="-0.324 0.73 0.5"  width="1" ></a-text>
@@ -39,9 +40,10 @@
                     <a-entity confirmation-tool="type: confirm;" position="0.04 0.8 0.5"></a-entity>
 
                     <a-text value="Tools" position="-0.07 0.73 0.5"  width="1"></a-text>
-                    <a-entity id="selectTool" select-tool position="-0.01 0.5 0.5" class="links"></a-entity>
-                    <a-entity id="groupByTool" group_by-tool position="-0.01 0.575 0.5" class="links"></a-entity>
-                    <a-entity id="filterTool" filter-tool position="-0.01 0.65 0.5" class="links"></a-entity>
+                    <a-entity id="summariseTool" summarise-tool position="-0.01 0.52 0.5" class="links"></a-entity>
+                    <a-entity id="selectTool" select-tool position="-0.01 0.57 0.5" class="links"></a-entity>
+                    <a-entity id="groupByTool" group_by-tool position="-0.01 0.62 0.5" class="links"></a-entity>
+                    <a-entity id="filterTool" filter-tool position="-0.01 0.67 0.5" class="links"></a-entity>
 
                     <a-text value="Move" position="0.170 0.577 0.5"  width="1"></a-text>
                     <a-entity id="movingTool" moving-tool position="0.202 0.482 0.5" class="links"></a-entity>

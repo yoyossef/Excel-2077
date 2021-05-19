@@ -22,7 +22,7 @@ AFRAME.registerComponent('group_by-tool', {
 
         this.el.setAttribute('geometry', {
             primitive: 'plane',
-            height: 0.075,
+            height: 0.05,
             width: 'auto'
         });
 
