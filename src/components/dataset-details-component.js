@@ -11,7 +11,6 @@ AFRAME.registerComponent('dataset-details', {
         //Setting 3D model
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
-        this.el.setAttribute('visible',this.data.enable);
 
         let color;
         if(this.data.isCurrentlyDisplayed){
