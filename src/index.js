@@ -40,3 +40,4 @@ require('./components/datasets-button-component.js');
 require('./components/filter-tool-component.js');
 require('./components/filters-manager-component.js');
 require('./components/filter-function-button-component.js');
+require('./components/grid-component.js');
