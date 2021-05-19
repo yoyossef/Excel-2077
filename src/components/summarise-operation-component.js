@@ -58,6 +58,9 @@ AFRAME.registerComponent('summarise-operation', {
             }
         }
     },
+    /**
+     * Sets the component's color to yellow if it needs a column, calls this.validate otherwise
+     */
     select: function(){
         if(!this.data.needsColumn){//No columns needed => selection == validation
             this.validate();
@@ -66,12 +69,19 @@ AFRAME.registerComponent('summarise-operation', {
             this.el.setAttribute('material',{color:'#FFFF00'});
         }
     },
+    /**
+     * Resets the component's color ant text
+     */
     unselect: function(){
         this.el.setAttribute('material',{color:'#222222'});
         this.el.setAttribute('text', {
             value: this.data.name+ "("+(this.data.needsColumn ? '...' : '')+")",
         });
     },
+    /**
+     * Sets the component's color to green, changes its text if colName != ''
+     * @param {string} colName the column name to add in the component's text (default '') 
+     */
     validate: function(colName = ''){
         this.el.setAttribute('material',{color:'#00FF00'});
         if(colName != ''){

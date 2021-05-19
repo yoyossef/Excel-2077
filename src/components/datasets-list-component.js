@@ -10,6 +10,9 @@ AFRAME.registerComponent('datasets-list', {
     init: function () {
         this.el.setAttribute('visible',false);
     },
+    /**
+     * Sets the component's visible attribute to true and creates a dataset-details for each DataService.data elements
+     */
     show : function(){
         let newDatasetDetails;
         let dataSets = Object.keys(DataService.data);
@@ -29,6 +32,9 @@ AFRAME.registerComponent('datasets-list', {
         this.el.setAttribute('visible',true);
 
     },
+    /**
+     * Destroys component's children (dataset-details-component) and set it's visible attribute to false
+     */
     hide : function(){
         while (this.el.firstChild) {
             this.el.removeChild(this.el.lastChild);

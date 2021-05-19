@@ -47,18 +47,27 @@ AFRAME.registerComponent('group_by-tool', {
 
     isToggled: false,
     selectedColumn: null,
+    /**
+     * Enables the tool and calls the ToolController in oder to disable other tools
+     */
     enable: function (){
         ToolController.disableOtherTools('group_by-tool');
         this.el.setAttribute('material','color', '#A9A9A9');
         this.isToggled=true;
         ToolController.toolMode='group_by';
     },
+    /**
+     * Disables the tool and calls it's cancel() method
+     */
     disable: function(){
         this.el.setAttribute('material','color','#222222');
         this.isToggled=false;
         ToolController.toolMode ='none';
         this.cancel();
     },
+    /**
+     * If this.selectedColumn is not null, calls the DataService.group_by(this.selectedColumn) method and this.disable()
+     */
     confirm : function(){
         if(this.selectedColumn != null){
             DataService.group_by(this.selectedColumn);
@@ -66,11 +75,17 @@ AFRAME.registerComponent('group_by-tool', {
             this.disable();
         }
     },
+    /**
+     * If this.selectedColumn is not null, unselects the column by calling this.selectColumn(this.selectedColumn)
+     */
     cancel : function(){
         if(this.selectedColumn != null){//Clearing columns selection
             this.selectColumn(this.selectedColumn);
         }
     },
+    /**
+     * Selects the given column if it is not already selected, unselects it otherwise
+     */
     selectColumn: function (elt){
         let idx
         let cells = TableController.getCellsByColumn(elt);

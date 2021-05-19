@@ -11,6 +11,9 @@ AFRAME.registerComponent('summarise-operations-list', {
     init: function () {
         this.el.setAttribute('visible',false);
     },
+    /**
+     * Sets the component's visible attribute to true and creates a summarice-operation-component for each this.operationsList elements
+     */
     show : function(){
         let newSummariseOperation;
         for(let i = 0; i<this.operationsList.length;i++){
@@ -30,12 +33,18 @@ AFRAME.registerComponent('summarise-operations-list', {
         this.el.setAttribute('visible',true);
 
     },
+    /**
+     * Destroys component's children (summarice-operation-component) and set it's visible attribute to false
+     */
     hide : function(){
         while (this.el.firstChild) {
             this.el.removeChild(this.el.lastChild);
         }
         this.el.setAttribute('visible',false);
     },
+    /**
+     * Calls this.hide() then this.show() in order to 'refresh' the component
+     */
     refresh: function(){
         this.hide();
         this.show();

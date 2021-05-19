@@ -46,62 +46,53 @@ AFRAME.registerComponent('select-tool', {
 
 
     isToggled: false,
-    selectedItems: [],
     selectedColumns: [],
+    /**
+     * Enables the tool and calls the ToolController in oder to disable other tools
+     */
     enable: function (){
         ToolController.disableOtherTools('select-tool');
         this.el.setAttribute('material','color', '#A9A9A9');
         this.isToggled=true;
         ToolController.toolMode='select';
     },
+    /**
+     * Disables the tool and calls it's cancel() method
+     */
     disable: function(){
         this.el.setAttribute('material','color','#222222');
         this.isToggled=false;
         ToolController.toolMode ='none';
         this.cancel();
     },
+    /**
+     * If this.selectedColumns.length, calls the DataService.select(this.selectedColumns) method and this.disable()
+     */
     confirm : function(){
         if(this.selectedColumns.length){
             DataService.select(this.selectedColumns);
-            this.selectedItems = [];
             this.selectedColumns = [];
             this.disable();
         }
     },
+    /**
+     * Unselects all the columns by calling this.selectColumn()
+     */
     cancel : function(){
         while(this.selectedColumns.length){//Clearing columns selection
             this.selectColumn(this.selectedColumns[0]);
         }
     },
-    selectCell: function(elt){
-        let idx;
-        if((idx = this.selectedItems.findIndex(item => item == elt)) < 0){
-            this.selectedItems.push(elt);
-            return true;
-        }
-        else {
-            this.selectedItems.splice(idx,1);
-            //if full column was selected, unselect column header
-            if((idx = this.selectedColumns.findIndex(item => item == (elt.split(',')[0]))) >= 0){
-                document.getElementById(elt.split(',')[0]+',-1').components["cell"].unselect();
-                this.selectedColumns.splice(idx,1);
-                if((idx = this.selectedItems.findIndex(item => item == elt.split(',')[0]+',-1')) >= 0){
-                    this.selectedItems.splice(idx,1);
-                }
-            }
-            return false;
-        }
-
-    },
+    /**
+     * Selects a column if it is not selected, unselects it otherwise
+     * @param {int} elt the index of the column to select
+     */
     selectColumn: function (elt){
         let idx
         let cells = TableController.getCellsByColumn(elt);
         if((idx = this.selectedColumns.findIndex(item => item == elt)) < 0){
             for(let cell of cells){
                 cell.select();
-                if(this.selectedItems.findIndex(item => item == elt) < 0){
-                    this.selectedItems.push(cell.el.id);
-                }
             }
             this.selectedColumns.push(elt);
         }
@@ -109,9 +100,6 @@ AFRAME.registerComponent('select-tool', {
             let cellIdx;
             for(let cell of cells){
                 cell.unselect();
-                if((cellIdx = this.selectedItems.findIndex(item => item == cell.el.id)) >= 0){
-                    this.selectedItems.splice(cellIdx,1);
-                }
             }
             this.selectedColumns.splice(idx,1);
         }

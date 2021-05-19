@@ -48,6 +48,9 @@ AFRAME.registerComponent('summarise-tool', {
     isToggled: false,
     currentSummariseOperation : '',
     summariseObjects: [],
+    /**
+     * Enables the tool and calls the ToolController in oder to disable other tools and show the operations list
+     */
     enable: function (){
         ToolController.disableOtherTools('summarise-tool');
         this.el.setAttribute('material','color', '#A9A9A9');
@@ -55,6 +58,9 @@ AFRAME.registerComponent('summarise-tool', {
         ToolController.toolMode='summarise';
         ToolController.showOperationsList();
     },
+    /**
+     * Disables the tool and calls it's cancel() method then hide the operations list
+     */
     disable: function(){
         this.el.setAttribute('material','color','#222222');
         this.isToggled=false;
@@ -62,6 +68,9 @@ AFRAME.registerComponent('summarise-tool', {
         this.cancel();
         ToolController.hideOperationsList();
     },
+    /**
+     * If this.summariseObjects.length, calls the DataService.summarise(this.summariseObjects) method and this.disable()
+     */
     confirm : function(){
         if(this.summariseObjects.length){
             DataService.summarise(this.summariseObjects);
@@ -69,6 +78,9 @@ AFRAME.registerComponent('summarise-tool', {
             this.disable();
         }
     },
+    /**
+     * Resets all operations by calling this.removeOperation()
+     */
     cancel : function(){
         this.currentSummariseOperation = '';
         while(this.summariseObjects.length){//Clearing columns selection
@@ -76,6 +88,10 @@ AFRAME.registerComponent('summarise-tool', {
         }
         ToolController.refreshOperationsList();
     },
+    /**
+     * Selects a column if this.currentSummariseOperation != '' (ie: if the currently building operation needs a column)
+     * @param {int} elt the index of the column to select
+     */
     selectColumn: function (elt){
         if(this.currentSummariseOperation != ''){//Can only select a column if there is an operation selected
             let idx
@@ -90,6 +106,11 @@ AFRAME.registerComponent('summarise-tool', {
             }
         }
     },
+    /**
+     * Selects/unselects an operation
+     * @param {string} operationName the operation to select/unselect
+     * @return {boolean} true if the operation has been selected, false otherwise (unselected or not selected)
+     */
     selectOperation : function(operationName){
         let res = false;
         if(this.summariseObjects.findIndex(item => item.operation == operationName) >-1){ //if operation is already used => unselect
@@ -109,6 +130,10 @@ AFRAME.registerComponent('summarise-tool', {
         }
         return res;
     },
+    /**
+     * Removes an operation from this.summariseObjects and unselects the related column if it not used by another operation
+     * @param {string} operationName the name of the operation to remove
+     */
     removeOperation: function(operationName){
         let operationIndex = this.summariseObjects.findIndex(item => item.operation == operationName);
         if( operationIndex > -1 ){
