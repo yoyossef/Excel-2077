@@ -76,6 +76,7 @@ export class DataService {
      * @param {string} params R command's parameters
      */
     static executeCommand(commandName, params) {
+        console.log(commandName + " " + params);
         DataService.nbCommandExecuted++;
         let varName = 'c' + DataService.nbCommandExecuted;
         let tmpData = [];
@@ -131,6 +132,28 @@ export class DataService {
             params += ", add = TRUE";
         }
         DataService.executeCommand('group_by', params);
+    }
+
+    /**
+     * Executes a filter command on the currently displayed dataset by calling
+     * DataService.executeCommand('filter',params);
+     *
+     * @param {Array<string,string,string>} tripletList triplet containing : column name, operator , value for the operator
+     */
+     static filter(tripletList) {
+        let params = DataService.displayedData +  ","; //First param of group_by, the table name
+        let tripletParams = ""
+        for (var i = 0; i < tripletList.length; i++) {
+            if (tripletParams != '')
+            tripletParams += ' &'
+            tripletParams += " " + tripletList[i].col + " " + tripletList[i].op 
+            if (isNaN(tripletList[i].arg))
+                tripletParams += " '" + tripletList[i].arg + "' " ; 
+            else
+                tripletParams += " " + tripletList[i].arg ; 
+        }
+        params += tripletParams;
+        DataService.executeCommand('filter', params);
     }
 
     static switchToData(dataName){
