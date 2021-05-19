@@ -1,5 +1,3 @@
-// import {CameraController} from '../controllers/CameraController.js';
-
 AFRAME.registerComponent('grid-component', {
 	schema: {
         width: {type: 'number', default: 1},
@@ -11,16 +9,8 @@ AFRAME.registerComponent('grid-component', {
         const el = this.el;    
         this.geometry = new THREE.PlaneBufferGeometry(data.width, data.height);
         this.geometry.rotateX(-Math.PI / 2);
-        this.material = new THREE.MeshBasicMaterial({color: data.color});
+        this.material = new THREE.MeshBasicMaterial({transparent: true, opacity: 0.0});
         this.mesh = new THREE.Mesh(this.geometry, this.material);
         el.setObject3D('mesh', this.mesh);
-		// this.tick = AFRAME.utils.throttleTick(this.tick, 25, this); //to only tick every 25ms (40 instead of 90 times per seconds)
 	},
-
-	// tick: function () {
-    //     let el = this.el;    
-    //     let rig = CameraController.getRig();
-    //     // const camera = CameraController.getCamera();
-	// 	this.el.setAttribute('position', {y: rig.getAttribute('position').y}, true);
-	// }
 });
