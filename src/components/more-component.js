@@ -34,6 +34,9 @@ AFRAME.registerComponent('more', {
                 }
             }
     },
+    /**
+     * Resets the position of the 'more' component
+     */
     resetPosition : function(){
         if(this.data.direction == 'up'){
             this.el.setAttribute('position',{x:0,y:CameraController.verticalViewDistance+0.2,z:0});
@@ -42,6 +45,9 @@ AFRAME.registerComponent('more', {
             this.el.setAttribute('position',{x:0,y:-(CameraController.verticalViewDistance+0.2),z:0});
         }
     },
+    /**
+     * Sets the shape of the 'more' component based on TableController.displayMode
+     */
     defineShape: function(){
         while (this.el.firstChild) {
             this.el.removeChild(this.el.lastChild);

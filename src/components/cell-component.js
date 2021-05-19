@@ -93,8 +93,14 @@ AFRAME.registerComponent('cell', {
                         let hasBeenSelected = filterTool.selectColumn(this.el.id.split(',')[0]);
                     }
                 break;
+                case 'summarise':
+                let summariseTool = document.getElementById('summariseTool').components["summarise-tool"];
+                    if (this.data.type == 'header') {
+                        let hasBeenSelected = summariseTool.selectColumn(this.el.id.split(',')[0]);
+                    }
+                break;
             }
-            
+
             let str = this.el.id;
             let char = str.split(',');
             let line = Number(char[1])+1;

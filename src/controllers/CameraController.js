@@ -6,10 +6,18 @@ export class CameraController {
     static moveStep = 0.1;
     static verticalViewDistance = 2;
 
+    /**
+     * Gets the camera-component of the scene
+     * @return {camera-component} the camera of the scene
+     */
     static getCamera(){
         return document.getElementById('camera').components["camera"];
     }
 
+    /**
+     * Gets the rig element of the scene (area containing camera, controllers, tool-belt, ...)
+     * @return {Html element} the rig
+     */
     static getRig(){
         return document.getElementById('rig');
     }
@@ -36,6 +44,10 @@ export class CameraController {
         console.log(camWorldPosition);
     }
 
+    /**
+     * Moves the rig smoothly in the given vertical direction (rig includes camera)
+     * @param {'up' | 'down'} direction the vertical direction of the movement
+     */
     static async move (direction) {
         let rig = this.getRig();
         let directionAffect = 0;
@@ -52,6 +64,10 @@ export class CameraController {
         // this.logging();
     }
 
+    /**
+     * Resets rig's position position in the given axe (rig includes camera)
+     * @param {'vertical' | 'horizontal'} axe the axe to reset position of (y or x+z)
+     */
     static reset (axe) {
         let rig = this.getRig();
         let camera = this.getCamera();

@@ -6,6 +6,12 @@ AFRAME.registerComponent('filter-tool', {
     schema: {
         color: {type:'color',default:'#FF0000'}
     },
+
+    isToggled: false,
+    selectedColumns: [],
+    tripletList: [],
+
+
     init: function () {
         //Setting 3D model
         this.mesh = new THREE.Mesh();
@@ -22,7 +28,7 @@ AFRAME.registerComponent('filter-tool', {
 
         this.el.setAttribute('geometry', {
             primitive: 'plane',
-            height: 0.075,
+            height: 0.05,
             width: 'auto'
         });
 
@@ -44,9 +50,11 @@ AFRAME.registerComponent('filter-tool', {
         }
     },
 
-    isToggled: false,
-    selectedItems: [],
-    selectedColumns: [],
+    addTriplet: function(col,op,arg){
+        let triplet = {col,op,arg};
+        this.tripletList.push(triplet);
+    },
+
     enable: function (){
         ToolController.disableOtherTools('filter-tool');
         this.el.setAttribute('material','color', '#A9A9A9');
@@ -61,9 +69,9 @@ AFRAME.registerComponent('filter-tool', {
     },
     confirm : function(){
         if(this.selectedColumns.length){
-            DataService.select(this.selectedColumns);
-            this.selectedItems = [];
+            DataService.filter(this.tripletList);
             this.selectedColumns = [];
+            this.tripletList=[];
             this.disable();
         }
     },
@@ -71,6 +79,7 @@ AFRAME.registerComponent('filter-tool', {
         while(this.selectedColumns.length){//Clearing columns selection
             this.selectColumn(this.selectedColumns[0]);
         }
+        this.tripletList=[];
     },
 
     selectColumn: function (elt){
@@ -79,10 +88,17 @@ AFRAME.registerComponent('filter-tool', {
         if((idx = this.selectedColumns.findIndex(item => item == elt)) < 0){
             header.select();
             this.selectedColumns.push(elt);
+            let filterManager = document.getElementById('filters-manager').components["filters-manager"];
+            filterManager.disable();
+            filterManager.enable();
+            filterManager.choosenCol = header;
         }
         else {
             header.unselect();
             this.selectedColumns.splice(idx,1);
+            let filterManager = document.getElementById('filters-manager').components["filters-manager"];
+            filterManager.disable();
+            filterManager.choosenCol = '';
         }
-    }
+    },
 });
