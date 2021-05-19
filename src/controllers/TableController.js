@@ -8,6 +8,11 @@ export class TableController {
     static tableRadius = 1;
     static nbrCol = 0;
 
+    /**
+     * Gets all the cells component of a given column
+     * @param {int} colIndex the column's index to retrives cells of
+     * @return {Array<cell-component>} array of cells corresponding to the column (can be empty)
+     */
     static getCellsByColumn(colIndex) {
         let res = [];
         if (colIndex >= 0) {
@@ -19,10 +24,21 @@ export class TableController {
         return res;
     }
 
+    /**
+     * Gets the cell component corresponding to the given coordinates
+     * @param {int} x the first coordinate (column)
+     * @param {int} y the second coordinate (row)
+     * @return {cell-component} the cell of id 'x,y' (or null if it doesn't exist)
+     */
     static getCell(x, y) {
         return document.getElementById(x + ',' + y).components["cell"];
     }
 
+    /**
+     * Gets all the cells component of a given row
+     * @param {int} rowIndex the row's index to retrives cells of
+     * @return {Array<cell-component>} array of cells corresponding to the row (can be empty)
+     */
     static getCellsByRow(rowIndex) {
         let res = [];
         if (rowIndex >= -1) {
@@ -34,20 +50,37 @@ export class TableController {
         return res;
     }
 
+    /**
+     * Gets the header cell component of a given column
+     * @param {int} colIndex the column's index to retrives header of
+     * @return {cell-component} cell corresponding to the column's header (or null if it doesn't exist)
+     */
     static getHeader (colIndex) {
         return this.getCell(colIndex,-1);
     }
 
+    /**
+     * Gets all header cells component of the displayed table
+     * @return {Array<cell-component>} cell corresponding to the table's headers (can be empty)
+     */
     static getHeaders () {
         let res = [];
         res = this.getCellsByRow('-1');
         return res;
     }
 
+    /**
+     * Gets the 'more' rings components
+     * @return {Array<more-component>} "moreUp" and "moreDown" components
+     */
     static getMoreRings() {
         return [document.getElementById("moreUp").components["more"], document.getElementById("moreDown").components["more"]];
     }
 
+    /**
+     * Moves headers cells and 'more' rings smoothly in the given vertical direction (the distance is TableController.moveDistance)
+     * @param {'up' | 'down'} direction the vertical direction of the movement
+     */
     static async moveHeaders(direction) {
         let headers = this.getHeaders();
         let rings = this.getMoreRings();
@@ -83,6 +116,9 @@ export class TableController {
         document.getElementById('table').components["table"].addData(dataMatrix);*/
     }
 
+    /**
+     * Resets headers cells and 'more' rings vertical position
+     */
     static resetHeaders() {
         let headers = this.getHeaders();
         let rings = this.getMoreRings();
@@ -94,6 +130,10 @@ export class TableController {
         }
     }
 
+    /**
+     * Checks if the first cell (non-header) of the table is visible
+     * @return {boolean} true if the cell 0,0 is visible, false otherwise
+     */
     static isFirstCellVisible() {
         let res = false;
         let cell = this.getCell(0, 0);
@@ -103,6 +143,10 @@ export class TableController {
         return res;
     }
 
+    /**
+     * Checks if the fitst cell of the last row of the table is visible
+     * @return {boolean} true if this cell is visible, false otherwise
+     */
     static isLastCellVisible() {
         let res = false;
         let table = document.getElementById('table').components["table"];
@@ -113,17 +157,28 @@ export class TableController {
         return res;
     }
 
+    /**
+     * Calls the 'loadData()' method of the table component with the given data and 'display()' in order to display it
+     * @param {Array<Array<any>>} dataMatrix the data to load in the table (dataMatrix[0] row is concidered as headers)
+     */
     static loadDataInTable(dataMatrix) {
         let table = document.getElementById('table').components["table"];
         table.loadData(dataMatrix);
         table.display();
     }
 
+    /**
+     * Calls the 'addData()' method of the table component with the given data in order to add it to the displayed data
+     * @param {Array<Array<any>>} dataMatrix the data add in the table
+     */
     static addDataInTable(dataMatrix) {
         let table = document.getElementById('table').components["table"];
         table.addData(dataMatrix);
     }
 
+    /**
+     * Calls the 'loadNextPage()' method of the table component
+     */
     static loadNextPageInTable() {
         let table = document.getElementById('table').components["table"];
         table.loadNextPage();
