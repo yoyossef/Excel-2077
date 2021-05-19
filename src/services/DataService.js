@@ -133,11 +133,40 @@ export class DataService {
         DataService.executeCommand('group_by', params);
     }
 
+    /**
+     * Executes a summarise command on the currently displayed dataset by calling
+     * DataService.executeCommand('summarise',params);
+     *
+     * @param {Array<Object>} summariseObjects objects containing operation (mean, max, n, ...) and colIndex (-1 if not needed)
+     */
+    static summarise(summariseObjects) {
+        let params = DataService.displayedData; //First param of summarise, the table name
+        for (let i = 0; i < summariseObjects.length; i++) { //creating summarise arguments
+            if(summariseObjects[i].colIndex > -1){//getting column's name if needed
+                let colName = DataService.getColumnName(summariseObjects[i].colIndex);
+                params += "," + summariseObjects[i].operation+'.'+colName+ " = "+ summariseObjects[i].operation+"("+colName+")";
+            }
+            else{
+                params += "," + summariseObjects[i].operation+ " = "+ summariseObjects[i].operation+"()";
+            }
+        }
+        DataService.executeCommand('summarise', params);
+    }
+
     static switchToData(dataName){
         if(dataName != null && dataName != DataService.displayedData && DataService.data[dataName]){
             TableController.loadDataInTable(DataService.data[dataName].table);
             DataService.displayedData = dataName;
         }
         document.getElementById('datasetsList').components['datasets-list'].hide();
+    }
+
+    static getColumnName(colIndex){
+        if(colIndex> -1 && colIndex < DataService.data[DataService.displayedData].table[0].length){
+            return DataService.data[DataService.displayedData].table[0][colIndex];
+        }
+        else {
+            return '';
+        }
     }
 };
