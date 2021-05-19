@@ -22,10 +22,17 @@ export class CameraController {
         return document.getElementById('rig');
     }
 
+    /**
+     * Gets the grid element on the ground (mesh allowing for collision detection for telportation controls)
+     * @return {Html element} the grid
+     */
     static getGroundGrid(){
         return document.getElementById('ground');
     }
 
+    /**
+     * Helpful for debugging purposes when toying with the teleportation
+     */
     static logging() {
         console.log("Grid:");
         console.log(this.getGroundGrid().getAttribute('position'));

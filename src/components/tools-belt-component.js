@@ -6,6 +6,11 @@ AFRAME.registerComponent('tools-belt', {
 		this.el.setAttribute('rotation', "-65 0 0");
 		this.tick = AFRAME.utils.throttleTick(this.tick, 25, this); //to only tick every 25ms (40 instead of 90 times per seconds)
 	},
+	
+	/**
+	 * Makes sure to position the belt following the camera's, and toggle its visibility when rotating the camera down or up
+	 * with a specified angle around the x axis
+	 */
 	tick: function () {
 		let camera = CameraController.getCamera();
 		let position = Object.assign({},camera.el.getAttribute('position')); //cloning camera position
