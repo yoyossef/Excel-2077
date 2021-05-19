@@ -1,11 +1,11 @@
-import {CameraController} from '../controllers/CameraController.js';
-import {TableController} from '../controllers/TableController.js';
+import { CameraController } from '../controllers/CameraController.js';
+import { TableController } from '../controllers/TableController.js';
 
 AFRAME.registerComponent('moving-tool-down', {
     schema: {
-        color: {type:'color',default:'#0000FF'}
+        color: { type: 'color', default: '#0000FF' }
     },
-    init: function () {
+    init: function() {
         //Setting 3D model
         // this.geometry = new THREE.BoxBufferGeometry(0.2,0.2, 0);
         // this.material = new THREE.MeshStandardMaterial({color: this.data.color});
@@ -37,9 +37,12 @@ AFRAME.registerComponent('moving-tool-down', {
 
     },
     events: {
-        click: function (evt) {
-                CameraController.move('down');
-                TableController.moveHeaders('down');
+        click: function(evt) {
+            if (TableController.isLastCellVisible()) {
+                TableController.loadNextPageInTable();
+            }
+            CameraController.move('down');
+            TableController.moveHeaders('down');
         }
     }
 });
