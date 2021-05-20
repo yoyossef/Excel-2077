@@ -12,7 +12,7 @@ AFRAME.registerComponent('filters-manager', {
     init: function () {
         // crée un nouvel élément a-entity
         var newFilterFunctionBtn = document.createElement("a-entity");
-        newFilterFunctionBtn.setAttribute('position', '-0.15 0 0');
+        newFilterFunctionBtn.setAttribute('position', '-0.15 0 -0.5');
         newFilterFunctionBtn.setAttribute('filter-function-button', 'op: ==; color: #222222; enable: false;');
         newFilterFunctionBtn.setAttribute('id', '==btn');
         // ajoute le nouvel élément créé et son contenu dans le DOM
@@ -21,21 +21,21 @@ AFRAME.registerComponent('filters-manager', {
         this.choosenFilterOp='=='; //default value
 
         newFilterFunctionBtn = document.createElement("a-entity");
-        newFilterFunctionBtn.setAttribute('position', '-0.05 0 0');
+        newFilterFunctionBtn.setAttribute('position', '-0.05 0 -0.5');
         newFilterFunctionBtn.setAttribute('filter-function-button', 'op: !=; color: #222222;');
         newFilterFunctionBtn.setAttribute('id', '!=btn');
         // ajoute le nouvel élément créé et son contenu dans le DOM
         this.el.appendChild(newFilterFunctionBtn);
 
         newFilterFunctionBtn = document.createElement("a-entity");
-        newFilterFunctionBtn.setAttribute('position', '0.05 0 0');
+        newFilterFunctionBtn.setAttribute('position', '0.05 0 -0.5');
         newFilterFunctionBtn.setAttribute('filter-function-button', 'op: <; color: #222222;');
         newFilterFunctionBtn.setAttribute('id', '>btn');
         // ajoute le nouvel élément créé et son contenu dans le DOM
         this.el.appendChild(newFilterFunctionBtn);
 
         /*newFilterFunctionBtn = document.createElement("a-entity");
-        newFilterFunctionBtn.setAttribute('position', '0.15 0 0');
+        newFilterFunctionBtn.setAttribute('position', '0.15 0 -0.5');
         newFilterFunctionBtn.setAttribute('filter-function-button', 'op: >; color: #222222;');
         newFilterFunctionBtn.setAttribute('id', '<btn');
         // ajoute le nouvel élément créé et son contenu dans le DOM
@@ -47,13 +47,12 @@ AFRAME.registerComponent('filters-manager', {
         let camera = CameraController.getCamera();
 		let position = Object.assign({},camera.el.getAttribute('position')); //cloning camera position
 		let rotation = camera.el.getAttribute('rotation');//cloning camera rotation
-        position.z -= 0.5;
 		this.el.setAttribute('position', position);
         this.el.setAttribute('rotation',{y:rotation.y},true);
         this.el.setAttribute('visible',true);
         this.newKeyBoard = document.createElement("a-entity");
         this.newKeyBoard.setAttribute('id', 'keyboardFilter');
-        this.newKeyBoard.setAttribute('position', '0 -0.25 0');
+        this.newKeyBoard.setAttribute('position', '0 -0.25 -0.5');
         this.newKeyBoard.setAttribute('rotation', '-30 0 0');
         this.newKeyBoard.setAttribute('super-keyboard', {
             hand: '#rightHand',
