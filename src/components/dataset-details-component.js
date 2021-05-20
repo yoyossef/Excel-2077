@@ -1,5 +1,10 @@
 import {DataService} from '../services/DataService.js';
 
+/**
+ * @module dataset-details-component
+ * @category Component
+*/
+
 AFRAME.registerComponent('dataset-details', {
     schema: {
         name : {type:'string', default:''},

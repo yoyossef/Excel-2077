@@ -1,3 +1,9 @@
+/**
+ * 
+ * @module cell-details-component
+ * @category Component
+*/
+
 AFRAME.registerComponent('cell-details', {
     schema: {
         color:  {type:'color',default:'#0000FF'},

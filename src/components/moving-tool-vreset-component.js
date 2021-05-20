@@ -1,6 +1,10 @@
 import {CameraController} from '../controllers/CameraController.js';
 import {TableController} from '../controllers/TableController.js';
 
+/**
+ * @module moving-tool-vreset-component
+ * @category Component
+*/
 AFRAME.registerComponent('moving-tool-vreset', {
     schema: {
         color: {type:'color',default:'#0000FF'}

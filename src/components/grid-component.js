@@ -1,14 +1,15 @@
+/**
+ * Creates the component's mesh and rotates it to be parallel to the ground.
+ * It is used as the collision entity for the teleport-controls component, to have a "ground" where to teleport 
+ *  even when ascending/descending with the move function from the cameraController
+ * @module grid-component
+ * @category Component
+*/
 AFRAME.registerComponent('grid-component', {
 	schema: {
         width: { type: 'number', default: 10 },
         height: { type: 'number', default: 10 },
-    },
-
-    /**
-     * Creates the component's mesh and rotates it to be parallel to the ground.
-     * It is used as the collision entity for the teleport-controls component, to have a "ground" where to teleport 
-     *  even when ascending/descending with the move function from the cameraController
-     */
+        },
 	init: function () {
         const data = this.data;
         const el = this.el;    

@@ -3,6 +3,11 @@ import { TableController } from '../controllers/TableController.js';
 import { CameraController } from '../controllers/CameraController.js';
 import { config } from '../.env.js';
 
+/**
+ * 
+ * @module DataService
+ * @category Service
+*/
 export class DataService {
 
     static data = {};

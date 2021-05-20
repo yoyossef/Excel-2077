@@ -1,5 +1,9 @@
 import {CameraController} from '../controllers/CameraController.js';
 
+/**
+ * @module moving-tool-hreset-component
+ * @category Component
+*/
 AFRAME.registerComponent('moving-tool-hreset', {
     schema: {
         color: {type:'color',default:'#0000FF'}
