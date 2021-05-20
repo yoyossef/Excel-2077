@@ -10,7 +10,7 @@ Projet M2 SIL: Visualisation  & traitement de données en VR
 * [Utilisation](#utilisation)
     * [Démarage](#démarage)
     * [Contrôles](#contrôles)
-    * [La ceinture d'outils](#la-ceinture-d-outils)
+    * [La ceinture d'outils](#la-ceinture-doutils)
 
 ## Prérequis
 * Node
