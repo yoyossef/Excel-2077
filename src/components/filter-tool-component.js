@@ -54,23 +54,40 @@ AFRAME.registerComponent('filter-tool', {
         }
     },
 
+    /**
+     * Adding triplet to the command to execute
+     * @param {string} col name of the column to be filtered
+     * @param {string} op operator
+     * @param {string} arg argument for the operator
+     */
     addTriplet: function(col,op,arg){
         let triplet = {col,op,arg};
         this.tripletList.push(triplet);
     },
 
+    /**
+     * Enable the filter tool and disabling the other
+     */
     enable: function (){
         ToolController.disableOtherTools('filter-tool');
         this.el.setAttribute('material','color', '#A9A9A9');
         this.isToggled=true;
         ToolController.toolMode='filter';
     },
+
+    /**
+     * Disable the filter tool and canceling the actual process for the tool.
+     */
     disable: function(){
         this.el.setAttribute('material','color','#222222');
         this.isToggled=false;
         ToolController.toolMode ='none';
         this.cancel();
     },
+
+    /**
+     * Confirm and execute the command using the triplet buffer.
+     */
     confirm : function(){
         if(this.selectedColumns.length){
             DataService.filter(this.tripletList);
@@ -79,6 +96,10 @@ AFRAME.registerComponent('filter-tool', {
             this.disable();
         }
     },
+
+    /**
+     * Canceling the actual process for the tool (empty the tripletList for the command execution).
+     */
     cancel : function(){
         while(this.selectedColumns.length){//Clearing columns selection
             this.selectColumn(this.selectedColumns[0]);
@@ -86,6 +107,9 @@ AFRAME.registerComponent('filter-tool', {
         this.tripletList=[];
     },
 
+    /**
+     * Select the header of the column and store into the buffer. Enable the filters-manager (filter button and keyboard).
+     */
     selectColumn: function (elt){
         let idx;
         let header = TableController.getHeader(elt);

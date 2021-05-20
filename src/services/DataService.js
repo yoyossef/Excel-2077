@@ -86,6 +86,7 @@ export class DataService {
         let tmpData = [];
         ApiService.rCommandPOST(varName, commandName, params).then((response) => {
             response.json().then((body) => {
+                let colInfo = body.columnsName;
                 //headers
                 if (Object.keys(body.results).length){
                     tmpData.push(Object.keys(body.results[0]));
@@ -103,7 +104,8 @@ export class DataService {
                     table: tmpData,
                     page: 1,
                     totalResults: body.totalResults,
-                    totalPages: body.totalPages
+                    totalPages: body.totalPages,
+                    colInfo: body.columnsName
                 };
                 //display DataService.data
                 TableController.loadDataInTable(DataService.data[varName].table);

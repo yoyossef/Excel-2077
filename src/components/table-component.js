@@ -20,27 +20,6 @@ AFRAME.registerComponent('table', {
 
     init: function() {
         DataService.loadDataset();
-        // //pour les tests
-        //  let dataMatrix = [];
-        //
-        //  let nbCol = 20;
-        //  let nbLines = 100;
-        //
-        //  dataMatrix.push([]);
-        //  for(let i = 0; i<nbCol; i++){
-        //      dataMatrix[0].push("Col "+(i+1));
-        //  }
-        //
-        //  for(let i = 0; i< nbLines; i ++){
-        //      let line = [];
-        //      for(let j = 0; j<nbCol; j++){
-        //          line.push(i+1);
-        //      }
-        //      dataMatrix.push(line);
-        //  }
-        //
-        // this.loadData(dataMatrix);
-        // this.display();
     },
 
     display: function() {
