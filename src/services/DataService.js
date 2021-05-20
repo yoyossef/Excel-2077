@@ -76,18 +76,23 @@ export class DataService {
      * @param {string} params R command's parameters
      */
     static executeCommand(commandName, params) {
-        console.log(commandName + " " + params);
         DataService.nbCommandExecuted++;
         let varName = 'c' + DataService.nbCommandExecuted;
         let tmpData = [];
         ApiService.rCommandPOST(varName, commandName, params).then((response) => {
             response.json().then((body) => {
                 //headers
-                tmpData.push(Object.keys(body.results[0]));
-                //get response data into tmpData
-                for (let i = 0; i < body.results.length; i++) {
-                    tmpData.push(Object.values(body.results[i]));
+                if (Object.keys(body.results).length){
+                    tmpData.push(Object.keys(body.results[0]));
+                    //get response data into tmpData
+                    for (let i = 0; i < body.results.length; i++) {
+                        tmpData.push(Object.values(body.results[i]));
+                    }
+                } else {
+                    tmpData.push(["Empty data"]);  
+                    tmpData.push(["Nothing to see here"]);   
                 }
+                console.log(tmpData);
                 //update DataService.data
                 DataService.data[varName] = {
                     command: commandName + "(" + params + ")",
