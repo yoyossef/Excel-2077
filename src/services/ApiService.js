@@ -1,5 +1,10 @@
 import { config } from '../.env.js';
 
+/**
+ * 
+ * @module ApiService
+ * @category Service
+*/
 export class ApiService {
 
     /**

@@ -2,6 +2,10 @@ import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
+/**
+ * @module group_by-tool-component
+ * @category Component
+*/
 AFRAME.registerComponent('group_by-tool', {
     schema: {
         color: {type:'color',default:'#FF0000'}

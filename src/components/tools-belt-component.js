@@ -1,5 +1,11 @@
 import {CameraController} from '../controllers/CameraController.js';
 
+/**
+ * The main interface component that enables the user to select tools
+ * @module tools-belt-component
+ * @category Component
+*/
+
 AFRAME.registerComponent('tools-belt', {
 	schema: {},
 	init: function () {

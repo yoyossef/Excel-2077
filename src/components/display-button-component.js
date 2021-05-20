@@ -1,6 +1,10 @@
 import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
 
+/**
+ * @module display-button-component
+ * @category Component
+*/
 AFRAME.registerComponent('display-button', {
     schema: {
         message: { type: 'string' },
