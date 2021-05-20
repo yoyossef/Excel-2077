@@ -1,5 +1,9 @@
 import {DataService} from '../services/DataService.js';
 
+/**
+ * @module summarise-operation-component
+ * @category Component
+*/
 AFRAME.registerComponent('summarise-operation', {
     schema: {
         name : {type:'string', default:''},

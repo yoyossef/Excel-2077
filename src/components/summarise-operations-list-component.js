@@ -1,6 +1,10 @@
 import {DataService} from '../services/DataService.js';
 import {CameraController} from '../controllers/CameraController.js';
 
+/**
+ * @module summarise-operations-list-component
+ * @category Component
+*/
 AFRAME.registerComponent('summarise-operations-list', {
     schema: {
         name : {type:'string', default:''},

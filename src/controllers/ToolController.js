@@ -1,3 +1,9 @@
+/**
+ * The main interface component that enables the user to select tools
+ * @module tools-belt-component
+ * @category Controller
+*/
+
 export class ToolController {
 
     static toolMode = 'none';

@@ -1,6 +1,10 @@
 import {CameraController} from '../controllers/CameraController.js';
 import {TableController} from '../controllers/TableController.js';
 
+/**
+ * @module moving-tool-up-component
+ * @category Component
+*/
 AFRAME.registerComponent('moving-tool-up', {
     schema: {
         color: {type:'color',default:'#0000FF'}

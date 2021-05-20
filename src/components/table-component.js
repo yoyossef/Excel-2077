@@ -3,6 +3,10 @@ import { CameraController } from '../controllers/CameraController.js';
 import { config } from '../.env.js';
 import { DataService } from '../services/DataService.js';
 
+/**
+ * @module table-component
+ * @category Component
+*/
 AFRAME.registerComponent('table', {
     schema: {
         cellHeight: { type: 'number', default: TableController.cellHeight },

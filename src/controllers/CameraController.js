@@ -1,5 +1,11 @@
 import { TableController } from './TableController.js';
 
+/**
+ * Utility functions to get or move the camera
+ * @module CameraController
+ * @category Controller
+*/
+
 export class CameraController {
 
     static moveDistance = TableController.cellHeight *20;
@@ -7,7 +13,8 @@ export class CameraController {
     static verticalViewDistance = 2;
 
     /**
-     * Gets the camera-component of the scene
+     * @function getCamera
+     * gets the camera-component of the scene
      * @return {camera-component} the camera of the scene
      */
     static getCamera(){
@@ -15,23 +22,26 @@ export class CameraController {
     }
 
     /**
-     * Gets the rig element of the scene (area containing camera, controllers, tool-belt, ...)
-     * @return {Html element} the rig
+     * @function getRig
+     * gets the rig element of the scene (area containing camera, controllers, tool-belt, ...)
+     * @return {HTMLelement} the rig
      */
     static getRig(){
         return document.getElementById('rig');
     }
 
     /**
-     * Gets the grid element on the ground (mesh allowing for collision detection for telportation controls)
-     * @return {Html element} the grid
+     * @function getGroundGrid
+     * gets the grid element on the ground (mesh allowing for collision detection for telportation controls)
+     * @return {HTMLelement} the grid
      */
     static getGroundGrid(){
         return document.getElementById('ground');
     }
 
     /**
-     * Helpful for debugging purposes when toying with the teleportation
+     * @function logging
+     * helpful for debugging purposes when toying with the teleportation
      */
     static logging() {
         console.log("Grid:");
@@ -52,7 +62,8 @@ export class CameraController {
     }
 
     /**
-     * Moves the rig smoothly in the given vertical direction (rig includes camera)
+     * @function move
+     * moves the rig smoothly in the given vertical direction (rig includes camera)
      * @param {'up' | 'down'} direction the vertical direction of the movement
      */
     static async move (direction) {
@@ -72,7 +83,8 @@ export class CameraController {
     }
 
     /**
-     * Resets rig's position position in the given axe (rig includes camera)
+     * @function reset
+     * resets rig's position position in the given axe (rig includes camera)
      * @param {'vertical' | 'horizontal'} axe the axe to reset position of (y or x+z)
      */
     static reset (axe) {

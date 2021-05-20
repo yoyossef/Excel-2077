@@ -1,5 +1,9 @@
 import {ToolController} from '../controllers/ToolController.js';
 
+/**
+ * @module details-button-component
+ * @category Component
+*/
 AFRAME.registerComponent('details-button', {
     schema: {
         enable : {type: 'boolean', default: false}

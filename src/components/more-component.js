@@ -1,6 +1,10 @@
 import {CameraController} from '../controllers/CameraController.js';
 import {TableController} from '../controllers/TableController.js';
 
+/**
+ * @module more-component
+ * @category Component
+*/
 AFRAME.registerComponent('more', {
     schema: {
         direction: {type:'string', default: 'down'}
