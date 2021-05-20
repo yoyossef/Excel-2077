@@ -8,7 +8,7 @@ Projet M2 SIL: Visualisation  & traitement de données en VR
 * [Installation du projet](#installation-du-projet)
 * [Lancement](#lancement)
 * [Utilisation](#utilisation)
-    * [Démarage](#démarage)
+    * [Démarrage](#démarrage)
     * [Contrôles](#contrôles)
     * [La ceinture d'outils](#la-ceinture-doutils)
 
