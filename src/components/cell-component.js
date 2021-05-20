@@ -73,6 +73,10 @@ AFRAME.registerComponent('cell', {
     },
 
     events: {
+
+        /**
+         * handle the click event for a cell. (Handle the different tools)
+         */
         click: function(evt) {
             switch (ToolController.toolMode) {
                 case 'select':
@@ -101,6 +105,7 @@ AFRAME.registerComponent('cell', {
                 break;
             }
 
+            // informations for the cell details tool
             let str = this.el.id;
             let char = str.split(',');
             let line = Number(char[1])+1;
@@ -111,6 +116,9 @@ AFRAME.registerComponent('cell', {
 
     isSelected: false,
 
+    /**
+     * Select a cell and change his color
+     */
     select: function() {
         if (this.data.type == 'header') {
             this.el.setAttribute('material', { color: '#009900' });
@@ -120,16 +128,22 @@ AFRAME.registerComponent('cell', {
         this.isSelected = true;
     },
 
+    /**
+     * Unselect a cell and change his color
+     */
     unselect: function() {
         this.el.setAttribute('material', { color: this.data.bgColor });
         this.isSelected = false;
     },
 
+    /**
+     * Set the zoom animation for a cell depending of the display method (Wall , cylinder or Half-Cylinder).
+     */
     setZoom: function() {
 
         let zoomedPos = new Array(3);
 
-        // Position animation
+        // Computin the position animation
         switch (TableController.displayMode) {
             case "Wall":
                 if(this.data.type == 'header'){
@@ -151,6 +165,7 @@ AFRAME.registerComponent('cell', {
                 break;
         }
 
+        //set the animation
         this.el.setAttribute('animation__positionEnter', {
             property: 'position',
             to: { x: zoomedPos[0], y: zoomedPos[1], z: zoomedPos[2] },
@@ -166,6 +181,12 @@ AFRAME.registerComponent('cell', {
         });
     },
 
+    /**
+     * Moove this cell and recompute the zoom animation.
+     * @param {float} x x position 
+     * @param {float} y y position 
+     * @param {float} z z position 
+     */
     move: function(x, y, z) {
         this.el.object3D.position.x = x;
         this.el.object3D.position.y = y;

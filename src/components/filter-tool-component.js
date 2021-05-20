@@ -86,6 +86,11 @@ AFRAME.registerComponent('filter-tool', {
         let idx;
         let header = TableController.getHeader(elt);
         if((idx = this.selectedColumns.findIndex(item => item == elt)) < 0){
+            let selectedHeader;
+            for (let idHeader of this.selectedColumns){
+                selectedHeader = TableController.getHeader(idHeader);
+                selectedHeader.unselect();
+            }
             header.select();
             this.selectedColumns.push(elt);
             let filterManager = document.getElementById('filters-manager').components["filters-manager"];

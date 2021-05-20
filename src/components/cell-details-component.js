@@ -9,10 +9,6 @@ AFRAME.registerComponent('cell-details', {
     },
     init: function () {
         //Setting 3D model
-        // this.geometry = new THREE.BoxBufferGeometry(0.2,0.2, 0);
-        // this.material = new THREE.MeshStandardMaterial({color: this.data.color});
-        // this.mesh = new THREE.Mesh(this.geometry, this.material);
-        // this.el.setObject3D('mesh', this.mesh);
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
 
@@ -43,8 +39,14 @@ AFRAME.registerComponent('cell-details', {
 
     },
 
+    /**
+     * Set the information for the cell details tool.
+     * @param {int} line line number
+     * @param {int} col col number
+     * @param {string} value actual value of the cell
+     * @param {avg} float average of the column
+     */
     refresh: function(line,col,value,avg){
-
         this.data.line =line;
         this.data.col =col;
         this.data.value =value;
@@ -59,6 +61,9 @@ AFRAME.registerComponent('cell-details', {
         });
     },
 
+    /**
+     * Enable / disable the cell details tool.
+     */
     turnOnOff: function(){
         this.data.enable = !this.data.enable; 
         this.el.setAttribute('visible',this.data.enable);
