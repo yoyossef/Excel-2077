@@ -90,8 +90,8 @@ export class DataService {
                         tmpData.push(Object.values(body.results[i]));
                     }
                 } else {
-                    tmpData.push(["Empty data"]);  
-                    tmpData.push(["Nothing to see here"]);   
+                    tmpData.push(["Empty data"]);
+                    tmpData.push(["Nothing to see here"]);
                 }
                 //update DataService.data
                 DataService.data[varName] = {
