@@ -2,7 +2,7 @@ import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
-AFRAME.registerComponent('select-tool', {
+AFRAME.registerComponent('group_by-tool', {
     schema: {
         color: {type:'color',default:'#FF0000'}
     },
@@ -13,7 +13,7 @@ AFRAME.registerComponent('select-tool', {
         this.el.setAttribute('class', 'links');
 
         this.el.setAttribute('text', {
-            value: 'Select',
+            value: 'Group_by',
             color: '#FFFFFF',
             align: 'center',
             wrapCount: 15,
@@ -46,15 +46,15 @@ AFRAME.registerComponent('select-tool', {
 
 
     isToggled: false,
-    selectedColumns: [],
+    selectedColumn: null,
     /**
      * Enables the tool and calls the ToolController in oder to disable other tools
      */
     enable: function (){
-        ToolController.disableOtherTools('select-tool');
+        ToolController.disableOtherTools('group_by-tool');
         this.el.setAttribute('material','color', '#A9A9A9');
         this.isToggled=true;
-        ToolController.toolMode='select';
+        ToolController.toolMode='group_by';
     },
     /**
      * Disables the tool and calls it's cancel() method
@@ -66,42 +66,46 @@ AFRAME.registerComponent('select-tool', {
         this.cancel();
     },
     /**
-     * If this.selectedColumns.length, calls the DataService.select(this.selectedColumns) method and this.disable()
+     * If this.selectedColumn is not null, calls the DataService.group_by(this.selectedColumn) method and this.disable()
      */
     confirm : function(){
-        if(this.selectedColumns.length){
-            DataService.select(this.selectedColumns);
-            this.selectedColumns = [];
+        if(this.selectedColumn != null){
+            DataService.group_by(this.selectedColumn);
+            this.selectedColumns = null;
             this.disable();
         }
     },
     /**
-     * Unselects all the columns by calling this.selectColumn()
+     * If this.selectedColumn is not null, unselects the column by calling this.selectColumn(this.selectedColumn)
      */
     cancel : function(){
-        while(this.selectedColumns.length){//Clearing columns selection
-            this.selectColumn(this.selectedColumns[0]);
+        if(this.selectedColumn != null){//Clearing columns selection
+            this.selectColumn(this.selectedColumn);
         }
     },
     /**
-     * Selects a column if it is not selected, unselects it otherwise
-     * @param {int} elt the index of the column to select
+     * Selects the given column if it is not already selected, unselects it otherwise
      */
     selectColumn: function (elt){
         let idx
         let cells = TableController.getCellsByColumn(elt);
-        if((idx = this.selectedColumns.findIndex(item => item == elt)) < 0){
+        if (elt != this.selectedColumn){ //Select the column
+            if(this.selectedColumn != null){ //If another column is selected, unselect it
+                let oldCells = TableController.getCellsByColumn(this.selectedColumn);
+                for(let cell of oldCells){
+                    cell.unselect();
+                }
+            }
             for(let cell of cells){
                 cell.select();
             }
-            this.selectedColumns.push(elt);
+            this.selectedColumn= elt;
         }
-        else {
-            let cellIdx;
+        else { //Unselect the column
             for(let cell of cells){
                 cell.unselect();
             }
-            this.selectedColumns.splice(idx,1);
+            this.selectedColumn = null;
         }
     }
 });

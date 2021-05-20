@@ -20,9 +20,13 @@ module.exports = {
 					to: 'aframe.min.js'
 				},
 				{
-					from: 'lib/aframe-teleport-controls.min.js',
-					to: 'aframe-teleport-controls.min.js'
-				}
+					from: 'lib/aframe-teleport-controls.js',
+					to: 'aframe-teleport-controls.js'
+				},
+				{	
+					from:'src/img',
+					to:'img'
+				} 
 			]
 		})
 	],
@@ -42,7 +46,15 @@ module.exports = {
 						presets: ['@babel/preset-env']
 					}
 				}
-			}
+			},
+			{
+				test: /\.(png|jpe?g|gif)$/i,
+				use: [
+				  {
+					loader: 'file-loader',
+				  },
+				],
+			},
 		]
 	}
 };

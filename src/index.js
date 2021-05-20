@@ -3,6 +3,7 @@
 */
 
 import 'aframe-event-set-component';
+import 'aframe-super-keyboard';
 
 //Config
 require('./.env.js');
@@ -29,3 +30,17 @@ require('./components/moving-tool-hreset-component.js');
 require('./components/display-manager-component.js');
 require('./components/display-button-component.js');
 require('./components/more-component.js');
+require('./components/cell-details-component.js');
+require('./components/details-button-component.js');
+require('./components/confirmation-tool-component.js');
+require('./components/group_by-tool-component.js');
+require('./components/dataset-details-component.js');
+require('./components/datasets-list-component.js');
+require('./components/datasets-button-component.js');
+require('./components/filter-tool-component.js');
+require('./components/filters-manager-component.js');
+require('./components/filter-function-button-component.js');
+require('./components/grid-component.js');
+require('./components/summarise-tool-component.js');
+require('./components/summarise-operations-list-component.js');
+require('./components/summarise-operation-component.js');

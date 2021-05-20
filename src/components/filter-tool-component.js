@@ -2,10 +2,16 @@ import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
-AFRAME.registerComponent('select-tool', {
+AFRAME.registerComponent('filter-tool', {
     schema: {
         color: {type:'color',default:'#FF0000'}
     },
+
+    isToggled: false,
+    selectedColumns: [],
+    tripletList: [],
+
+
     init: function () {
         //Setting 3D model
         this.mesh = new THREE.Mesh();
@@ -13,7 +19,7 @@ AFRAME.registerComponent('select-tool', {
         this.el.setAttribute('class', 'links');
 
         this.el.setAttribute('text', {
-            value: 'Select',
+            value: 'Filter',
             color: '#FFFFFF',
             align: 'center',
             wrapCount: 15,
@@ -44,64 +50,60 @@ AFRAME.registerComponent('select-tool', {
         }
     },
 
+    addTriplet: function(col,op,arg){
+        let triplet = {col,op,arg};
+        this.tripletList.push(triplet);
+    },
 
-    isToggled: false,
-    selectedColumns: [],
-    /**
-     * Enables the tool and calls the ToolController in oder to disable other tools
-     */
     enable: function (){
-        ToolController.disableOtherTools('select-tool');
+        ToolController.disableOtherTools('filter-tool');
         this.el.setAttribute('material','color', '#A9A9A9');
         this.isToggled=true;
-        ToolController.toolMode='select';
+        ToolController.toolMode='filter';
     },
-    /**
-     * Disables the tool and calls it's cancel() method
-     */
     disable: function(){
         this.el.setAttribute('material','color','#222222');
         this.isToggled=false;
         ToolController.toolMode ='none';
         this.cancel();
     },
-    /**
-     * If this.selectedColumns.length, calls the DataService.select(this.selectedColumns) method and this.disable()
-     */
     confirm : function(){
         if(this.selectedColumns.length){
-            DataService.select(this.selectedColumns);
+            DataService.filter(this.tripletList);
             this.selectedColumns = [];
+            this.tripletList=[];
             this.disable();
         }
     },
-    /**
-     * Unselects all the columns by calling this.selectColumn()
-     */
     cancel : function(){
         while(this.selectedColumns.length){//Clearing columns selection
             this.selectColumn(this.selectedColumns[0]);
         }
+        this.tripletList=[];
     },
-    /**
-     * Selects a column if it is not selected, unselects it otherwise
-     * @param {int} elt the index of the column to select
-     */
+
     selectColumn: function (elt){
-        let idx
-        let cells = TableController.getCellsByColumn(elt);
+        let idx;
+        let header = TableController.getHeader(elt);
         if((idx = this.selectedColumns.findIndex(item => item == elt)) < 0){
-            for(let cell of cells){
-                cell.select();
+            let selectedHeader;
+            for (let idHeader of this.selectedColumns){
+                selectedHeader = TableController.getHeader(idHeader);
+                selectedHeader.unselect();
             }
+            header.select();
             this.selectedColumns.push(elt);
+            let filterManager = document.getElementById('filters-manager').components["filters-manager"];
+            filterManager.disable();
+            filterManager.enable();
+            filterManager.choosenCol = header;
         }
         else {
-            let cellIdx;
-            for(let cell of cells){
-                cell.unselect();
-            }
+            header.unselect();
             this.selectedColumns.splice(idx,1);
+            let filterManager = document.getElementById('filters-manager').components["filters-manager"];
+            filterManager.disable();
+            filterManager.choosenCol = '';
         }
-    }
+    },
 });
