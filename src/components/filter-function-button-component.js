@@ -41,6 +41,9 @@ AFRAME.registerComponent('filter-function-button', {
     },
 
     events: {
+        /**
+         * Change the color of the filter function button depending if they are enable or disable
+         */
         click : function (evt) {
             if (this.data.enable){
                 var filterManager =document.getElementById('filters-manager');
