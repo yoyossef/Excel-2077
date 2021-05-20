@@ -91,7 +91,7 @@ En regardant vers le bas, vous faites apparaître une ceinture d'outils.
 Les boutons sous la catégorie "Display" contrôlent la manière dont s'affiche le tableau de données.
 * **Wall** : le tableau prend la forme d'un mur plat (utile quand il y a très peu de colonnes)
 * **Half cylinder** : le tableau prend la forme d'un mur courbé sous forme d'un demi cercle (utile avec un nombre modéré de colonnes, < 15)
-* **Cylinder** : le tableau prend la forme d'un cylindre creux, plaçant permettant d'être au centre des données (affichage par défaut, utile avec un nombre de colonnes élevé, > 15 )
+* **Cylinder** : le tableau prend la forme d'un cylindre creux, permettant d'être au centre des données (affichage par défaut, utile avec un nombre de colonnes élevé, > 15 )
 
 #### Catégorie "Details"
 Ces boutons font apparaître des informations complémentaires à l'écran
@@ -106,7 +106,7 @@ Dans cette catégorie, vous retrouverez des boutons permettant des déplacements
 * **CE** : réinitialise la position sur le plan afin de recentrer votre position dans la scène (Center)
 
 #### Catégorie "Tools"
-C'est dans cette catégorie que vous retrouverez les commandes R pouvant être appelées par le programme, lorsque qu'une commande est sélectionnée, deux boutons supplémentaires apparaissent au dessus du texte "Tools" :
+C'est dans cette catégorie que vous retrouverez les commandes R pouvant être appelées par le programme, lorsqu'une commande est sélectionnée, deux boutons supplémentaires apparaissent au dessus du texte "Tools" :
 
 ![cancel_confirm.png](./readme_images/cancel_confirm.png)
 
