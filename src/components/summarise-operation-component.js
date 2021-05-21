@@ -1,8 +1,9 @@
 import {DataService} from '../services/DataService.js';
 
 /**
+ * Component representing a 'summarise' operation that can be used by 'summarise-tool-component' (ie: n(), mean(),...)
  * @module summarise-operation-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('summarise-operation', {
     schema: {
@@ -84,7 +85,7 @@ AFRAME.registerComponent('summarise-operation', {
     },
     /**
      * Sets the component's color to green, changes its text if colName != ''
-     * @param {string} colName the column name to add in the component's text (default '') 
+     * @param {string} colName the column name to add in the component's text (default '')
      */
     validate: function(colName = ''){
         this.el.setAttribute('material',{color:'#00FF00'});

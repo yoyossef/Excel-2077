@@ -3,8 +3,9 @@ import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
 /**
+ * Tool corresponding to the group_by R command
  * @module group_by-tool-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('group_by-tool', {
     schema: {

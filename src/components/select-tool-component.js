@@ -3,8 +3,9 @@ import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
 /**
+ * Tool corresponding to the select R command
  * @module select-tool-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('select-tool', {
     schema: {

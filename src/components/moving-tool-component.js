@@ -1,8 +1,9 @@
 import {CameraController} from '../controllers/CameraController.js';
 
 /**
+ * Component that regroups all the 'moving' components in one
  * @module moving-tool-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('moving-tool', {
     schema: {

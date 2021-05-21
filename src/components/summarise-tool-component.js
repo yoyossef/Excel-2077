@@ -3,8 +3,9 @@ import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
 /**
+ * Tool corresponding to the summarise R command
  * @module summarise-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('summarise-tool', {
     schema: {

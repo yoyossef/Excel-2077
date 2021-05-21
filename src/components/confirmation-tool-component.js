@@ -1,8 +1,9 @@
 import {ToolController} from '../controllers/ToolController.js';
 
 /**
+ * Generic tool that can call 'confirm()' or 'cancel()' method of the active Tool
  * @module confirmation-tool-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('confirmation-tool', {
     schema: {

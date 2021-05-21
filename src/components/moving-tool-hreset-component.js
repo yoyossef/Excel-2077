@@ -1,8 +1,9 @@
 import {CameraController} from '../controllers/CameraController.js';
 
 /**
+ * Tool that calls corresponding methods to reset camera horizontal's position
  * @module moving-tool-hreset-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('moving-tool-hreset', {
     schema: {
@@ -10,10 +11,6 @@ AFRAME.registerComponent('moving-tool-hreset', {
     },
     init: function () {
         //Setting 3D model
-        // this.geometry = new THREE.BoxBufferGeometry(0.2,0.2, 0);
-        // this.material = new THREE.MeshStandardMaterial({color: this.data.color});
-        // this.mesh = new THREE.Mesh(this.geometry, this.material);
-        // this.el.setObject3D('mesh', this.mesh);
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
         this.el.setAttribute('class', 'links');

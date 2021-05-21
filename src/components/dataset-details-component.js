@@ -1,8 +1,9 @@
 import { DataService } from '../services/DataService.js';
 
 /**
+ * Shows a dataset details (name + command) and calls 'DataService.switchToData(name) when clicking on it
  * @module dataset-details-component
- * @category Component
+ * @category Components
 */
 
 AFRAME.registerComponent('dataset-details', {

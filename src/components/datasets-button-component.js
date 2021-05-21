@@ -1,8 +1,9 @@
 import {ToolController} from '../controllers/ToolController.js';
 
 /**
+ * Button that toggles the datasets-list component in the scene
  * @module dataset-buttons-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('datasets-button', {
     schema: {
