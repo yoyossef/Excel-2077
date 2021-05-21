@@ -1,5 +1,8 @@
-import {ToolController} from '../controllers/ToolController.js';
-import {TableController} from '../controllers/TableController.js';
+/**
+ * Aframe component that handle the filter operator button 
+ * @module filter-function-button-component
+ * @category Components
+*/
 
 AFRAME.registerComponent('filter-function-button', {
     schema: {

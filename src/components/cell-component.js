@@ -1,3 +1,9 @@
+/**
+ * Aframe component that handle the Cell in general (Displaying, informations, animations ...)
+ * @module cell-component
+ * @category Components
+*/
+
 import { ToolController } from '../controllers/ToolController.js';
 import { TableController } from '../controllers/TableController.js';
 import { CameraController } from '../controllers/CameraController.js';

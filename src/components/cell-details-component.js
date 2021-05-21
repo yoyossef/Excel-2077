@@ -1,3 +1,9 @@
+/**
+ * Aframe component that handle the tool : cell details 
+ * @module cell-details-component
+ * @category Components
+*/
+
 AFRAME.registerComponent('cell-details', {
     schema: {
         color:  {type:'color',default:'#0000FF'},
