@@ -4,7 +4,7 @@ import {DataService} from '../services/DataService.js';
 
 /**
  * @module select-tool-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('select-tool', {
     schema: {

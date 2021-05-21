@@ -2,7 +2,7 @@ import {CameraController} from '../controllers/CameraController.js';
 
 /**
  * @module moving-tool-hreset-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('moving-tool-hreset', {
     schema: {

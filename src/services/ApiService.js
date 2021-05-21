@@ -3,7 +3,7 @@ import { config } from '../.env.js';
 /**
  * 
  * @module ApiService
- * @category Service
+ * @category Services
 */
 export class ApiService {
 

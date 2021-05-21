@@ -6,7 +6,7 @@ import { config } from '../.env.js';
 /**
  * 
  * @module DataService
- * @category Service
+ * @category Services
 */
 export class DataService {
 

@@ -4,7 +4,7 @@ import {DataService} from '../services/DataService.js';
 
 /**
  * @module summarise-tool-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('summarise-tool', {
     schema: {

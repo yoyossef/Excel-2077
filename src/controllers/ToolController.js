@@ -1,7 +1,7 @@
 /**
  * The main interface component that enables the user to select tools
  * @module ToolController
- * @category Controller
+ * @category Controllers
 */
 
 export class ToolController {

@@ -2,7 +2,7 @@ import { DataService } from '../services/DataService.js';
 
 /**
  * @module dataset-details-component
- * @category Component
+ * @category Components
 */
 
 AFRAME.registerComponent('dataset-details', {

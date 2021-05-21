@@ -3,7 +3,7 @@
  * It is used as the collision entity for the teleport-controls component, to have a "ground" where to teleport 
  *  even when ascending/descending with the move function from the cameraController
  * @module grid-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('grid-component', {
 	schema: {

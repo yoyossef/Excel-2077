@@ -3,7 +3,7 @@ import {TableController} from '../controllers/TableController.js';
 
 /**
  * @module display-button-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('display-button', {
     schema: {

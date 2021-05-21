@@ -3,7 +3,7 @@ import {TableController} from '../controllers/TableController.js';
 
 /**
  * @module more-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('more', {
     schema: {

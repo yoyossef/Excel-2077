@@ -3,7 +3,7 @@ import {CameraController} from '../controllers/CameraController.js';
 
 /**
  * @module summarise-operations-list-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('summarise-operations-list', {
     schema: {

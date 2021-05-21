@@ -3,7 +3,7 @@ import {TableController} from '../controllers/TableController.js';
 
 /**
  * @module moving-tool-up-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('moving-tool-up', {
     schema: {

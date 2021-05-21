@@ -3,7 +3,7 @@ import {CameraController} from '../controllers/CameraController.js';
 
 /**
  * @module datasets-list-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('datasets-list', {
     schema: {

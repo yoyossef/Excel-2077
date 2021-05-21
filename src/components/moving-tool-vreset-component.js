@@ -3,7 +3,7 @@ import {TableController} from '../controllers/TableController.js';
 
 /**
  * @module moving-tool-vreset-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('moving-tool-vreset', {
     schema: {
