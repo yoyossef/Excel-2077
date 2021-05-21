@@ -1,17 +1,13 @@
+import {ToolController} from '../controllers/ToolController.js';
+import {TableController} from '../controllers/TableController.js';
+import {DataService} from '../services/DataService.js';
+
 /**
  * Aframe component that handle the filter tool 
  * @module filter-tool-component
  * @category Components
 */
 
-import {ToolController} from '../controllers/ToolController.js';
-import {TableController} from '../controllers/TableController.js';
-import {DataService} from '../services/DataService.js';
-
-/**
- * @module filter-tool-component
- * @category Component
-*/
 AFRAME.registerComponent('filter-tool', {
     schema: {
         color: {type:'color',default:'#FF0000'}

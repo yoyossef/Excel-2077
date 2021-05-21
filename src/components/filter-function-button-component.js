@@ -4,10 +4,6 @@
  * @category Components
 */
 
-/**
- * @module filter-function-button-component
- * @category Component
-*/
 AFRAME.registerComponent('filter-function-button', {
     schema: {
         op: { type: 'string' },

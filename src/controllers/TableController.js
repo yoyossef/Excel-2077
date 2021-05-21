@@ -1,7 +1,7 @@
 /**
- * 
+ * Controller that provide many functions for the table
  * @module TableController
- * @category Controller
+ * @category Controllers
 */
 
 export class TableController {

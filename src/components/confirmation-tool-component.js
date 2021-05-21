@@ -2,7 +2,7 @@ import {ToolController} from '../controllers/ToolController.js';
 
 /**
  * @module confirmation-tool-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('confirmation-tool', {
     schema: {
