@@ -1,7 +1,7 @@
 import { config } from '../.env.js';
 
 /**
- * 
+ * A service that allows for getting tables and posting commands to the R Server
  * @module ApiService
  * @category Services
 */

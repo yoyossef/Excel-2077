@@ -4,7 +4,7 @@ import { CameraController } from '../controllers/CameraController.js';
 import { config } from '../.env.js';
 
 /**
- * 
+ * A service that allows for loading the content from the R server and executing the commands
  * @module DataService
  * @category Services
 */

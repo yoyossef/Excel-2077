@@ -1,6 +1,7 @@
 import {TableController} from '../controllers/TableController.js';
 
 /**
+ * A-frame component that adds display mode buttons 
  * @module display-manager-component
  * @category Components
 */
