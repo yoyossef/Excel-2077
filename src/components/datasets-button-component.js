@@ -1,7 +1,7 @@
 import {ToolController} from '../controllers/ToolController.js';
 
 /**
- * @module dataset-buttons-component
+ * @module datasets-button-component
  * @category Component
 */
 AFRAME.registerComponent('datasets-button', {

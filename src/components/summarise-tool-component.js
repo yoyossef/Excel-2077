@@ -3,7 +3,7 @@ import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
 /**
- * @module summarise-component
+ * @module summarise-tool-component
  * @category Component
 */
 AFRAME.registerComponent('summarise-tool', {
