@@ -17,6 +17,7 @@ export class DataService {
     /**
      * Loads the initial dataset in the data object by calling 'read.table' and getting the first page,
      * then sends the table to TableController to display it
+     * @function loadDataSet
      */
     static loadDataset() {
         DataService.nbCommandExecuted++;
@@ -52,6 +53,7 @@ export class DataService {
 
     /**
      * Load the next page of data for he current variable then sends it to TableController to display it
+     * @function loadNextPage
      */
     static loadNextPage() {
         let varName = DataService.displayedData;
@@ -77,6 +79,7 @@ export class DataService {
      * Executes an R command, loads the result in data object,
      * then sends the table to TableController in order to display it
      *
+     * @function executeCommand
      * @param {string} commandName name of the R command to execute
      * @param {string} params R command's parameters
      */
@@ -119,6 +122,7 @@ export class DataService {
      * Executes a select command on the currently displayed dataset by calling
      * DataService.executeCommand('select',params);
      *
+     * @function select
      * @param {Array<int>} colIndexes the indexes of the columns to select
      */
     static select(colIndexes) {
@@ -133,6 +137,7 @@ export class DataService {
      * Executes a group_by command on the currently displayed dataset by calling
      * DataService.executeCommand('group_by',params);
      *
+     * @function group_by
      * @param {int} colIndex the index of the column to use group_by on
      * @param {boolean} add if true, combines group_by with the previous one (default false)
      */
@@ -149,6 +154,7 @@ export class DataService {
      * Executes a filter command on the currently displayed dataset by calling
      * DataService.executeCommand('filter',params);
      *
+     * @function filter
      * @param {Array<string,string,string>} tripletList triplet containing : column name, operator , value for the operator
      */
      static filter(tripletList) {
@@ -171,6 +177,7 @@ export class DataService {
      * Executes a summarise command on the currently displayed dataset by calling
      * DataService.executeCommand('summarise',params);
      *
+     * @function summariseObjects
      * @param {Array<Object>} summariseObjects objects containing operation (mean, max, n, ...) and colIndex (-1 if not needed)
      */
     static summarise(summariseObjects) {
@@ -189,6 +196,8 @@ export class DataService {
 
     /**
      * Loads the given dataset in the table to display it
+     * 
+     * @function switchToData
      * @param {string} dataName the name of the data to load
      */
     static switchToData(dataName){
@@ -201,6 +210,8 @@ export class DataService {
 
     /**
      * Gets the column name with the given index (for the displayed table)
+     * 
+     * @function getColumnName
      * @param {int} colIndex the index of the column to get the name of
      * @return {string} the column name (or '' if index is invalid)
      */

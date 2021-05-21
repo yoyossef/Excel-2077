@@ -11,6 +11,7 @@ export class ApiService {
      * Call the RserverAPI to read a new dataset (from a file) and return it's headers with infos about their types
      * Usages: ApiService.rCommandPOST("x", "read.table", "\"custom_dataset.csv\" ,header=T, sep=\",\"");
      * 
+     * @function rCommandPOST
      * @param {string} varName name of the new variable
      * @param {string} commandName R command to be executed
      * @param {string} commandParams R command's parameters
@@ -36,6 +37,7 @@ export class ApiService {
      * Usages: ApiService.rReadTableGET("x", 2, 20);
      *         ApiService.rReadTableGET("y", 4);
      * 
+     * @function rReadTableGET
      * @param {string} varName variable we want to load data from
      * @param {number} page 
      * @param {number} step represent how many lines we want to load per pages
