@@ -3,9 +3,9 @@ import { TableController } from '../controllers/TableController.js';
 import { CameraController } from '../controllers/CameraController.js';
 
 /**
- * 
+ * Aframe component that handle the Cell in general (Displaying, informations, animations ...)
  * @module cell-component
- * @category Component
+ * @category Components
 */
 
 AFRAME.registerComponent('cell', {

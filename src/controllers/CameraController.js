@@ -3,7 +3,7 @@ import { TableController } from './TableController.js';
 /**
  * Utility functions to get or move the camera
  * @module CameraController
- * @category Controller
+ * @category Controllers
 */
 
 export class CameraController {

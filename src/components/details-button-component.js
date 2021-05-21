@@ -2,7 +2,7 @@ import {ToolController} from '../controllers/ToolController.js';
 
 /**
  * @module details-button-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('details-button', {
     schema: {

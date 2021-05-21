@@ -2,7 +2,7 @@ import {TableController} from '../controllers/TableController.js';
 
 /**
  * @module display-manager-component
- * @category Component
+ * @category Components
 */
 AFRAME.registerComponent('display-manager', {
     schema: {

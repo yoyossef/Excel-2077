@@ -4,9 +4,11 @@ import { config } from '../.env.js';
 import { DataService } from '../services/DataService.js';
 
 /**
- * @module table-component
- * @category Component
+ * Aframe component that handle the table (regroupment of every cells)
+ * @module filter-tool-component
+ * @category Components
 */
+
 AFRAME.registerComponent('table', {
     schema: {
         cellHeight: { type: 'number', default: TableController.cellHeight },

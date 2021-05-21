@@ -4,7 +4,7 @@ import {DataService} from '../services/DataService.js';
 
 /**
  * Tool corresponding to the summarise R command
- * @module summarise-component
+ * @module summarise-tool-component
  * @category Components
 */
 AFRAME.registerComponent('summarise-tool', {

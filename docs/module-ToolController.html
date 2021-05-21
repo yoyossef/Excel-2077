@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> filter-tool-component</title>
+  <title> ToolController</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -74,7 +74,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Module</p>
-                    <h1>filter-tool-component</h1>
+                    <h1>ToolController</h1>
                 </header>
                 
 
@@ -86,6 +86,8 @@
 <header>
     
         
+            
+        
     
 </header>
 
@@ -93,6 +95,86 @@
     <div class="container-overview">
     
         
+            <div class="description">The main interface component that enables the user to select tools</div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
+            <span>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line1">line 1</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
     
@@ -121,8 +203,8 @@
 
 
     
-    <h4 class="name" id="~addTriplet">
-        <a class="href-link" href="#~addTriplet">#</a>
+    <h4 class="name" id="~disableOtherTools">
+        <a class="href-link" href="#~disableOtherTools">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -130,7 +212,7 @@
         
         <span class="code-name">
             
-                addTriplet<span class="signature">(col, op, arg)</span><span class="type-signature"></span>
+                disableOtherTools<span class="signature">(toolToKeep)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -139,7 +221,7 @@
     
     
     <div class="description">
-        Adding triplet to the command to execute
+        Calls the 'disable()' method of all tools except the one given in parameter
     </div>
     
 
@@ -177,7 +259,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>col</code></td>
+      <td class="name"><code>toolToKeep</code></td>
   
 
   <td class="type">
@@ -193,57 +275,7 @@
 
   
 
-  <td class="description last">name of the column to be filtered</td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>op</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">operator</td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>arg</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">argument for the operator</td>
+  <td class="description last">the name of the tool to keep (to not disable)</td>
 </tr>
 
 
@@ -289,9 +321,9 @@
 
     
         <p class="tag-source">
-            <a href="components_filter-tool-component.js.html" class="button">View Source</a>
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
             <span>
-                <a href="components_filter-tool-component.js.html">components/filter-tool-component.js</a>, <a href="components_filter-tool-component.js.html#line63">line 63</a>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line11">line 11</a>
             </span>
         </p>
     
@@ -323,8 +355,8 @@
 
 
     
-    <h4 class="name" id="~cancel">
-        <a class="href-link" href="#~cancel">#</a>
+    <h4 class="name" id="~getActiveTool">
+        <a class="href-link" href="#~getActiveTool">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -332,7 +364,7 @@
         
         <span class="code-name">
             
-                cancel<span class="signature">()</span><span class="type-signature"></span>
+                getActiveTool<span class="signature">()</span><span class="type-signature"> &rarr; {Aframe-component}</span>
             
         </span>
     </h4>
@@ -341,7 +373,7 @@
     
     
     <div class="description">
-        Canceling the actual process for the tool (empty the tripletList for the command execution).
+        Gets the component of the currently activated tool
     </div>
     
 
@@ -390,9 +422,9 @@
 
     
         <p class="tag-source">
-            <a href="components_filter-tool-component.js.html" class="button">View Source</a>
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
             <span>
-                <a href="components_filter-tool-component.js.html">components/filter-tool-component.js</a>, <a href="components_filter-tool-component.js.html#line103">line 103</a>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line31">line 31</a>
             </span>
         </p>
     
@@ -415,6 +447,31 @@
 
 
 
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>the component of the currently activated tool (or null if none is active)</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Aframe-component</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
 
 
 
@@ -424,8 +481,8 @@
 
 
     
-    <h4 class="name" id="~confirm">
-        <a class="href-link" href="#~confirm">#</a>
+    <h4 class="name" id="~hideOperationsList">
+        <a class="href-link" href="#~hideOperationsList">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -433,7 +490,7 @@
         
         <span class="code-name">
             
-                confirm<span class="signature">()</span><span class="type-signature"></span>
+                hideOperationsList<span class="signature">()</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -442,7 +499,7 @@
     
     
     <div class="description">
-        Confirm and execute the command using the triplet buffer.
+        Calls the 'hide()' method of the 'summarise-operations-list' component
     </div>
     
 
@@ -491,9 +548,9 @@
 
     
         <p class="tag-source">
-            <a href="components_filter-tool-component.js.html" class="button">View Source</a>
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
             <span>
-                <a href="components_filter-tool-component.js.html">components/filter-tool-component.js</a>, <a href="components_filter-tool-component.js.html#line91">line 91</a>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line94">line 94</a>
             </span>
         </p>
     
@@ -525,8 +582,8 @@
 
 
     
-    <h4 class="name" id="~disable">
-        <a class="href-link" href="#~disable">#</a>
+    <h4 class="name" id="~refreshDetail">
+        <a class="href-link" href="#~refreshDetail">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -534,7 +591,230 @@
         
         <span class="code-name">
             
-                disable<span class="signature">()</span><span class="type-signature"></span>
+                refreshDetail<span class="signature">(line, col, value, avg)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>line</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">*</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>col</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">*</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>value</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">*</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>avg</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">*</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
+            <span>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line55">line 55</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~refreshOperationsList">
+        <a class="href-link" href="#~refreshOperationsList">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                refreshOperationsList<span class="signature">()</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -543,7 +823,7 @@
     
     
     <div class="description">
-        Disable the filter tool and canceling the actual process for the tool.
+        Calls the 'refresh()' method of the 'summarise-operations-list' component
     </div>
     
 
@@ -592,9 +872,9 @@
 
     
         <p class="tag-source">
-            <a href="components_filter-tool-component.js.html" class="button">View Source</a>
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
             <span>
-                <a href="components_filter-tool-component.js.html">components/filter-tool-component.js</a>, <a href="components_filter-tool-component.js.html#line81">line 81</a>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line102">line 102</a>
             </span>
         </p>
     
@@ -626,8 +906,8 @@
 
 
     
-    <h4 class="name" id="~enable">
-        <a class="href-link" href="#~enable">#</a>
+    <h4 class="name" id="~showOperationsList">
+        <a class="href-link" href="#~showOperationsList">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -635,7 +915,7 @@
         
         <span class="code-name">
             
-                enable<span class="signature">()</span><span class="type-signature"></span>
+                showOperationsList<span class="signature">()</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -644,7 +924,7 @@
     
     
     <div class="description">
-        Enable the filter tool and disabling the other
+        Calls the 'show()' method of the 'summarise-operations-list' component
     </div>
     
 
@@ -693,9 +973,9 @@
 
     
         <p class="tag-source">
-            <a href="components_filter-tool-component.js.html" class="button">View Source</a>
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
             <span>
-                <a href="components_filter-tool-component.js.html">components/filter-tool-component.js</a>, <a href="components_filter-tool-component.js.html#line71">line 71</a>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line86">line 86</a>
             </span>
         </p>
     
@@ -727,8 +1007,8 @@
 
 
     
-    <h4 class="name" id="~selectColumn">
-        <a class="href-link" href="#~selectColumn">#</a>
+    <h4 class="name" id="~turnOnOffDetails">
+        <a class="href-link" href="#~turnOnOffDetails">#</a>
         
             
                 <span class='tag'>inner</span>
@@ -736,17 +1016,13 @@
         
         <span class="code-name">
             
-                selectColumn<span class="signature">()</span><span class="type-signature"></span>
+                turnOnOffDetails<span class="signature">()</span><span class="type-signature"></span>
             
         </span>
     </h4>
     
 
     
-    
-    <div class="description">
-        Select the header of the column and store into the buffer. Enable the filters-manager (filter button and keyboard).
-    </div>
     
 
 
@@ -794,9 +1070,186 @@
 
     
         <p class="tag-source">
-            <a href="components_filter-tool-component.js.html" class="button">View Source</a>
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
             <span>
-                <a href="components_filter-tool-component.js.html">components/filter-tool-component.js</a>, <a href="components_filter-tool-component.js.html#line113">line 113</a>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line66">line 66</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~validateOperation">
+        <a class="href-link" href="#~validateOperation">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                validateOperation<span class="signature">(operationName, columnName)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Validates the 'summarise' operation so the related component knows that it is valid
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>operationName</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">the operation's name</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>columnName</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">used to transmit the used column's name to the 'summarise-component' (default '')</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="controllers_ToolController.js.html" class="button">View Source</a>
+            <span>
+                <a href="controllers_ToolController.js.html">controllers/ToolController.js</a>, <a href="controllers_ToolController.js.html#line73">line 73</a>
             </span>
         </p>
     

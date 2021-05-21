@@ -13,7 +13,7 @@
     "cleanbuild": "rm -r dist/* && webpack --mode production",
     "deploy": "ghpages",
     "ghpages": "ghpages",
-    "jsdoc": "./node_modules/.bin/jsdoc -c ./jsdoc.conf.json"
+    "jsdoc": "./node_modules/.bin/jsdoc -c ./jsdoc.conf.json -r ./README.md"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

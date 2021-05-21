@@ -1,9 +1,11 @@
 import {CameraController} from '../controllers/CameraController.js';
 
 /**
- * @module filters-manager-component
- * @category Component
+ * Aframe component that handle the displaying of the filter operator buttons and the keyboard
+ * @module filter-tool-component
+ * @category Components
 */
+
 AFRAME.registerComponent('filters-manager', {
     schema: {
     },
