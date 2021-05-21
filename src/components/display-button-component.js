@@ -1,6 +1,11 @@
 import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
 
+/**
+ * A-frame component that displays a button
+ * @module display-button-component
+ * @category Components
+*/
 AFRAME.registerComponent('display-button', {
     schema: {
         message: { type: 'string' },

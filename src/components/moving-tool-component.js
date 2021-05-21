@@ -1,5 +1,10 @@
 import {CameraController} from '../controllers/CameraController.js';
 
+/**
+ * Component that regroups all the 'moving' components in one
+ * @module moving-tool-component
+ * @category Components
+*/
 AFRAME.registerComponent('moving-tool', {
     schema: {
         color: {type:'color',default:'#0000FF'}

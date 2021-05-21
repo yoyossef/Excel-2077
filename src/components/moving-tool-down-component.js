@@ -1,16 +1,17 @@
 import { CameraController } from '../controllers/CameraController.js';
 import { TableController } from '../controllers/TableController.js';
 
+/**
+ * Tool that calls corresponding methods to move camera and table's headers down
+ * @module moving-tool-down-component
+ * @category Components
+*/
 AFRAME.registerComponent('moving-tool-down', {
     schema: {
         color: { type: 'color', default: '#0000FF' }
     },
     init: function() {
         //Setting 3D model
-        // this.geometry = new THREE.BoxBufferGeometry(0.2,0.2, 0);
-        // this.material = new THREE.MeshStandardMaterial({color: this.data.color});
-        // this.mesh = new THREE.Mesh(this.geometry, this.material);
-        // this.el.setObject3D('mesh', this.mesh);
         this.mesh = new THREE.Mesh();
         this.el.setObject3D('mesh', this.mesh);
         this.el.setAttribute('class', 'links');

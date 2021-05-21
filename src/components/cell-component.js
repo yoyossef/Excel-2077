@@ -2,6 +2,12 @@ import { ToolController } from '../controllers/ToolController.js';
 import { TableController } from '../controllers/TableController.js';
 import { CameraController } from '../controllers/CameraController.js';
 
+/**
+ * Aframe component that handle the Cell in general (Displaying, informations, animations ...)
+ * @module cell-component
+ * @category Components
+*/
+
 AFRAME.registerComponent('cell', {
     schema: {
         fulldata: { type: 'string' },
@@ -11,7 +17,8 @@ AFRAME.registerComponent('cell', {
         cellW: { type: 'number', default: TableController.cellWidth},
         type: { type: 'string' },
         position: { type: 'array' },
-        angle: { type: 'number' }
+        angle: { type: 'number' },
+        mean: { type: 'string' },
     },
 
     init: function() {

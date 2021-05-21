@@ -1,5 +1,10 @@
 import {ToolController} from '../controllers/ToolController.js';
 
+/**
+ * Generic tool that can call 'confirm()' or 'cancel()' method of the active Tool
+ * @module confirmation-tool-component
+ * @category Components
+*/
 AFRAME.registerComponent('confirmation-tool', {
     schema: {
         color: {type:'color',default:'#0000FF'},

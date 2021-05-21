@@ -1,5 +1,8 @@
-import {ToolController} from '../controllers/ToolController.js';
-import {TableController} from '../controllers/TableController.js';
+/**
+ * Aframe component that handle the filter operator button 
+ * @module filter-function-button-component
+ * @category Components
+*/
 
 AFRAME.registerComponent('filter-function-button', {
     schema: {
@@ -41,6 +44,9 @@ AFRAME.registerComponent('filter-function-button', {
     },
 
     events: {
+        /**
+         * Change the color of the filter function button depending if they are enable or disable
+         */
         click : function (evt) {
             if (this.data.enable){
                 var filterManager =document.getElementById('filters-manager');

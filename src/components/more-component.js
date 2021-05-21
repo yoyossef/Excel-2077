@@ -1,6 +1,11 @@
 import {CameraController} from '../controllers/CameraController.js';
 import {TableController} from '../controllers/TableController.js';
 
+/**
+ * 3D object that takes the same shape as the displayed table to visually show that there are more data up or down
+ * @module more-component
+ * @category Components
+*/
 AFRAME.registerComponent('more', {
     schema: {
         direction: {type:'string', default: 'down'}

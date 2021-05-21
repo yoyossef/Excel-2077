@@ -1,5 +1,10 @@
 import {ToolController} from '../controllers/ToolController.js';
 
+/**
+ * A-frame component that creates a button to toggle details on a cell
+ * @module details-button-component
+ * @category Components
+*/
 AFRAME.registerComponent('details-button', {
     schema: {
         enable : {type: 'boolean', default: false}

@@ -3,6 +3,12 @@ import { CameraController } from '../controllers/CameraController.js';
 import { config } from '../.env.js';
 import { DataService } from '../services/DataService.js';
 
+/**
+ * Aframe component that handle the table (regroupment of every cells)
+ * @module filter-tool-component
+ * @category Components
+*/
+
 AFRAME.registerComponent('table', {
     schema: {
         cellHeight: { type: 'number', default: TableController.cellHeight },
@@ -16,27 +22,6 @@ AFRAME.registerComponent('table', {
 
     init: function() {
         DataService.loadDataset();
-        // //pour les tests
-        //  let dataMatrix = [];
-        //
-        //  let nbCol = 20;
-        //  let nbLines = 100;
-        //
-        //  dataMatrix.push([]);
-        //  for(let i = 0; i<nbCol; i++){
-        //      dataMatrix[0].push("Col "+(i+1));
-        //  }
-        //
-        //  for(let i = 0; i< nbLines; i ++){
-        //      let line = [];
-        //      for(let j = 0; j<nbCol; j++){
-        //          line.push(i+1);
-        //      }
-        //      dataMatrix.push(line);
-        //  }
-        //
-        // this.loadData(dataMatrix);
-        // this.display();
     },
 
     display: function() {

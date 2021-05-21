@@ -1,5 +1,11 @@
 import {CameraController} from '../controllers/CameraController.js';
 
+/**
+ * Aframe component that handle the displaying of the filter operator buttons and the keyboard
+ * @module filter-tool-component
+ * @category Components
+*/
+
 AFRAME.registerComponent('filters-manager', {
     schema: {
     },
@@ -34,6 +40,7 @@ AFRAME.registerComponent('filters-manager', {
         // ajoute le nouvel élément créé et son contenu dans le DOM
         this.el.appendChild(newFilterFunctionBtn);
 
+        // comment this because the server can't handle '>' operator
         /*newFilterFunctionBtn = document.createElement("a-entity");
         newFilterFunctionBtn.setAttribute('position', '0.15 0 -0.5');
         newFilterFunctionBtn.setAttribute('filter-function-button', 'op: >; color: #222222;');
@@ -43,6 +50,9 @@ AFRAME.registerComponent('filters-manager', {
 
     },
 
+    /**
+     * Set visible the button and create the keyboard for the user
+     */
     enable: function () {
         let camera = CameraController.getCamera();
 		let position = Object.assign({},camera.el.getAttribute('position')); //cloning camera position
@@ -62,6 +72,9 @@ AFRAME.registerComponent('filters-manager', {
         this.el.appendChild(this.newKeyBoard);
     },
 
+    /**
+     * Set invisible the button and destroy the keyboard
+     */
     disable: function () {
         this.choosenCol ='';
         //this.choosenFilterOp =''; //we keep the old one in case of the user forget it 
@@ -77,6 +90,11 @@ AFRAME.registerComponent('filters-manager', {
     },
 
     events: {
+        /**
+         * Happen when the user press enter to validate his input. Store the triplet (col , op , arg) in the command buffer
+         * before the execution.
+         * Then disable the filter manager
+         */
         superkeyboardinput: function(evt) {
             this.choosenFilterArg = evt.detail.value;
             document.getElementById('filterTool').components['filter-tool'].addTriplet(this.choosenCol.data.fulldata,this.choosenFilterOp,this.choosenFilterArg);

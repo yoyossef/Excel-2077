@@ -2,6 +2,11 @@ import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
+/**
+ * Tool corresponding to the summarise R command
+ * @module summarise-tool-component
+ * @category Components
+*/
 AFRAME.registerComponent('summarise-tool', {
     schema: {
         color: {type:'color',default:'#FF0000'}

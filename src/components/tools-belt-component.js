@@ -1,12 +1,18 @@
 import {CameraController} from '../controllers/CameraController.js';
 
+/**
+ * The main interface component that enables the user to select tools
+ * @module tools-belt-component
+ * @category Components
+*/
+
 AFRAME.registerComponent('tools-belt', {
 	schema: {},
 	init: function () {
 		this.el.setAttribute('rotation', "-65 0 0");
 		this.tick = AFRAME.utils.throttleTick(this.tick, 25, this); //to only tick every 25ms (40 instead of 90 times per seconds)
 	},
-	
+
 	/**
 	 * Makes sure to position the belt following the camera's, and toggle its visibility when rotating the camera down or up
 	 * with a specified angle around the x axis
@@ -22,8 +28,8 @@ AFRAME.registerComponent('tools-belt', {
 		}else{
 			this.el.setAttribute("visible", true);
 		}
-		
+
 		position.y -= 1.4;
-		this.el.setAttribute('position', position);		
+		this.el.setAttribute('position', position);
 	}
 });
