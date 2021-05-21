@@ -1,6 +1,6 @@
 /**
  * The main interface component that enables the user to select tools
- * @module tools-belt-component
+ * @module ToolController
  * @category Controller
 */
 
@@ -10,6 +10,7 @@ export class ToolController {
 
     /**
      * Calls the 'disable()' method of all tools except the one given in parameter
+     * @function disableOtherTools
      * @param {string} toolToKeep the name of the tool to keep (to not disable)
      */
     static disableOtherTools (toolToKeep) {
@@ -29,6 +30,7 @@ export class ToolController {
 
     /**
      * Gets the component of the currently activated tool
+     * @function getActiveTool
      * @return {Aframe-component} the component of the currently activated tool (or null if none is active)
      */
     static getActiveTool(){
@@ -50,16 +52,27 @@ export class ToolController {
         return res;
     }
 
+    /**
+     * @function refreshDetail
+     * @param {*} line 
+     * @param {*} col 
+     * @param {*} value 
+     * @param {*} avg 
+     */
     static refreshDetail(line,col,value,avg){
         document.getElementById('cell-details').components['cell-details'].refresh(line,col,value,avg);
     }
 
+    /**
+     * @function turnOnOffDetails
+     */
     static turnOnOffDetails(){
         document.getElementById('cell-details').components['cell-details'].turnOnOff();
     }
 
     /**
      * Validates the 'summarise' operation so the related component knows that it is valid
+     * @function validateOperation
      * @param {string} operationName the operation's name
      * @param {string} columnName used to transmit the used column's name to the 'summarise-component' (default '')
      */
@@ -72,6 +85,7 @@ export class ToolController {
 
     /**
      * Calls the 'show()' method of the 'summarise-operations-list' component
+     * @function showOperationsList
      */
     static showOperationsList(){
         document.getElementById('summariseOperationsList').components['summarise-operations-list'].show();
@@ -79,6 +93,7 @@ export class ToolController {
 
     /**
      * Calls the 'hide()' method of the 'summarise-operations-list' component
+     * @function hideOperationsList
      */
     static hideOperationsList(){
         document.getElementById('summariseOperationsList').components['summarise-operations-list'].hide();
@@ -86,6 +101,7 @@ export class ToolController {
 
     /**
      * Calls the 'refresh()' method of the 'summarise-operations-list' component
+     * @function refreshOperationsList
      */
     static refreshOperationsList(){
         document.getElementById('summariseOperationsList').components['summarise-operations-list'].refresh();
