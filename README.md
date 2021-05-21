@@ -1,6 +1,6 @@
 # Excel 2077
 
-Projet M2 SIL: Visualisation  & traitement de données en VR
+Interface de visualisation et traitement de données en VR utilisant la technologie Web
 
 ## Sommaire
 
