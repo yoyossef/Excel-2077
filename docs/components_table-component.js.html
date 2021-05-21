@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> components/table-component.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Component</h2><h3>Modules</h3><ul><li><a href="module-cell-component.html">cell-component</a></li><li><a href="module-cell-details-component.html">cell-details-component</a></li><li><a href="module-confirmation-tool-component.html">confirmation-tool-component</a></li><li><a href="module-dataset-details-component.html">dataset-details-component</a></li><li><a href="module-datasets-button-component.html">datasets-button-component</a></li><li><a href="module-datasets-list-component.html">datasets-list-component</a></li><li><a href="module-details-button-component.html">details-button-component</a></li><li><a href="module-display-button-component.html">display-button-component</a></li><li><a href="module-display-manager-component.html">display-manager-component</a></li><li><a href="module-filter-function-button-component.html">filter-function-button-component</a></li><li><a href="module-filter-tool-component.html">filter-tool-component</a></li><li><a href="module-filters-manager-component.html">filters-manager-component</a></li><li><a href="module-grid-component.html">grid-component</a></li><li><a href="module-group_by-tool-component.html">group_by-tool-component</a></li><li><a href="module-more-component.html">more-component</a></li><li><a href="module-moving-tool-component.html">moving-tool-component</a></li><li><a href="module-moving-tool-down-component.html">moving-tool-down-component</a></li><li><a href="module-moving-tool-hreset-component.html">moving-tool-hreset-component</a></li><li><a href="module-moving-tool-up-component.html">moving-tool-up-component</a></li><li><a href="module-moving-tool-vreset-component.html">moving-tool-vreset-component</a></li><li><a href="module-select-tool-component.html">select-tool-component</a></li><li><a href="module-summarise-operation-component.html">summarise-operation-component</a></li><li><a href="module-summarise-operations-list-component.html">summarise-operations-list-component</a></li><li><a href="module-summarise-tool-component.html">summarise-tool-component</a></li><li><a href="module-table-component.html">table-component</a></li><li><a href="module-tools-belt-component.html">tools-belt-component</a></li></ul></div><div class="category"><h2>Controller</h2><h3>Modules</h3><ul><li><a href="module-CameraController.html">CameraController</a></li><li><a href="module-TableController.html">TableController</a></li><li><a href="module-ToolController.html">ToolController</a></li></ul></div><div class="category"><h2>Service</h2><h3>Modules</h3><ul><li><a href="module-ApiService.html">ApiService</a></li><li><a href="module-DataService.html">DataService</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>components/table-component.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { TableController } from '../controllers/TableController.js';
+import { CameraController } from '../controllers/CameraController.js';
+import { config } from '../.env.js';
+import { DataService } from '../services/DataService.js';
+
+/**
+ * @module table-component
+ * @category Component
+*/
+AFRAME.registerComponent('table', {
+    schema: {
+        cellHeight: { type: 'number', default: TableController.cellHeight },
+        cellWidth: { type: 'number', default: TableController.cellWidth },
+        dataMatrix: { type: 'array', default: [] },
+        nbrCol: { type: 'int' },
+        radius: { type: 'number' }
+    },
+
+    multiple: true,
+
+    init: function() {
+        DataService.loadDataset();
+    },
+
+    display: function() {
+        this.clear(); // clearing current content
+
+        //Adding "more" rings indicators (up and down)
+        let moreRings = document.createElement('a-entity');
+        moreRings.setAttribute('more', "direction: up;");
+        moreRings.setAttribute('id', 'moreUp');
+        this.el.appendChild(moreRings);
+        moreRings = document.createElement('a-entity');
+        moreRings.setAttribute('more', "direction: down;");
+        moreRings.setAttribute('id', 'moreDown');
+        this.el.appendChild(moreRings);
+
+        let color;
+        for (var i = 0; i &lt; this.data.dataMatrix.length; i++) {
+            for (var j = 0; j &lt; this.data.dataMatrix[i].length; j++) {
+
+                if (i == 0) {
+                    color = "#778899";
+                } else if (i % 2) {
+                    color = "#DCDCDC";
+                } else {
+                    color = "#D3D3D3";
+                }
+
+                this.displayCell(i, j, this.data.dataMatrix[i][j], color, i == 0);
+            }
+        }
+    },
+
+    events: {
+        // click: function (evt) {
+        //     TableController.moveHeaders('down');
+        // }
+    },
+
+    clear: function() {
+        while (this.el.firstChild) {
+            this.el.removeChild(this.el.lastChild);
+        }
+    },
+
+    changeDisplayMode: function() {
+        this.setRadius();
+        if (this.el.hasChildNodes()) {
+            let numChild = 2; //2 Because firsts two children are "more" rings
+            let children = this.el.childNodes;
+            for (let i = 0; i &lt; this.data.dataMatrix.length; i++) {
+                for (let j = 0; j &lt; this.data.dataMatrix[i].length; j++, numChild++) {
+                    let angle;
+                    let radius;
+                    switch (TableController.displayMode) {
+                        case 'Wall': //wall
+                            if (children[numChild].components['cell'].data.type == 'header') {
+                                children[numChild].components['cell'].move(j * this.data.cellWidth, children[numChild].components['cell'].el.object3D.position.y, -2.9);
+                            } else {
+                                children[numChild].components['cell'].move(j * this.data.cellWidth, -(i - 1) * this.data.cellHeight, -3);
+                            }
+                            children[numChild].setAttribute('rotation', '0 0 0');
+                            break;
+
+                        case 'HalfCylinder': //half cylinder
+                        case 'Cylinder': //full cylinder
+                            if (TableController.displayMode == 'HalfCylinder') {
+                                angle = ((360 / this.data.dataMatrix[i].length) * j) / 2;
+                            } else {
+                                angle = (360 / this.data.dataMatrix[i].length) * j;
+                            }
+
+                            if (children[numChild].components['cell'].data.type == 'header') {
+                                radius = this.data.radius - 0.1;
+                            } else {
+                                radius = this.data.radius;
+                            }
+
+                            let x = radius * Math.sin(Math.PI * 2 * angle / 360);
+                            let z = (radius * Math.cos(Math.PI * 2 * angle / 360)) * -1;
+                            children[numChild].components['cell'].data.angle = angle;
+                            if (children[numChild].components['cell'].data.type == 'header') {
+                                children[numChild].components['cell'].move(parseFloat(x).toFixed(5), children[numChild].components['cell'].el.object3D.position.y, parseFloat(z).toFixed(5));
+                            } else {
+                                children[numChild].components['cell'].move(parseFloat(x).toFixed(5), -(i - 1) * this.data.cellHeight, parseFloat(z).toFixed(5));
+                            }
+                            children[numChild].setAttribute('rotation', '0 ' + -angle + ' 0');
+                            break;
+                    }
+                }
+            }
+        }
+
+    },
+
+    loadNextPage: function() {
+        DataService.loadNextPage();
+    },
+
+    loadData: function(newData) {
+        this.data.dataMatrix = newData;
+        this.data.nbrCol = this.data.dataMatrix[0].length;
+        this.setRadius();
+    },
+
+    addData: function(newData) {
+        if (this.data.nbrCol == newData[0].length) {
+            let newStart = this.data.dataMatrix.length;
+            this.data.dataMatrix = this.data.dataMatrix.concat(newData);
+            let color;
+            for (var i = newStart; i &lt; this.data.dataMatrix.length; i++) {
+                for (var j = 0; j &lt; this.data.dataMatrix[i].length; j++) {
+
+                    if (i % 2) {
+                        color = "#DCDCDC";
+                    } else {
+                        color = "#D3D3D3";
+                    }
+
+                    this.displayCell(i, j, this.data.dataMatrix[i][j], color);
+                }
+            }
+        }
+    },
+
+    setRadius: function() {
+        if (TableController.displayMode == 'HalfCylinder') {
+            this.data.radius = ((this.data.nbrCol * 2.5) / 15) * 2;
+        } else {
+            this.data.radius = (this.data.nbrCol * 2.5) / 15;
+        }
+        this.data.radius *= this.data.cellWidth;
+        if (this.data.radius &lt; 1) {
+            this.data.radius = 1;
+        }
+        TableController.tableRadius = this.data.radius;
+        TableController.nbrCol = this.data.nbrCol;
+    },
+
+    displayCell: function(line, col, content, bgColor, header = false) {
+        let newCell = document.createElement("a-entity");
+        let angle;
+        let radius;
+        switch (TableController.displayMode) {
+            case 'Wall': //wall
+                if (header)
+                    newCell.setAttribute('position', col * this.data.cellWidth + ' ' + -(line - 1) * this.data.cellHeight + '  -2.9');
+                else
+                    newCell.setAttribute('position', col * this.data.cellWidth + ' ' + -(line - 1) * this.data.cellHeight + ' -3');
+
+                newCell.setAttribute('rotation', '0 0 0');
+                break;
+
+            case 'HalfCylinder': //half cylinder
+            case 'Cylinder': //full cylinder
+                if (TableController.displayMode == 'HalfCylinder') {
+                    angle = ((360 / this.data.dataMatrix[0].length) * col) / 2;
+                } else {
+                    angle = (360 / this.data.dataMatrix[0].length) * col;
+                }
+
+                if (header)
+                    radius = this.data.radius - 0.1;
+                else
+                    radius = this.data.radius;
+
+                let x = radius * Math.sin(Math.PI * 2 * angle / 360);
+                let z = (radius * Math.cos(Math.PI * 2 * angle / 360)) * -1;
+                newCell.setAttribute('position', parseFloat(x).toFixed(5) + ' ' + -(line - 1) * this.data.cellHeight + ' ' + parseFloat(z).toFixed(5));
+                newCell.setAttribute('rotation', '0 ' + -angle + ' 0');
+                break;
+        }
+
+        newCell.setAttribute('cell', 'fulldata:' + content + '; color: #000000; bgColor: ' + bgColor + '; type:' + (header ? 'header' : 'data') + '; angle:' + angle);
+        let str = line - 1;
+        newCell.setAttribute('id', col + ',' + str);
+        this.el.appendChild(newCell);
+    }
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

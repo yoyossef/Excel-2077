@@ -1,5 +1,9 @@
 import {CameraController} from '../controllers/CameraController.js';
 
+/**
+ * @module filters-manager-component
+ * @category Component
+*/
 AFRAME.registerComponent('filters-manager', {
     schema: {
     },

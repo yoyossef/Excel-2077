@@ -8,6 +8,12 @@ import { ToolController } from '../controllers/ToolController.js';
 import { TableController } from '../controllers/TableController.js';
 import { CameraController } from '../controllers/CameraController.js';
 
+/**
+ * 
+ * @module cell-component
+ * @category Component
+*/
+
 AFRAME.registerComponent('cell', {
     schema: {
         fulldata: { type: 'string' },

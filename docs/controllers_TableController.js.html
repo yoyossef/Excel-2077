@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> controllers/TableController.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Component</h2><h3>Modules</h3><ul><li><a href="module-cell-component.html">cell-component</a></li><li><a href="module-cell-details-component.html">cell-details-component</a></li><li><a href="module-confirmation-tool-component.html">confirmation-tool-component</a></li><li><a href="module-dataset-details-component.html">dataset-details-component</a></li><li><a href="module-datasets-button-component.html">datasets-button-component</a></li><li><a href="module-datasets-list-component.html">datasets-list-component</a></li><li><a href="module-details-button-component.html">details-button-component</a></li><li><a href="module-display-button-component.html">display-button-component</a></li><li><a href="module-display-manager-component.html">display-manager-component</a></li><li><a href="module-filter-function-button-component.html">filter-function-button-component</a></li><li><a href="module-filter-tool-component.html">filter-tool-component</a></li><li><a href="module-filters-manager-component.html">filters-manager-component</a></li><li><a href="module-grid-component.html">grid-component</a></li><li><a href="module-group_by-tool-component.html">group_by-tool-component</a></li><li><a href="module-more-component.html">more-component</a></li><li><a href="module-moving-tool-component.html">moving-tool-component</a></li><li><a href="module-moving-tool-down-component.html">moving-tool-down-component</a></li><li><a href="module-moving-tool-hreset-component.html">moving-tool-hreset-component</a></li><li><a href="module-moving-tool-up-component.html">moving-tool-up-component</a></li><li><a href="module-moving-tool-vreset-component.html">moving-tool-vreset-component</a></li><li><a href="module-select-tool-component.html">select-tool-component</a></li><li><a href="module-summarise-operation-component.html">summarise-operation-component</a></li><li><a href="module-summarise-operations-list-component.html">summarise-operations-list-component</a></li><li><a href="module-summarise-tool-component.html">summarise-tool-component</a></li><li><a href="module-table-component.html">table-component</a></li><li><a href="module-tools-belt-component.html">tools-belt-component</a></li></ul></div><div class="category"><h2>Controller</h2><h3>Modules</h3><ul><li><a href="module-CameraController.html">CameraController</a></li><li><a href="module-TableController.html">TableController</a></li><li><a href="module-ToolController.html">ToolController</a></li></ul></div><div class="category"><h2>Service</h2><h3>Modules</h3><ul><li><a href="module-ApiService.html">ApiService</a></li><li><a href="module-DataService.html">DataService</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>controllers/TableController.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 
+ * @module TableController
+ * @category Controller
+*/
+
+export class TableController {
+
+    static displayMode = 'Cylinder'; //Wall HalfCylinder Cylinder
+    static cellHeight = 0.096;
+    static cellWidth = 0.4;
+    static moveDistance = this.cellHeight * 20;
+    static moveStep = 0.1;
+    static tableRadius = 1;
+    static nbrCol = 0;
+
+    /**
+     * Gets all the cells component of a given column
+     * @function getCellsByColumn
+     * @param {int} colIndex the column's index to retrives cells of
+     * @return {Array&lt;cell-component>} array of cells corresponding to the column (can be empty)
+     */
+    static getCellsByColumn(colIndex) {
+        let res = [];
+        if (colIndex >= 0) {
+            let cellEntities = document.querySelectorAll('[id^="' + colIndex + ',"]');
+            for (let i = 0; i &lt; cellEntities.length; i++) {
+                res.push(cellEntities[i].components["cell"]);
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Gets the cell component corresponding to the given coordinates
+     * @function getCell
+     * @param {int} x the first coordinate (column)
+     * @param {int} y the second coordinate (row)
+     * @return {cell-component} the cell of id 'x,y' (or null if it doesn't exist)
+     */
+    static getCell(x, y) {
+        return document.getElementById(x + ',' + y).components["cell"];
+    }
+
+    /**
+     * Gets all the cells component of a given row
+     * @function getCellsByRow
+     * @param {int} rowIndex the row's index to retrives cells of
+     * @return {Array&lt;cell-component>} array of cells corresponding to the row (can be empty)
+     */
+    static getCellsByRow(rowIndex) {
+        let res = [];
+        if (rowIndex >= -1) {
+            let cellEntities = document.querySelectorAll('[id$=",' + rowIndex + '"]');
+            for (let i = 0; i &lt; cellEntities.length; i++) {
+                res.push(cellEntities[i].components["cell"]);
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Gets the header cell component of a given column
+     * @function getHeader
+     * @param {int} colIndex the column's index to retrives header of
+     * @return {cell-component} cell corresponding to the column's header (or null if it doesn't exist)
+     */
+    static getHeader (colIndex) {
+        return this.getCell(colIndex,-1);
+    }
+
+    /**
+     * Gets all header cells component of the displayed table
+     * @function getHeaders
+     * @return {Array&lt;cell-component>} cell corresponding to the table's headers (can be empty)
+     */
+    static getHeaders () {
+        let res = [];
+        res = this.getCellsByRow('-1');
+        return res;
+    }
+
+    /**
+     * Gets the 'more' rings components
+     * @function getMoreRings
+     * @return {Array&lt;more-component>} "moreUp" and "moreDown" components
+     */
+    static getMoreRings() {
+        return [document.getElementById("moreUp").components["more"], document.getElementById("moreDown").components["more"]];
+    }
+
+    /**
+     * Moves headers cells and 'more' rings smoothly in the given vertical direction (the distance is TableController.moveDistance)
+     * @function moveHeaders
+     * @param {'up' | 'down'} direction the vertical direction of the movement
+     */
+    static async moveHeaders(direction) {
+        let headers = this.getHeaders();
+        let rings = this.getMoreRings();
+        let directionAffect = 0;
+        if (direction == 'up') {
+            directionAffect = 1;
+        } else if (direction == 'down') {
+            directionAffect = -1;
+        }
+        for (let i = 0; i &lt; this.moveDistance; i += this.moveStep) {
+            for (let j = 0; j &lt; headers.length; j++) {
+                headers[j].move(headers[j].data.position[0], headers[j].data.position[1] + (this.moveStep * directionAffect), headers[j].data.position[2]);
+            }
+            for (let j = 0; j &lt; rings.length; j++) {
+                rings[j].el.setAttribute('position', { y: rings[j].el.getAttribute('position').y + (this.moveStep * directionAffect) }, true);
+            }
+            await new Promise(done => setTimeout(() => done(), 5));
+        }
+    }
+
+    /**
+     * Changes the display mode of the table
+     * @function changeDisplayMode
+     * @param {'up' | 'down'} direction the vertical direction of the movement
+     */
+    static changeDisplayMode(mode) {
+        this.displayMode = mode;
+        document.getElementById('table').components["table"].changeDisplayMode();
+        let rings = this.getMoreRings();
+        for (let i = 0; i &lt; rings.length; i++) {
+            rings[i].defineShape();
+        }
+        //Test ajout de données
+        /*let dataMatrix = [  // BOUCHON !
+            ["NewData1Col1", "NewData1Col2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
+            ["NewData2Col1", "NewData2Col2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"],
+        ];
+        document.getElementById('table').components["table"].addData(dataMatrix);*/
+    }
+
+    /**
+     * Resets headers cells and 'more' rings vertical position
+     * @function resetHeaders
+     */
+    static resetHeaders() {
+        let headers = this.getHeaders();
+        let rings = this.getMoreRings();
+        for (let i = 0; i &lt; headers.length; i++) {
+            headers[i].move(headers[i].data.position[0], this.cellHeight, headers[i].data.position[2])
+        }
+        for (let i = 0; i &lt; rings.length; i++) {
+            rings[i].resetPosition();
+        }
+    }
+
+    /**
+     * Checks if the first cell (non-header) of the table is visible
+     * @function isFirstCellVisible
+     * @return {boolean} true if the cell 0,0 is visible, false otherwise
+     */
+    static isFirstCellVisible() {
+        let res = false;
+        let cell = this.getCell(0, 0);
+        if (cell &amp;&amp; cell.el.getAttribute('visible')) {
+            res = true;
+        }
+        return res;
+    }
+
+    /**
+     * Checks if the fitst cell of the last row of the table is visible
+     * @function isLastCellVisible
+     * @return {boolean} true if this cell is visible, false otherwise
+     */
+    static isLastCellVisible() {
+        let res = false;
+        let table = document.getElementById('table').components["table"];
+        let cell = this.getCell(0, table.data.dataMatrix.length - 2); //last is length-2 because headers are idx '-1'
+        if (cell &amp;&amp; cell.el.getAttribute('visible')) {
+            res = true;
+        }
+        return res;
+    }
+
+    /**
+     * Calls the 'loadData()' method of the table component with the given data and 'display()' in order to display it
+     * @function loadDataInTable
+     * @param {Array&lt;Array&lt;any>>} dataMatrix the data to load in the table (dataMatrix[0] row is concidered as headers)
+     */
+    static loadDataInTable(dataMatrix) {
+        let table = document.getElementById('table').components["table"];
+        table.loadData(dataMatrix);
+        table.display();
+    }
+
+    /**
+     * Calls the 'addData()' method of the table component with the given data in order to add it to the displayed data
+     * @function addDataInTable
+     * @param {Array&lt;Array&lt;any>>} dataMatrix the data add in the table
+     */
+    static addDataInTable(dataMatrix) {
+        let table = document.getElementById('table').components["table"];
+        table.addData(dataMatrix);
+    }
+
+    /**
+     * Calls the 'loadNextPage()' method of the table component
+     * @function loadNextPageInTable
+     */
+    static loadNextPageInTable() {
+        let table = document.getElementById('table').components["table"];
+        table.loadNextPage();
+    }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

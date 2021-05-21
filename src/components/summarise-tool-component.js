@@ -2,6 +2,10 @@ import {ToolController} from '../controllers/ToolController.js';
 import {TableController} from '../controllers/TableController.js';
 import {DataService} from '../services/DataService.js';
 
+/**
+ * @module summarise-tool-component
+ * @category Component
+*/
 AFRAME.registerComponent('summarise-tool', {
     schema: {
         color: {type:'color',default:'#FF0000'}

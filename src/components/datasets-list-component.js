@@ -1,6 +1,10 @@
 import {DataService} from '../services/DataService.js';
 import {CameraController} from '../controllers/CameraController.js';
 
+/**
+ * @module datasets-list-component
+ * @category Component
+*/
 AFRAME.registerComponent('datasets-list', {
     schema: {
         name : {type:'string', default:''},

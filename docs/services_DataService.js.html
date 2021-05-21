@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> services/DataService.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Component</h2><h3>Modules</h3><ul><li><a href="module-cell-component.html">cell-component</a></li><li><a href="module-cell-details-component.html">cell-details-component</a></li><li><a href="module-confirmation-tool-component.html">confirmation-tool-component</a></li><li><a href="module-dataset-details-component.html">dataset-details-component</a></li><li><a href="module-datasets-button-component.html">datasets-button-component</a></li><li><a href="module-datasets-list-component.html">datasets-list-component</a></li><li><a href="module-details-button-component.html">details-button-component</a></li><li><a href="module-display-button-component.html">display-button-component</a></li><li><a href="module-display-manager-component.html">display-manager-component</a></li><li><a href="module-filter-function-button-component.html">filter-function-button-component</a></li><li><a href="module-filter-tool-component.html">filter-tool-component</a></li><li><a href="module-filters-manager-component.html">filters-manager-component</a></li><li><a href="module-grid-component.html">grid-component</a></li><li><a href="module-group_by-tool-component.html">group_by-tool-component</a></li><li><a href="module-more-component.html">more-component</a></li><li><a href="module-moving-tool-component.html">moving-tool-component</a></li><li><a href="module-moving-tool-down-component.html">moving-tool-down-component</a></li><li><a href="module-moving-tool-hreset-component.html">moving-tool-hreset-component</a></li><li><a href="module-moving-tool-up-component.html">moving-tool-up-component</a></li><li><a href="module-moving-tool-vreset-component.html">moving-tool-vreset-component</a></li><li><a href="module-select-tool-component.html">select-tool-component</a></li><li><a href="module-summarise-operation-component.html">summarise-operation-component</a></li><li><a href="module-summarise-operations-list-component.html">summarise-operations-list-component</a></li><li><a href="module-summarise-tool-component.html">summarise-tool-component</a></li><li><a href="module-table-component.html">table-component</a></li><li><a href="module-tools-belt-component.html">tools-belt-component</a></li></ul></div><div class="category"><h2>Controller</h2><h3>Modules</h3><ul><li><a href="module-CameraController.html">CameraController</a></li><li><a href="module-TableController.html">TableController</a></li><li><a href="module-ToolController.html">ToolController</a></li></ul></div><div class="category"><h2>Service</h2><h3>Modules</h3><ul><li><a href="module-ApiService.html">ApiService</a></li><li><a href="module-DataService.html">DataService</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>services/DataService.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { ApiService } from './ApiService.js';
+import { TableController } from '../controllers/TableController.js';
+import { CameraController } from '../controllers/CameraController.js';
+import { config } from '../.env.js';
+
+/**
+ * 
+ * @module DataService
+ * @category Service
+*/
+export class DataService {
+
+    static data = {};
+    static nbCommandExecuted = 0;
+    static displayedData = '';
+
+    /**
+     * Loads the initial dataset in the data object by calling 'read.table' and getting the first page,
+     * then sends the table to TableController to display it
+     * @function loadDataSet
+     */
+    static loadDataset() {
+        DataService.nbCommandExecuted++;
+        let varName = 'c' + DataService.nbCommandExecuted;
+        let tmpData = [];
+        ApiService.rCommandPOST(varName, 'read.table', "'" + config.DATASET + "', header=T, sep=','").then((response) => {
+            response.json().then((body) => {
+                let colInfo = body.columnsName;
+                ApiService.rReadTableGET(varName, 1).then((response) => {
+                    response.json().then((body) => {
+                        //get response data into tmpData
+                        tmpData.push(Object.keys(body.results[0]));//Headers
+                        for (let i = 0; i &lt; body.results.length; i++) {
+                            tmpData.push(Object.values(body.results[i]));
+                        }
+                        //update DataService.data
+                        DataService.data[varName] = {
+                            command: "read.table(" + config.DATASET + ", header=T, sep=',')",
+                            table: tmpData,
+                            page: 1,
+                            totalResults: body.totalResults,
+                            totalPages: body.totalPages,
+                            colInfo: colInfo
+                        };
+                        //display DataService.data
+                        TableController.loadDataInTable(DataService.data[varName].table);
+                        DataService.displayedData = varName;
+                    });
+                });
+            });
+        });
+    }
+
+    /**
+     * Load the next page of data for he current variable then sends it to TableController to display it
+     * @function loadNextPage
+     */
+    static loadNextPage() {
+        let varName = DataService.displayedData;
+        let newPage = DataService.data[varName].page + 1;
+        if (newPage &lt;= DataService.data[varName].totalPages) {
+            let tmpData = [];
+            ApiService.rReadTableGET(varName, newPage).then((response) => {
+                response.json().then((body) => {
+                    //get response data into tmpData
+                    for (let i = 0; i &lt; body.results.length; i++) {
+                        tmpData.push(Object.values(body.results[i]));
+                    }
+                    //update DataService.data
+                    DataService.data[varName].page = newPage;
+                    TableController.addDataInTable(tmpData);
+                    //display DataService.data
+                });
+            });
+        }
+    }
+
+    /**
+     * Executes an R command, loads the result in data object,
+     * then sends the table to TableController in order to display it
+     *
+     * @function executeCommand
+     * @param {string} commandName name of the R command to execute
+     * @param {string} params R command's parameters
+     */
+    static executeCommand(commandName, params) {
+        DataService.nbCommandExecuted++;
+        let varName = 'c' + DataService.nbCommandExecuted;
+        let tmpData = [];
+        ApiService.rCommandPOST(varName, commandName, params).then((response) => {
+            response.json().then((body) => {
+                let colInfo = body.columnsName;
+                //headers
+                if (Object.keys(body.results).length){
+                    tmpData.push(Object.keys(body.results[0]));
+                    //get response data into tmpData
+                    for (let i = 0; i &lt; body.results.length; i++) {
+                        tmpData.push(Object.values(body.results[i]));
+                    }
+                } else {
+                    tmpData.push(["Empty data"]);
+                    tmpData.push(["Nothing to see here"]);
+                }
+                //update DataService.data
+                DataService.data[varName] = {
+                    command: commandName + "(" + params + ")",
+                    table: tmpData,
+                    page: 1,
+                    totalResults: body.totalResults,
+                    totalPages: body.totalPages,
+                    colInfo: body.columnsName
+                };
+                //display DataService.data
+                TableController.loadDataInTable(DataService.data[varName].table);
+                DataService.displayedData = varName;
+                CameraController.reset('vertical'); //Reset vertical position of camera
+            });
+        });
+    }
+
+    /**
+     * Executes a select command on the currently displayed dataset by calling
+     * DataService.executeCommand('select',params);
+     *
+     * @function select
+     * @param {Array&lt;int>} colIndexes the indexes of the columns to select
+     */
+    static select(colIndexes) {
+        let params = DataService.displayedData; //First param of select, the table name
+        for (let i = 0; i &lt; colIndexes.length; i++) { //getting columns' name
+            params += "," + DataService.data[DataService.displayedData].table[0][colIndexes[i]];
+        }
+        DataService.executeCommand('select', params);
+    }
+
+    /**
+     * Executes a group_by command on the currently displayed dataset by calling
+     * DataService.executeCommand('group_by',params);
+     *
+     * @function group_by
+     * @param {int} colIndex the index of the column to use group_by on
+     * @param {boolean} add if true, combines group_by with the previous one (default false)
+     */
+    static group_by(colIndex, add = false) {
+        let params = DataService.displayedData; //First param of group_by, the table name
+        params += "," + DataService.data[DataService.displayedData].table[0][colIndex]; //get column name
+        if (add) {
+            params += ", add = TRUE";
+        }
+        DataService.executeCommand('group_by', params);
+    }
+
+    /**
+     * Executes a filter command on the currently displayed dataset by calling
+     * DataService.executeCommand('filter',params);
+     *
+     * @function filter
+     * @param {Array&lt;string,string,string>} tripletList triplet containing : column name, operator , value for the operator
+     */
+     static filter(tripletList) {
+        let params = DataService.displayedData +  ","; //First param of group_by, the table name
+        let tripletParams = ""
+        for (var i = 0; i &lt; tripletList.length; i++) {
+            if (tripletParams != '')
+            tripletParams += ' &amp;'
+            tripletParams += " " + tripletList[i].col + " " + tripletList[i].op
+            if (isNaN(tripletList[i].arg))
+                tripletParams += " '" + tripletList[i].arg + "' " ;
+            else
+                tripletParams += " " + tripletList[i].arg ;
+        }
+        params += tripletParams;
+        DataService.executeCommand('filter', params);
+     }
+
+     /**
+     * Executes a summarise command on the currently displayed dataset by calling
+     * DataService.executeCommand('summarise',params);
+     *
+     * @function summariseObjects
+     * @param {Array&lt;Object>} summariseObjects objects containing operation (mean, max, n, ...) and colIndex (-1 if not needed)
+     */
+    static summarise(summariseObjects) {
+        let params = DataService.displayedData; //First param of summarise, the table name
+        for (let i = 0; i &lt; summariseObjects.length; i++) { //creating summarise arguments
+            if(summariseObjects[i].colIndex > -1){//getting column's name if needed
+                let colName = DataService.getColumnName(summariseObjects[i].colIndex);
+                params += "," + summariseObjects[i].operation+'.'+colName+ " = "+ summariseObjects[i].operation+"("+colName+")";
+            }
+            else{
+                params += "," + summariseObjects[i].operation+ " = "+ summariseObjects[i].operation+"()";
+            }
+        }
+        DataService.executeCommand('summarise', params);
+    }
+
+    /**
+     * Loads the given dataset in the table to display it
+     * 
+     * @function switchToData
+     * @param {string} dataName the name of the data to load
+     */
+    static switchToData(dataName){
+        if(dataName != null &amp;&amp; dataName != DataService.displayedData &amp;&amp; DataService.data[dataName]){
+            TableController.loadDataInTable(DataService.data[dataName].table);
+            DataService.displayedData = dataName;
+        }
+        document.getElementById('datasetsList').components['datasets-list'].hide();
+    }
+
+    /**
+     * Gets the column name with the given index (for the displayed table)
+     * 
+     * @function getColumnName
+     * @param {int} colIndex the index of the column to get the name of
+     * @return {string} the column name (or '' if index is invalid)
+     */
+    static getColumnName(colIndex){
+        if(colIndex> -1 &amp;&amp; colIndex &lt; DataService.data[DataService.displayedData].table[0].length){
+            return DataService.data[DataService.displayedData].table[0][colIndex];
+        }
+        else {
+            return '';
+        }
+    }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>
